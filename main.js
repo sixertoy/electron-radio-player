@@ -13,7 +13,7 @@ const { app, BrowserWindow } = electron;
 
 function onApplicationReadyHandler () {
 
-  const appicon = path.join(__dirname, 'src', 'assets', 'app-icons', 'app-icon.png');
+  const appicon = path.join(__dirname, 'src', 'assets', 'mac', 'app-icon.png');
   // Create the browser window.
   mainWindow = new BrowserWindow({
     // https://github.com/electron/electron/blob/master/docs/api/browser-window.md

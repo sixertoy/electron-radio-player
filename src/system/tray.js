@@ -11,7 +11,7 @@ class TrayBuilder {
   }
 
   buildTray () {
-    const iconfile = path.join(__dirname, '..', 'assets', 'app-icons', 'tray-icon.png');
+    const iconfile = path.join(__dirname, '..', 'assets', 'mac', 'tray-icon.png');
     this.tray = new Tray(iconfile);
     const contextMenu = Menu.buildFromTemplate([
       { label: __dirname, type: 'normal' },

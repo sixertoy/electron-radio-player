@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // application
 import './cover.css';
 import { play, pause } from './../actions';
-import Vinyl from './../../assets/vinyl-cover';
+import Vinyl from './../assets/vinyl-cover';
 
 const coverColors = {
   logo: false,
