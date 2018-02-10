@@ -1,0 +1,47 @@
+#cover {
+  flex: 0;
+  width: 200px;
+  display: flex;
+  height: 200px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#cover .button {
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 0;
+  min-width: 100%;
+  text-align: center;
+  position: absolute;
+  background: transparent;
+}
+
+#cover,
+#cover .button {
+  color: #ABB2C0;
+}
+
+#cover.disabled,
+#cover.disabled .button {
+  color: #000;
+}
+
+#cover .volume { font-weight: 100; }
+
+#cover .cover-image {
+  left: 7px;
+  top: 31px;
+  width: 125px;
+  height: 125px;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

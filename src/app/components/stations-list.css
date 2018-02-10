@@ -1,0 +1,35 @@
+#stations-list {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-direction: column;
+  background-color: #282C34;
+}
+
+#stations-list .station {
+  color: #ABB2C0;
+  background-color: #282C34;
+  border-bottom: 1px solid #3B4048;
+  transition: background-color 0.5s;
+}
+#stations-list .station.active { background-color: #2C313C; }
+
+#stations-list .station .button {
+  border: 0;
+  width: 100%;
+  padding: 12px;
+  color: #6B727D;
+  text-align: left;
+  transition: color 0.5s;
+  background: transparent;
+}
+
+#stations-list .station.active,
+#stations-list .station.active .button { color: #D7DAE0; }
+
+#stations-list .station .button .icon { margin-right: 7px; }
+#stations-list .station.active .button .icon { color: #5387F5; }
+
+#stations-list .list { scroll-behavior: smooth; }
