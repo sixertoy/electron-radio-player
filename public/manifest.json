@@ -1,6 +1,6 @@
 {
-  "short_name": "My Application",
-  "name": "My Electron Application Sample",
+  "short_name": "Radio Player",
+  "name": "My Favorites Radios Player",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,6 +10,6 @@
   ],
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#ABB2C0",
+  "background_color": "#282C34"
 }

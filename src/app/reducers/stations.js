@@ -37,7 +37,11 @@ const presets = [{
 }, {
   key: 'radio-meuh',
   name: 'Radio Meuh',
-  url: 'https://radiomeuh.ice.infomaniak.ch/radiomeuh-128.mp3'
+  url: 'https://radiomeuh.ice.infomaniak.ch/radiomeuh-128.mp3',
+  cover: {
+    color: '#FFFFFF',
+    logo: 'http://bit.ly/2CaWbzh'
+  }
 }];
 
 const stations = (state = presets, action) => {

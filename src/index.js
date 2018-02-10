@@ -14,6 +14,7 @@ const store = configure();
 const Root = () => (
   <Provider store={store}>
     <div id="radio-player">
+      <div id="radio-player-draggable" />
       <AudioPlayer />
       <Stations />
     </div>

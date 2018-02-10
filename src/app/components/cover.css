@@ -33,7 +33,9 @@
   color: #000;
 }
 
-#cover .volume { font-weight: 100; }
+#cover .volume .value {
+  font-size: 0.6em;
+}
 
 #cover .cover-image {
   left: 7px;

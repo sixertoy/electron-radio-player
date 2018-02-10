@@ -14,22 +14,27 @@
   border-bottom: 1px solid #3B4048;
   transition: background-color 0.5s;
 }
+
+#stations-list .station:hover,
 #stations-list .station.active { background-color: #2C313C; }
 
 #stations-list .station .button {
   border: 0;
   width: 100%;
   padding: 12px;
-  color: #6B727D;
+  color: #9DA5B5;
   text-align: left;
   transition: color 0.5s;
   background: transparent;
 }
 
 #stations-list .station.active,
-#stations-list .station.active .button { color: #D7DAE0; }
+#stations-list .station.active .button { color: #FFF; }
 
-#stations-list .station .button .icon { margin-right: 7px; }
+#stations-list .station .button .icon {
+  margin-right: 7px;
+  text-shadow: 0 0 7px rgba(0, 0, 0, 0.45);
+}
 #stations-list .station.active .button .icon { color: #5387F5; }
 
 #stations-list .list { scroll-behavior: smooth; }

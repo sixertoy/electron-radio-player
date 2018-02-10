@@ -27,7 +27,7 @@ const Cover = ({
       <Vinyl color={custom.color} background={custom.background} />
       <span className="volume">
         <i className="icon icon-volume" />
-        <span>{Math.round(volume * 100)}</span>
+        <span className="value">{Math.round(volume * 100)}</span>
       </span>
       <div className="cover-image"
         style={!custom.logo ? {} : { backgroundImage: `url(${custom.logo})` }} />
