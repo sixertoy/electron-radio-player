@@ -1,0 +1,46 @@
+{
+  "name": "",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "cb13afd4722a849d48056540bb74c47e",
+      "css": "play",
+      "code": 59392,
+      "src": "entypo"
+    },
+    {
+      "uid": "48f2e18872fe74d4579a4c8a1527fc1e",
+      "css": "stop",
+      "code": 59393,
+      "src": "entypo"
+    },
+    {
+      "uid": "d8d378d0ce413f231dfa37592e39c227",
+      "css": "pause",
+      "code": 59394,
+      "src": "entypo"
+    },
+    {
+      "uid": "edd88296295d95d6510e66d9a6bbd6c3",
+      "css": "volume",
+      "code": 59395,
+      "src": "entypo"
+    },
+    {
+      "uid": "ef51920c7a9bed4d87f53709db115e34",
+      "css": "sound",
+      "code": 59396,
+      "src": "entypo"
+    },
+    {
+      "uid": "2f750a9be253e8e451209574336e7020",
+      "css": "mute",
+      "code": 59397,
+      "src": "entypo"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# ------------------------------
+#
+# EJECT
+#
+# ------------------------------
+
+git-ensure-clean
+rm -rf build bin
+rm -rf node_modules
+rm yarn.lock
+git co -b ejected
+react-scripts eject
+yarn install

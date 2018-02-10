@@ -1,0 +1,8 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "color-named": "never",
+    "color-hex-length": "short",
+    "color-hex-case": "upper"
+  }
+}

@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+// ------------------------------------------------
+// INSTALL:
+// - brew cask install xquartz
+// - brew install wine
+// - `export WINEARCH=win64`
+// ------------------------------------------------ */
+
+const cwd = process.cwd();
+const path = require('path');
+const packager = require('electron-packager');
+const { createWindowsInstaller } = require('electron-winstaller');
+
+packager({
+  // available options
+  // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md
+  platform: 'win32',
+  dir: path.join(cwd),
+  packageManager: 'yarn',
+  out: path.join(cwd, 'releases')
+})
+.then((apppaths) => {
+  console.log('Application packed with success');
+  return createWindowsInstaller({
+    noMsi: true,
+    authors: 'un auteur',
+    exe: 'my-application.exe',
+    setupExe: 'my-application-win32-x64.exe',
+    description: 'Une description',
+    outputDirectory: path.join(cwd, 'releases-builds'),
+    appDirectory: path.join(cwd, 'releases', 'my-application-win32-x64')
+    // setupIcon: path.join(rootpath, 'assets', 'icons', 'win', 'icon.ico')
+  })
+})
+.then((apppaths) => {
+  console.log('Application installer build with success');
+})
+.catch((error) => {
+  console.error(error.message || error)
+  process.exit(1)
+});

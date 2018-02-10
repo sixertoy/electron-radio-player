@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+const cwd = process.cwd();
+const path = require('path');
+const packager = require('electron-packager');
+
+packager({
+  // available options
+  // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md
+  platform: 'darwin',
+  dir: path.join(cwd),
+  packageManager: 'yarn',
+  out: path.join(cwd, 'releases')
+})
+.then((apppaths) => {
+  console.log('Application packaged with success');
+});
