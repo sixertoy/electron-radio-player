@@ -58,7 +58,9 @@ class Controls extends React.Component {
     return (
       <div id="volume-bar">
         <button className="button down"
-          onClick={() => dispatch(decreaseVolume())}>
+          onClick={() => {
+            dispatch(decreaseVolume());
+          }}>
           <i className="icon-mute" />
         </button>
         <div className="bar"
@@ -73,7 +75,9 @@ class Controls extends React.Component {
           </span>
         </div>
         <button className="button up"
-          onClick={() => dispatch(increaseVolume())}>
+          onClick={() => {
+            dispatch(increaseVolume());
+          }}>
           <i className="icon-sound" />
         </button>
       </div>
@@ -83,7 +87,7 @@ class Controls extends React.Component {
 
 Controls.propTypes = {
   volume: PropTypes.number.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect()(Controls);

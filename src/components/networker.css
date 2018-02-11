@@ -1,0 +1,15 @@
+#networker {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  position: absolute;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#networker.offline {
+  display: block;
+  visibility: visible;
+}

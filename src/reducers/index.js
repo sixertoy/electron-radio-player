@@ -34,20 +34,30 @@ const isplaying = (state = false, action) => {
   case 'onPause':
   case 'onLoadError':
   case 'onChangeStation':
+  case 'onOfflineStatus':
     return false;
   default:
     return state;
   }
 };
 
-const loading = (state = false, action) => {
+const isloading = (state = false, action) => {
   switch (action.type) {
-  case 'onLoaded':
-    return false;
   case 'onLoading':
-    return false;
+    return true;
+  case 'onLoaded':
   case 'onLoadError':
+  case 'onOfflineStatus':
     return false;
+  default:
+    return state;
+  }
+};
+
+const isoffline = (state = false, action) => {
+  switch (action.type) {
+  case 'onOfflineStatus':
+    return action.isoffline;
   default:
     return state;
   }
@@ -56,9 +66,10 @@ const loading = (state = false, action) => {
 export const reducers = combineReducers({
   volume,
   station,
-  loading,
   stations,
+  isloading,
   isplaying,
+  isoffline,
 });
 
 export default reducers;

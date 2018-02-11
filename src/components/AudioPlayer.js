@@ -6,7 +6,12 @@ import { connect } from 'react-redux';
 import './audio-player.css';
 import Cover from './Cover';
 import VolumeBar from './VolumeBar';
-import { loading, loaded, loadError } from './../actions';
+import { loading, loaded } from './../actions';
+
+const onAudioEventListener = (evt) => {
+  // eslint-disable-next-line no-console
+  console.log('onAudioEvent => ', evt.type);
+};
 
 class AudioPlayer extends React.Component {
 
@@ -14,14 +19,32 @@ class AudioPlayer extends React.Component {
     super(props);
     this.audio = null;
     this.source = null;
+    this.onAudioLoaded = this.onAudioLoaded.bind(this);
+    this.onAudioLoadError = this.onAudioLoadError.bind(this);
+    this.onAudioStartLoading = this.onAudioStartLoading.bind(this);
   }
 
   componentDidMount () {
     if (!this.audio) return;
     this.audio.volume = this.props.volume;
-    this.onAudioError = this.onAudioError.bind(this);
-    this.onAudioLoaded = this.onAudioLoaded.bind(this);
-    this.onAudioStartLoading = this.onAudioStartLoading.bind(this);
+    this.audio.addEventListener('error', onAudioEventListener);
+    this.audio.addEventListener('abort', onAudioEventListener);
+    this.audio.addEventListener('ended', onAudioEventListener);
+    this.audio.addEventListener('seeked', onAudioEventListener);
+    // this.audio.addEventListener('canplay', onAudioEventListener);
+    this.audio.addEventListener('seeking', onAudioEventListener);
+    this.audio.addEventListener('suspend', onAudioEventListener);
+    this.audio.addEventListener('waiting', onAudioEventListener);
+    // this.audio.addEventListener('progress', onAudioEventListener);
+    this.audio.addEventListener('loadstart', onAudioEventListener);
+    this.audio.addEventListener('loadeddata', onAudioEventListener);
+    this.audio.addEventListener('ratechange', onAudioEventListener);
+    // this.audio.addEventListener('timeupdate', onAudioEventListener);
+    this.audio.addEventListener('interruptend', onAudioEventListener);
+    this.audio.addEventListener('interruptbegin', onAudioEventListener);
+    // this.audio.addEventListener('canplaythrough', onAudioEventListener);
+    this.audio.addEventListener('loadedmetadata', onAudioEventListener);
+    this.audio.addEventListener('durationchange', onAudioEventListener);
   }
 
   componentWillReceiveProps (nextprops) {
@@ -40,47 +63,62 @@ class AudioPlayer extends React.Component {
     }
     if (nextprops.station !== station) {
       this.source.src = nextprops.station.url;
-      this.audio.addEventListener('error', this.onAudioError);
-      this.audio.addEventListener('loadStart', this.onAudioStartLoading);
-      this.audio.addEventListener('canplaythrough', this.onAudioLoaded);
       this.audio.load();
     }
   }
 
+  componentWillUnmount () {
+    if (!this.audio) return;
+    this.audio.pause();
+  }
+
+  onAudioLoadError () {
+    if (!this.props.station) return;
+    const code = this.audio.networkState;
+    // 1 = MEDIA_ERR_ABORTED - fetching process aborted by user
+    // 2 = MEDIA_ERR_NETWORK - error occurred when downloading
+    // 3 = MEDIA_ERR_DECODE - error occurred when decoding
+    // 4 = MEDIA_ERR_SRC_NOT_SUPPORTED - audio/video not supported
+    // eslint-disable-next-line no-console
+    console.log('code', code);
+  }
+
   onAudioStartLoading () {
+    if (!this.props.station) return;
+    // once loading started
+    // remove the event listener
     const { dispatch } = this.props;
-    this.audio.removeEventListener('loadStart', this.onAudioStartLoading);
     dispatch(loading());
   }
 
   onAudioLoaded () {
+    if (!this.props.station) return;
     const { dispatch } = this.props;
-    this.audio.removeEventListener('error', this.onAudioError);
-    this.audio.removeEventListener('canplaythrough', this.onAudioLoaded);
     dispatch(loaded());
   }
 
-  onAudioError () {
-    const { dispatch } = this.props;
-    this.audio.removeEventListener('error', this.onAudioError);
-    this.audio.removeEventListener('loadStart', this.onAudioStartLoading);
-    this.audio.removeEventListener('canplaythrough', this.onAudioLoaded);
-    dispatch(loadError());
-  }
-
   render () {
-    const { station, volume, isplaying } = this.props;
+    const {
+      volume,
+      station,
+      isplaying,
+      isloading,
+    } = this.props;
     return (
       <div id="audio-player">
         <audio volume={volume}
-          ref={(ref) => { this.audio = ref; }}>
+          ref={(ref) => { this.audio = ref; }}
+          onError={this.onAudioLoadError}
+          onWaiting={this.onAudioStartLoading}
+          onCanPlayThrough={this.onAudioLoaded}
+          onLoadStart={this.onAudioStartLoading}>
           <track kind="captions" />
           <source type="audio/mpeg"
-            src={station.url}
+            src={(station && station.url) || null}
             ref={(ref) => { this.source = ref; }} />
         </audio>
         <div id="audio-controls">
-          <Cover disabled={!station}
+          <Cover disabled={!station || isloading}
             volume={volume}
             isplaying={isplaying}
             cover={((station && station.cover) ? { ...station.cover } : false)} />
@@ -94,6 +132,7 @@ class AudioPlayer extends React.Component {
 AudioPlayer.propTypes = {
   volume: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
+  isloading: PropTypes.bool.isRequired,
   isplaying: PropTypes.bool.isRequired,
   station: PropTypes.oneOfType([
     PropTypes.bool,
@@ -103,6 +142,7 @@ AudioPlayer.propTypes = {
 
 const mapStateToProps = state => ({
   station: state.station,
+  isloading: state.isloading,
   isplaying: state.isplaying,
   volume: (state.volume / 100),
 });

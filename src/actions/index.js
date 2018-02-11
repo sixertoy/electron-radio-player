@@ -35,3 +35,8 @@ export const changeStation = station => ({
   station,
   type: 'onChangeStation',
 });
+
+export const offlineStatus = isoffline => ({
+  isoffline,
+  type: 'onOfflineStatus',
+});

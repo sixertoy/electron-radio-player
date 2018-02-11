@@ -7,6 +7,7 @@ import './index.css';
 import { configure } from './store';
 
 import Stations from './components/Stations';
+import Networker from './components/Networker';
 import AudioPlayer from './components/AudioPlayer';
 
 // application
@@ -15,6 +16,7 @@ const Root = () => (
   <Provider store={store}>
     <div id="radio-player">
       <div id="radio-player-draggable" />
+      <Networker />
       <AudioPlayer />
       <Stations />
     </div>
@@ -23,5 +25,5 @@ const Root = () => (
 
 ReactDOM.render(
   <Root />,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

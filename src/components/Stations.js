@@ -11,6 +11,7 @@ const Stations = ({
   station,
   stations,
   dispatch,
+  isloading,
   isplaying,
 }) => (
   <div id="stations-list">
@@ -19,7 +20,8 @@ const Stations = ({
         {stations && stations.map((item) => {
           const isactive = (item.key === station.key);
           const isactivepaused = (!isplaying && isactive);
-          const status = (isactive && !isactivepaused) ? 'pause' : 'play';
+          let status = (isactive && !isactivepaused) ? 'pause' : 'play';
+          if (isloading && isactive) status = 'spin6 animate-spin';
           //
           return (
             <div key={item.key}
@@ -43,6 +45,7 @@ const Stations = ({
 
 Stations.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  isloading: PropTypes.bool.isRequired,
   isplaying: PropTypes.bool.isRequired,
   stations: PropTypes.array.isRequired,
   station: PropTypes.oneOfType([
@@ -54,6 +57,7 @@ Stations.propTypes = {
 const mapStateToProps = state => ({
   station: state.station,
   stations: state.stations,
+  isloading: state.isloading,
   isplaying: state.isplaying,
 });
 
