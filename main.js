@@ -3,15 +3,15 @@
 const url = require('url');
 const path = require('path');
 const electron = require('electron');
-const { noop, isdarwin } = require('./src/system/utils');
+const { noop, isdarwin } = require('./system/utils');
 
 
 // application
 const { app } = electron;
-const buildMenu = require('./src/system/menu');
-const buildTray = require('./src/system/tray');
-const buildDock = require('./src/system/dock');
-const buildWindow = require('./src/system/window');
+const buildMenu = require('./system/menu');
+const buildTray = require('./system/tray');
+const buildDock = require('./system/dock');
+const buildWindow = require('./system/window');
 
 let mainwindow = null;
 function onApplicationReadyHandler () {
