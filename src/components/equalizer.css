@@ -1,0 +1,120 @@
+.equalizer {
+  height: 3px;
+  width: 3.5px;
+  left: 23.25px;
+  bottom: 19.5px;
+  display: block;
+  position: absolute;
+  background-color: #000;
+}
+
+.equalizer,
+.equalizer::before,
+.equalizer::after { animation: equalize 1.25s steps(25, end) 0s infinite; }
+
+.equalizer::before,
+.equalizer::after {
+  left: 5px;
+  bottom: 0;
+  content: '';
+  width: 3.5px;
+  height: 21px;
+  position: absolute;
+  background-color: #000;
+}
+
+.equalizer::before {
+  animation-name: equalize3;
+}
+
+.equalizer::after {
+  left: 10px;
+  animation-name: equalize2;
+}
+
+@keyframes equalize {
+  0% { height: 6px; }
+  4% { height: 3px; }
+  8% { height: 6px; }
+  12% { height: 10.5px; }
+  16% { height: 15px; }
+  20% { height: 19.5px; }
+  24% { height: 18px; }
+  28% { height: 16.5px; }
+  32% { height: 16.5px; }
+  36% { height: 12px; }
+  40% { height: 15px; }
+  44% { height: 15px; }
+  48% { height: 16.5px; }
+  52% { height: 18px; }
+  56% { height: 19.5px; }
+  60% { height: 18px; }
+  64% { height: 18px; }
+  68% { height: 16.5px; }
+  72% { height: 15px; }
+  76% { height: 16.5px; }
+  80% { height: 18px; }
+  84% { height: 18px; }
+  88% { height: 19.5px; }
+  92% { height: 15px; }
+  96% { height: 10.5px; }
+  100% { height: 6px; }
+}
+
+@keyframes equalize2 {
+  0% { height: 18px; }
+  4% { height: 19.5px; }
+  8% { height: 18px; }
+  12% { height: 18px; }
+  16% { height: 16.5px; }
+  20% { height: 16.5px; }
+  24% { height: 16.5px; }
+  28% { height: 18px; }
+  32% { height: 18px; }
+  36% { height: 19.5px; }
+  40% { height: 19.5px; }
+  44% { height: 19.5px; }
+  48% { height: 16.5px; }
+  52% { height: 12px; }
+  56% { height: 9px; }
+  60% { height: 12px; }
+  64% { height: 15px; }
+  68% { height: 16.5px; }
+  72% { height: 19.5px; }
+  76% { height: 18px; }
+  80% { height: 18px; }
+  84% { height: 16.5px; }
+  88% { height: 16.5px; }
+  92% { height: 13.5px; }
+  96% { height: 16.5px; }
+  100% { height: 18px; }
+}
+
+@keyframes equalize3 {
+  0% { height: 13.5px; }
+  4% { height: 10.5px; }
+  8% { height: 13.5px; }
+  12% { height: 16.5px; }
+  16% { height: 19.5px; }
+  20% { height: 22.5px; }
+  24% { height: 21px; }
+  28% { height: 16.5px; }
+  32% { height: 13.5px; }
+  36% { height: 12px; }
+  40% { height: 10.5px; }
+  44% { height: 7.5px; }
+  48% { height: 12px; }
+  52% { height: 15px; }
+  56% { height: 16.5px; }
+  60% { height: 19.5px; }
+  64% { height: 18px; }
+  68% { height: 16.5px; }
+  72% { height: 16.5px; }
+  76% { height: 15px; }
+  80% { height: 18px; }
+  84% { height: 19.5px; }
+  88% { height: 21px; }
+  92% { height: 18px; }
+  96% { height: 15px; }
+  100% { height: 13.5px; }
+}

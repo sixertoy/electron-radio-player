@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import './volume-bar.css';
+import './equalizer.css';
+import './volumebar.css';
 import {
   setVolume,
   decreaseVolume,
@@ -62,13 +63,16 @@ class VolumeBar extends React.Component {
     return (
       <div id="volume-bar" className={`${isactive ? 'active' : ''}`}>
         <span className="volume">
-          <span className="value">{Math.round(thumbwidth)}</span>
+          <span className="equalizers">
+            <span className="equalizer" />
+          </span>
+          {/* <span className="value">{Math.round(thumbwidth)}</span> */}
         </span>
         <button className="button down"
           onClick={() => {
             dispatch(decreaseVolume());
           }}>
-          <i className="icon-mute" />
+          <i className="icon icon-mute" />
         </button>
         <div className="bar"
           ref={this.setVolumebarRef}>
@@ -85,7 +89,7 @@ class VolumeBar extends React.Component {
           onClick={() => {
             dispatch(increaseVolume());
           }}>
-          <i className="icon-sound" />
+          <i className="icon icon-sound" />
         </button>
       </div>
     );

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import './audio-player.css';
+import './audioplayer.css';
 import Cover from './Cover';
 import VolumeBar from './VolumeBar';
 import { loading, loaded } from './../actions';
@@ -55,7 +55,7 @@ class AudioPlayer extends React.Component {
       isplaying,
     } = this.props;
     if (nextprops.volume !== volume) {
-      this.audio.volume = nextprops.volume;
+      this.audio.volume = Math.max(0, nextprops.volume);
     }
     if (nextprops.isplaying !== isplaying) {
       if (!nextprops.isplaying) this.audio.pause();
@@ -122,7 +122,7 @@ class AudioPlayer extends React.Component {
             disabled={!station || isloading}
             cover={((station && station.cover) ? { ...station.cover } : false)} />
           <VolumeBar volume={volume}
-            isactive={station !== false} />
+            isactive={station !== false && isplaying} />
         </div>
       </div>
     );
