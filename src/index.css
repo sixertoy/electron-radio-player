@@ -40,6 +40,17 @@ button {
 
 /* --------------------------------------------------
 
+ Z-INDEX
+
+-------------------------------------------------- */
+
+/* #radio-player-draggable { z-index: 10000; } */
+#cover { z-index: 1000; }
+#networker { z-index: 5000; }
+#audio-player { z-index: 250; }
+
+/* --------------------------------------------------
+
  LAYOUTS
 
 -------------------------------------------------- */
@@ -64,21 +75,11 @@ button {
 #radio-player-draggable {
   /* https://electronjs.org/docs/api/frameless-window#r%C3%A9gion-d%C3%A9pla%C3%A7able */
   z-index: 10000;
-  -webkit-app-region: drag;
+  -webkit-app-region: drag; /* error while devtools open */
   top: 0;
   left: 0;
   right: 0;
-  height: 25px;
+  height: 30px;
   position: absolute;
   background-color: transparent;
 }
-
-/* --------------------------------------------------
-
- Z-INDEX
-
--------------------------------------------------- */
-
-/* #radio-player-draggable { z-index: 10000; } */
-#cover { z-index: 1000; }
-#networker { z-index: 5000; }

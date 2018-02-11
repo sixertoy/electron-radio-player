@@ -27,9 +27,9 @@ function onApplicationReadyHandler () {
     title: 'Radio Player',
     resizable: isdevelopment(),
     backgroundColor: '#282C34',
-    icon: getasset('app-icon.png'),
     // electronjs.org/docs/api/frameless-window
-    titleBarStyle: isdevelopment() ? 'default' : 'hiddenInset',
+    titleBarStyle: 'hiddenInset',
+    icon: getasset('app-icon.png'),
   });
 
   // Load the index.html of the app.
