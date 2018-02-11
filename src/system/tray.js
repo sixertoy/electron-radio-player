@@ -1,27 +1,18 @@
-const path = require('path');
 const electron = require('electron');
+const { getasset } = require('./utils');
 
 const { app, Menu, Tray } = electron;
-
-class TrayBuilder {
-
-  constructor (mainWindow) {
-    this.tray = null;
-    this.mainWindow = mainWindow;
-  }
-
-  buildTray () {
-    const iconfile = path.join(__dirname, '..', 'assets', 'mac', 'tray-icon.png');
-    this.tray = new Tray(iconfile);
-    const contextMenu = Menu.buildFromTemplate([
-      { label: __dirname, type: 'normal' },
-      { label: app.getAppPath(), type: 'normal' },
-      { label: 'Quitter', type: 'normal', role: 'quit' }
-    ]);
-    this.tray.setToolTip('Ceci est mon application.');
-    this.tray.setContextMenu(contextMenu);
-  }
-
-}
-
-module.exports = TrayBuilder;
+module.exports = () => {
+  const icon = getasset('tray-icon.png');
+  const tray = new Tray(icon);
+  const contextMenu = Menu.buildFromTemplate([{
+    label: app.getAppPath(),
+    type: 'normal'
+  }, {
+    label: 'Quitter',
+    type: 'normal',
+    role: 'quit'
+  }]);
+  tray.setToolTip('Ceci est mon application.');
+  tray.setContextMenu(contextMenu);
+};
