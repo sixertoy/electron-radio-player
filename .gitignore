@@ -6,6 +6,10 @@
 # testing
 /coverage
 
+# fontello
+fontello/
+!fontello/config.json
+
 # misc
 .DS_Store
 .env.local
@@ -17,6 +21,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# project
 bin/
 build/
 releases/
