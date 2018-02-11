@@ -10,15 +10,15 @@ import Vinyl from './../assets/vinyl-cover';
 const coverColors = {
   logo: false,
   color: '#282C34',
-  background: '#181A1F'
+  background: '#181A1F',
 };
 
 const Cover = ({
   cover,
   volume,
   disabled,
+  dispatch,
   isplaying,
-  dispatch
 }) => {
   const status = (!isplaying ? 'play' : 'pause');
   const custom = Object.assign({}, coverColors, (!cover ? {} : { ...cover }));
@@ -41,7 +41,7 @@ const Cover = ({
 };
 
 Cover.defaultProps = {
-  cover: false
+  cover: false,
 };
 
 Cover.propTypes = {
@@ -51,8 +51,8 @@ Cover.propTypes = {
   isplaying: PropTypes.bool.isRequired,
   cover: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.object
-  ])
+    PropTypes.object,
+  ]),
 };
 
 export default connect()(Cover);

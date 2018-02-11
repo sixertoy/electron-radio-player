@@ -17,6 +17,8 @@ const volume = (state = 50, action) => {
 
 export const station = (state = false, action) => {
   switch (action.type) {
+  case 'onLoadError':
+    return false;
   case 'onChangeStation':
     return action.station;
   default:
@@ -27,8 +29,24 @@ export const station = (state = false, action) => {
 const isplaying = (state = false, action) => {
   switch (action.type) {
   case 'onPlay':
+  case 'onLoaded':
     return true;
   case 'onPause':
+  case 'onLoadError':
+  case 'onChangeStation':
+    return false;
+  default:
+    return state;
+  }
+};
+
+const loading = (state = false, action) => {
+  switch (action.type) {
+  case 'onLoaded':
+    return false;
+  case 'onLoading':
+    return false;
+  case 'onLoadError':
     return false;
   default:
     return state;
@@ -38,8 +56,9 @@ const isplaying = (state = false, action) => {
 export const reducers = combineReducers({
   volume,
   station,
+  loading,
   stations,
-  isplaying
+  isplaying,
 });
 
 export default reducers;

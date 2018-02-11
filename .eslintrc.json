@@ -9,7 +9,6 @@
     "indent": [2, 2],
     "padded-blocks": 0,
     "max-len": [2, 100],
-    "comma-dangle": [2, "never"],
     "space-before-function-paren": [2, {
         "anonymous": "always",
         "named": "always",

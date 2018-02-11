@@ -1,25 +1,37 @@
 export const play = () => ({
-  type: 'onPlay'
+  type: 'onPlay',
 });
 
 export const pause = () => ({
-  type: 'onPause'
+  type: 'onPause',
+});
+
+export const loaded = () => ({
+  type: 'onLoaded',
+});
+
+export const loading = () => ({
+  type: 'onLoading',
+});
+
+export const loadError = () => ({
+  type: 'onLoadError',
 });
 
 export const setVolume = volume => ({
   volume,
-  type: 'onSetVolume'
+  type: 'onSetVolume',
 });
 
 export const increaseVolume = () => ({
-  type: 'onVolumeUp'
+  type: 'onVolumeUp',
 });
 
 export const decreaseVolume = () => ({
-  type: 'onVolumeDown'
+  type: 'onVolumeDown',
 });
 
 export const changeStation = station => ({
   station,
-  type: 'onChangeStation'
+  type: 'onChangeStation',
 });
