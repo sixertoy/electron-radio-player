@@ -4,10 +4,10 @@ import { Provider } from 'react-redux';
 
 // application
 import './index.css';
-import { configure } from './app/store';
+import { configure } from './store';
 
-import Stations from './app/components/Stations';
-import AudioPlayer from './app/components/AudioPlayer';
+import Stations from './components/Stations';
+import AudioPlayer from './components/AudioPlayer';
 
 // application
 const store = configure();
