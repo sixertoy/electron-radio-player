@@ -7,12 +7,12 @@ module.exports = () => {
   const tray = new Tray(icon);
   const contextMenu = Menu.buildFromTemplate([{
     label: app.getAppPath(),
-    type: 'normal'
+    type: 'normal',
   }, {
     label: 'Quitter',
     type: 'normal',
-    role: 'quit'
+    role: 'quit',
   }]);
-  tray.setToolTip('Ceci est mon application.');
+  tray.setToolTip('Radio Player');
   tray.setContextMenu(contextMenu);
 };

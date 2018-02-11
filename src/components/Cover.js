@@ -15,7 +15,6 @@ const coverColors = {
 
 const Cover = ({
   cover,
-  volume,
   disabled,
   dispatch,
   isplaying,
@@ -23,21 +22,15 @@ const Cover = ({
   const status = (!isplaying ? 'play' : 'pause');
   const custom = Object.assign({}, coverColors, (!cover ? {} : { ...cover }));
   return (
-    <div id="cover">
+    <div id="cover" className={`${disabled ? 'disabled' : ''}`}>
       <Vinyl color={custom.color} background={custom.background} />
-      <span className="volume">
-        <i className="icon icon-volume" />
-        <span className="value">{Math.round(volume * 100)}</span>
-      </span>
       <div className="cover-image"
         style={!custom.logo ? {} : { backgroundImage: `url(${custom.logo})` }} />
-      {disabled ? null : (
-        <button className="button"
-          disabled={disabled}
-          onClick={() => dispatch(isplaying ? pause() : play())}>
-          <i className={`icon icon-${disabled ? 'stop' : status}`} />
-        </button>
-      )}
+      <button className="button"
+        disabled={disabled}
+        onClick={() => dispatch(isplaying ? pause() : play())}>
+        <i className={`icon icon-${disabled ? '' : status}`} />
+      </button>
     </div>
   );
 };
@@ -47,7 +40,6 @@ Cover.defaultProps = {
 };
 
 Cover.propTypes = {
-  volume: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
   isplaying: PropTypes.bool.isRequired,

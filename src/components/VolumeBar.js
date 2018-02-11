@@ -9,7 +9,7 @@ import {
   decreaseVolume,
   increaseVolume } from './../actions';
 
-class Controls extends React.Component {
+class VolumeBar extends React.Component {
 
   constructor (props) {
     super(props);
@@ -53,10 +53,17 @@ class Controls extends React.Component {
   }
 
   render () {
-    const { volume, dispatch } = this.props;
+    const {
+      volume,
+      dispatch,
+      isactive,
+    } = this.props;
     const thumbwidth = (volume * 100);
     return (
-      <div id="volume-bar">
+      <div id="volume-bar" className={`${isactive ? 'active' : ''}`}>
+        <span className="volume">
+          <span className="value">{Math.round(thumbwidth)}</span>
+        </span>
         <button className="button down"
           onClick={() => {
             dispatch(decreaseVolume());
@@ -85,9 +92,10 @@ class Controls extends React.Component {
   }
 }
 
-Controls.propTypes = {
+VolumeBar.propTypes = {
   volume: PropTypes.number.isRequired,
+  isactive: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect()(Controls);
+export default connect()(VolumeBar);

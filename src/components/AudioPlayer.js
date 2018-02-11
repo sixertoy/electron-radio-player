@@ -118,11 +118,11 @@ class AudioPlayer extends React.Component {
             ref={(ref) => { this.source = ref; }} />
         </audio>
         <div id="audio-controls">
-          <Cover disabled={!station || isloading}
-            volume={volume}
-            isplaying={isplaying}
+          <Cover isplaying={isplaying}
+            disabled={!station || isloading}
             cover={((station && station.cover) ? { ...station.cover } : false)} />
-          <VolumeBar volume={volume} />
+          <VolumeBar volume={volume}
+            isactive={station !== false} />
         </div>
       </div>
     );
