@@ -1,44 +1,91 @@
 /* eslint
   no-console: 0,
   global-require: 0 */
-// const url = require('url');
-// const path = require('path');
+const url = require('url');
+const path = require('path');
 const electron = require('electron');
 const { noop, isdarwin } = require('./system/utils');
-
-
-// application
-const { app } = electron;
-const MainWindow = require('./system/MainWindow');
-const buildMenu = require('./system/menu');
-const buildTray = require('./system/tray');
-const buildDock = require('./system/dock');
 // const { isdevelopment, getasset } = require('./system/utils');
 
-let win = null;
-function onApplicationReadyHandler () {
-  console.log('Electron application is ready');
-  const mainWindow = new MainWindow();
-  win = mainWindow.create();
-  [
-    buildMenu,
-    buildTray,
-    buildDock,
-  ].forEach(func => func(win));
+// application
+const {
+  app,
+  BrowserWindow,
+} = electron;
+
+const webpage = process.env.ELECTRON_START_URL || url.format({
+  slashes: true,
+  protocol: 'file:',
+  pathname: path.join(__dirname, '..', 'build', 'index.html'),
+});
+
+let mainwindow = null;
+let shouldquit = false;
+function createApplication () {
+  mainwindow = new BrowserWindow({
+    title: 'Radio Player',
+    // icon: getasset('app-icon.png'),
+    width: 285,
+    height: 600,
+    minWidth: 285,
+    maxHeight: 600,
+    minHeight: 600,
+    //
+    // vibrancy: 'dark',
+    // transparent: true,
+    //
+    show: false,
+    fullscreenable: true,
+    titleBarStyle: 'hiddenInset',
+    // resizable: isdevelopment(),
+  });
+
+  mainwindow.on('close', (evt) => {
+    if (shouldquit) return;
+    evt.preventDefault();
+    mainwindow.hide();
+  });
+
+  mainwindow.on(
+    'ready-to-show',
+    () => {
+      mainwindow.show();
+    },
+  );
+
+  mainwindow.loadURL(webpage);
+  return mainwindow;
 }
 
-// Quit when all windows are closed.
-// On OS X it is common for applications and their menu bar
-// to stay active until the user quits explicitly with Cmd + Q
-app.on('window-all-closed', isdarwin() ? noop
-  : app.quit());
+/* ------------------------------------------------------
 
-// On OS X it's common to re-create a window in the app when the
-// dock icon is clicked and there are no other windows open.
-app.on('activate', (win === null) ? noop
-  : onApplicationReadyHandler);
+ APP EVENTS
+
+------------------------------------------------------ */
+app.on(
+  'before-quit',
+  () => { shouldquit = true; },
+);
+
+app.on(
+  'will-quit',
+  () => { mainwindow = null; },
+);
+
+app.on(
+  'window-all-closed',
+  () => (!isdarwin() ? app.quit() : noop),
+);
+
+app.on(
+  'activate',
+  () => (!mainwindow ? null : mainwindow.show()),
+);
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', onApplicationReadyHandler);
+app.on(
+  'ready',
+  () => createApplication(),
+);

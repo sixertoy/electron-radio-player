@@ -15,7 +15,7 @@ const { Menu } = electron;
 const defaultTemplate = [
   defaultFile,
   defaultView,
-  defaulthelp
+  defaulthelp,
 ];
 
 const darwinTemplate = [
@@ -23,7 +23,7 @@ const darwinTemplate = [
   macedit,
   macview,
   macwindow,
-  defaulthelp
+  defaulthelp,
 ];
 
 const buildMenu = (mainWindow) => {
