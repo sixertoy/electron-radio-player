@@ -7,7 +7,13 @@
 /coverage
 
 # fontello
-fontello/*
+*.fnt
+*.fon
+*.otf
+*.ttf
+
+fontello
+!config.json
 !fontello/config.json
 
 # misc
