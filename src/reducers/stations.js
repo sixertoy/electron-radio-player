@@ -1,11 +1,11 @@
 const presets = [{
-  key: 'fipradio',
+  key: '@fipradio',
   name: 'FIP',
   website: 'https://www.fip.fr/player',
   url: 'http://direct.fipradio.fr/live/fip-midfi.mp3',
   cover: {
     color: '#E2007A',
-    logo: 'http://bit.ly/2CbLlZM',
+    logo: 'https://upload.wikimedia.org/wikipedia/fr/thumb/d/d5/FIP_logo_2005.svg/1200px-FIP_logo_2005.svg.png',
   },
   channels: [{
     key: 'fip-electro',
@@ -37,8 +37,8 @@ const presets = [{
     url: 'http://direct.fipradio.fr/live/fip-webradio6.mp3',
   }],
 }, {
-  key: 'franceculture',
-  name: 'France Culture',
+  key: '@franceculture',
+  name: 'France Culture ccu tuturre culreture',
   website: 'https://www.franceculture.fr/direct',
   url: 'https://chai5she.cdn.dvmr.fr/franceculture-midfi.mp3?ID=radiofrance',
   cover: {
@@ -46,12 +46,20 @@ const presets = [{
     logo: 'https://upload.wikimedia.org/wikipedia/fr/thumb/f/ff/France_Culture_logo_2005.svg/600px-France_Culture_logo_2005.svg.png',
   },
 }, {
-  key: 'radiomeuh',
+  key: '@radiomeuh',
   name: 'Radio Meuh',
   url: 'https://radiomeuh.ice.infomaniak.ch/radiomeuh-128.mp3',
   cover: {
     color: '#FFFFFF',
-    logo: 'http://bit.ly/2CaWbzh',
+    logo: 'https://i2.wp.com/www.radiomeuh.com/wp-content/uploads/2015/10/cropped-favicon1.png?fit=512,512',
+  },
+}, {
+  key: '@laradionova',
+  name: 'Radio Nova',
+  url: 'http://novazz.ice.infomaniak.ch/novazz-128.mp3',
+  cover: {
+    color: '#F85453',
+    logo: 'http://www.nova.fr/sites/default/files/CQCT/default.jpg',
   },
 }];
 
