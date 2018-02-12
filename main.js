@@ -1,57 +1,30 @@
 /* eslint
+  no-console: 0,
   global-require: 0 */
-const url = require('url');
-const path = require('path');
+// const url = require('url');
+// const path = require('path');
 const electron = require('electron');
 const { noop, isdarwin } = require('./system/utils');
 
 
 // application
-const { app, BrowserWindow } = electron;
+const { app } = electron;
+const MainWindow = require('./system/MainWindow');
 const buildMenu = require('./system/menu');
 const buildTray = require('./system/tray');
 const buildDock = require('./system/dock');
-const { isdevelopment, getasset } = require('./system/utils');
+// const { isdevelopment, getasset } = require('./system/utils');
 
-let mainwindow = null;
+let win = null;
 function onApplicationReadyHandler () {
-  mainwindow = new BrowserWindow({
-    // https://github.com/electron/electron/blob/master/docs/api/browser-window.md
-    width: 285,
-    show: false,
-    height: 600,
-    minWidth: 285,
-    maxHeight: 600,
-    minHeight: 600,
-    fullscreenable: true,
-    title: 'Radio Player',
-    resizable: isdevelopment(),
-    backgroundColor: '#282C34',
-    // electronjs.org/docs/api/frameless-window
-    titleBarStyle: 'hiddenInset',
-    icon: getasset('app-icon.png'),
-  });
-
-  // Load the index.html of the app.
-  const startUrl = process.env.ELECTRON_START_URL
-    || url.format({
-      slashes: true,
-      protocol: 'file:',
-      pathname: path.join(__dirname, '/build/index.html'),
-    });
-  mainwindow.loadURL(startUrl);
-
-  // Dereference the window object, usually you would store windows
-  // in an array if your app supports multi windows, this is the time
-  // when you should delete the corresponding element.
-  mainwindow.on('closed', () => { mainwindow = null; });
-  mainwindow.once('ready-to-show', () => mainwindow.show());
-
+  console.log('Electron application is ready');
+  const mainWindow = new MainWindow();
+  win = mainWindow.create();
   [
     buildMenu,
     buildTray,
     buildDock,
-  ].forEach(func => func(mainwindow));
+  ].forEach(func => func(win));
 }
 
 // Quit when all windows are closed.
@@ -62,7 +35,7 @@ app.on('window-all-closed', isdarwin() ? noop
 
 // On OS X it's common to re-create a window in the app when the
 // dock icon is clicked and there are no other windows open.
-app.on('activate', (mainwindow === null) ? noop
+app.on('activate', (win === null) ? noop
   : onApplicationReadyHandler);
 
 // This method will be called when Electron has finished
