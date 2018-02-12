@@ -4,13 +4,15 @@
 const url = require('url');
 const path = require('path');
 const electron = require('electron');
+const builddock = require('./system/dock');
 const {
+  fp,
   noop,
   logger,
+  getasset,
   isdarwin,
   isdevelopment,
 } = require('./system/utils');
-// const { isdevelopment, getasset } = require('./system/utils');
 
 // application
 const {
@@ -26,10 +28,11 @@ const webpage = process.env.ELECTRON_START_URL || url.format({
 
 let mainwindow = null;
 let shouldquit = false;
-function createApplication () {
+function buildpplication () {
+  logger('Application is Ready');
   mainwindow = new BrowserWindow({
     title: 'Radio Player',
-    // icon: getasset('app-icon.png'),
+    icon: getasset('app-icon.png'),
     width: 285,
     height: 600,
     minWidth: 285,
@@ -85,10 +88,8 @@ app.on(
   () => (!mainwindow ? null : mainwindow.show()),
 );
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on(
-  'ready',
-  () => logger('Application is Ready') && createApplication(),
-);
+app.on('ready', fp.compose(
+  // buildmenu,
+  builddock,
+  buildpplication,
+));
