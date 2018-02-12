@@ -7,7 +7,7 @@
 /coverage
 
 # fontello
-fontello/
+fontello/*
 !fontello/config.json
 
 # misc
