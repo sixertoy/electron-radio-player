@@ -4,7 +4,12 @@
 const url = require('url');
 const path = require('path');
 const electron = require('electron');
-const { noop, isdarwin } = require('./system/utils');
+const {
+  noop,
+  logger,
+  isdarwin,
+  isdevelopment,
+} = require('./system/utils');
 // const { isdevelopment, getasset } = require('./system/utils');
 
 // application
@@ -36,8 +41,8 @@ function createApplication () {
     //
     show: false,
     fullscreenable: true,
+    resizable: isdevelopment(),
     titleBarStyle: 'hiddenInset',
-    // resizable: isdevelopment(),
   });
 
   mainwindow.on('close', (evt) => {
@@ -48,9 +53,7 @@ function createApplication () {
 
   mainwindow.on(
     'ready-to-show',
-    () => {
-      mainwindow.show();
-    },
+    () => { mainwindow.show(); },
   );
 
   mainwindow.loadURL(webpage);
@@ -87,5 +90,5 @@ app.on(
 // Some APIs can only be used after this event occurs.
 app.on(
   'ready',
-  () => createApplication(),
+  () => logger('Application is Ready') && createApplication(),
 );
