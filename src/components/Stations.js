@@ -26,7 +26,7 @@ const Stations = ({
           return (
             <div key={item.key}
               className={`station ${isactive ? 'active' : ''}`}
-              style={{ borderRight: `3px solid ${item.cover.color}` }}>
+              style={{ borderLeft: `3px solid ${isactive ? item.cover.color : '#2C313C'}` }}>
               <button className="button"
                 onClick={() => {
                   if (isactive && isplaying) dispatch(pause());
