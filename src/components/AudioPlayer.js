@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import './audioplayer.css';
-import Cover from './Cover';
-import VolumeBar from './VolumeBar';
 import { loading, loaded } from './../actions';
+import './audioplayer.css';
+import Cover from './audioplayer/Cover';
+import VolumeBar from './audioplayer/VolumeBar';
+import Equalizer from './audioplayer/Equalizer';
 
 const onAudioEventListener = (evt) => {
   // eslint-disable-next-line no-console
@@ -117,12 +118,27 @@ class AudioPlayer extends React.Component {
             src={(station && station.url) || null}
             ref={(ref) => { this.source = ref; }} />
         </audio>
-        <div id="audio-controls">
-          <Cover isplaying={isplaying}
-            disabled={!station || isloading}
-            cover={((station && station.cover) ? { ...station.cover } : false)} />
+        <Cover isplaying={isplaying}
+          disabled={!station || isloading}
+          cover={((station && station.cover) ? { ...station.cover } : false)} />
+        <div id="audio-player-controls">
+          <Equalizer muted={false}
+            playing={isplaying}
+            clickHandler={() => {}} />
           <VolumeBar volume={volume}
             isactive={station !== false && isplaying} />
+          <button className="button twitter"
+            disabled={(!station || station.key.indexOf('@') < 0)}
+            onClick={() =>
+              window.NodeContext.openExternalURL(`https://twitter.com/${station.key}`)}>
+            <i className="icon icon-twitter" />
+          </button>
+          <button className="button website"
+            disabled={(!station || !station.website)}
+            onClick={() =>
+              window.NodeContext.openExternalURL((station && station.website))}>
+            <i className="icon icon-info-circled" />
+          </button>
         </div>
       </div>
     );

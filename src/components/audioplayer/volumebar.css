@@ -85,20 +85,3 @@
   position: absolute;
   transform: scale(0.6, 0.6);
 }
-
-/* ------------------------------------------------------------
-
- EQUALIZER
- https://codepen.io/Vestride/pen/fcaoi?page=1&
- https://www.sassmeister.com
-
------------------------------------------------------------- */
-#volume-bar.active .equalizers {
-  opacity: 1;
-}
-
-#volume-bar.active .equalizer,
-#volume-bar.active .equalizer::after,
-#volume-bar.active .equalizer::before {
-  background-color: #59ADF5;
-}

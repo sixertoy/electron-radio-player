@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import './equalizer.css';
 import './volumebar.css';
-import { setVolume } from './../actions';
+import { setVolume } from './../../actions';
 
 class VolumeBar extends React.Component {
 
@@ -58,16 +57,11 @@ class VolumeBar extends React.Component {
     const thumbwidth = (volume * 100);
     return (
       <div id="volume-bar" className={`${isactive ? 'active' : ''}`}>
-        <span className="volume">
-          <span className="equalizers">
-            <span className="equalizer" />
-          </span>
-        </span>
         <div className="bar"
           ref={this.setVolumebarRef}>
           <span className="ruler"
-            role="button"
             tabIndex="0"
+            role="button"
             onMouseUp={this.mouseHandler}>
             <span className="track" />
             <span className="thumb"

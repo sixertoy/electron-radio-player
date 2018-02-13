@@ -46,13 +46,14 @@ function buildpplication () {
     maxHeight: 600,
     minHeight: 600,
     //
-    // vibrancy: 'dark',
-    // transparent: true,
+    vibrancy: null, // 'dark',
+    transparent: false,
+    background: '#282C34',
     //
     show: false,
     fullscreenable: true,
     resizable: isdevelopment(),
-    titleBarStyle: 'hiddenInset',
+    titleBarStyle: 'hidden',
     webPreferences: { preload: webcontext },
   });
 

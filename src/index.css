@@ -38,16 +38,9 @@ button {
   cursor: pointer;
 }
 
-/* --------------------------------------------------
-
- Z-INDEX
-
--------------------------------------------------- */
-
-/* #radio-player-draggable { z-index: 10000; } */
-#cover { z-index: 1000; }
-#networker { z-index: 5000; }
-#audio-player { z-index: 250; }
+button:disabled,
+.button.disabled,
+*[role="button"] { cursor: default; }
 
 /* --------------------------------------------------
 
@@ -83,3 +76,13 @@ button {
   position: absolute;
   background-color: transparent;
 }
+
+/* --------------------------------------------------
+
+ Z-INDEX
+
+-------------------------------------------------- */
+
+/* #radio-player-draggable { z-index: 10000; } */
+#cover { z-index: 1000; }
+#networker { z-index: 5000; }

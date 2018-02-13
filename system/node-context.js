@@ -1,3 +1,5 @@
+const electron = require('electron');
+
 function getUrlParameter (key) {
   // eslint-disable-next-line
   const name = key.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -7,4 +9,7 @@ function getUrlParameter (key) {
 }
 
 // Do Not Expose All The Things
-window.NodeContext = {};
+const { shell } = electron;
+window.NodeContext = {
+  openExternalURL: shell.openExternal,
+};

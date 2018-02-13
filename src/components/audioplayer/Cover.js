@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 // application
 import './cover.css';
-import { play, pause } from './../actions';
-import Vinyl from './../assets/vinyl-cover';
+import Vinyl from './../../assets/vinyl-cover';
+import { play, pause } from './../../actions';
 
 const coverColors = {
   logo: false,

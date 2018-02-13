@@ -1,19 +1,52 @@
+/* ------------------------------------------------------------
+
+ EQUALIZER
+ https://codepen.io/Vestride/pen/fcaoi?page=1&
+ https://www.sassmeister.com
+
+------------------------------------------------------------ */
 .equalizer {
-  height: 3px;
-  width: 3.5px;
-  left: 23.25px;
-  bottom: 19.5px;
   display: block;
+  position: relative;
+}
+
+.equalizer-bars {
+  /* reset les positions modifiees
+    par les barres animees de l'equalize */
+  overflow: hidden;
   position: absolute;
-  background-color: #000;
 }
 
 .equalizer,
-.equalizer::before,
-.equalizer::after { animation: equalize 1.25s steps(25, end) 0s infinite; }
+.equalizer-bars {
+  width: 15px;
+  height: 21px;
+}
 
-.equalizer::before,
-.equalizer::after {
+/* ------------------------------------------------------------
+
+ ANIMATED BARS
+
+------------------------------------------------------------ */
+.equalizer-bar {
+  height: 3px;
+  width: 3.5px;
+  display: block;
+  position: absolute;
+  background-color: #000;
+  left: 0;
+  bottom: 0;
+
+  /* left: 23.25px;
+  bottom: 19.5px; */
+}
+
+.equalizer-bar,
+.equalizer-bar::before,
+.equalizer-bar::after { animation: equalize 1.25s steps(25, end) 0s infinite; }
+
+.equalizer-bar::before,
+.equalizer-bar::after {
   left: 5px;
   bottom: 0;
   content: '';
@@ -23,11 +56,11 @@
   background-color: #000;
 }
 
-.equalizer::before {
+.equalizer-bar::before {
   animation-name: equalize3;
 }
 
-.equalizer::after {
+.equalizer-bar::after {
   left: 10px;
   animation-name: equalize2;
 }
@@ -117,4 +150,20 @@
   92% { height: 18px; }
   96% { height: 15px; }
   100% { height: 13.5px; }
+}
+
+/* ------------------------------------------------------------
+
+ STATES
+
+------------------------------------------------------------ */
+.equalizer.inactive .equalizer-bars {
+  top: 18px;
+  height: 3px;
+}
+
+.equalizer.inactive .equalizer-bar,
+.equalizer.inactive .equalizer-bar::before,
+.equalizer.inactive .equalizer-bar::after {
+  animation-play-state: paused;
 }
