@@ -4,7 +4,11 @@
 const url = require('url');
 const path = require('path');
 const electron = require('electron');
-const builddock = require('./system/dock');
+
+// application
+const ipc = require('./system/ipc');
+const dock = require('./system/darwin/dock');
+const shortcuts = require('./system/shortcuts');
 const {
   fp,
   noop,
@@ -14,24 +18,27 @@ const {
   isdevelopment,
 } = require('./system/utils');
 
-// application
-const {
-  app,
-  BrowserWindow,
-} = electron;
+const { app, BrowserWindow, globalShortcut } = electron;
 
-const webpage = process.env.ELECTRON_START_URL || url.format({
-  slashes: true,
-  protocol: 'file:',
-  pathname: path.join(__dirname, '..', 'build', 'index.html'),
-});
+// URL du script preload
+// donnant acces a l'application au contexte NodeJS
+const webcontext = path.join(__dirname, 'system', 'node-context.js');
 
-let mainwindow = null;
+// URL de la page Web de l'application
+const webpage = (isdevelopment() ? process.env.ELECTRON_START_URL
+  : url.format({
+    slashes: true,
+    protocol: 'file:',
+    pathname: path.join(__dirname, '..', 'build', 'index.html'),
+  }));
+
+
+let win = null;
 let shouldquit = false;
 function buildpplication () {
   logger('Application is Ready');
-  mainwindow = new BrowserWindow({
-    title: 'Radio Player',
+  win = new BrowserWindow({
+    title: app.getName(),
     icon: getasset('app-icon.png'),
     width: 285,
     height: 600,
@@ -46,50 +53,48 @@ function buildpplication () {
     fullscreenable: true,
     resizable: isdevelopment(),
     titleBarStyle: 'hiddenInset',
+    webPreferences: { preload: webcontext },
   });
 
-  mainwindow.on('close', (evt) => {
-    if (shouldquit) return;
+  win.on('close', (evt) => {
+    if (!isdarwin() || shouldquit) return;
     evt.preventDefault();
-    mainwindow.hide();
+    win.hide();
   });
 
-  mainwindow.on(
+  win.on('swipe', () => {});
+
+  win.on(
     'ready-to-show',
-    () => { mainwindow.show(); },
+    () => {
+      logger('BrowserWindow ready to show');
+      win.show();
+    },
   );
 
-  mainwindow.loadURL(webpage);
-  return mainwindow;
+  win.loadURL(`${webpage}`);
+  return win;
 }
 
 /* ------------------------------------------------------
 
  APP EVENTS
+ https://electronjs.org/docs/api/app#%C3%89v%C3%A9nements
 
 ------------------------------------------------------ */
-app.on(
-  'before-quit',
-  () => { shouldquit = true; },
-);
-
-app.on(
-  'will-quit',
-  () => { mainwindow = null; },
-);
-
-app.on(
-  'window-all-closed',
-  () => (!isdarwin() ? app.quit() : noop),
-);
-
-app.on(
-  'activate',
-  () => (!mainwindow ? null : mainwindow.show()),
-);
-
+app.on('before-quit', () => { shouldquit = true; });
+app.on('activate', () => (!win ? null : win.show()));
+app.on('window-all-closed', () => (!isdarwin() ? app.quit() : noop));
+app.on('will-quit', () => {
+  globalShortcut.unregisterAll();
+  win = null;
+});
 app.on('ready', fp.compose(
-  // buildmenu,
-  builddock,
+  /* FILO */
+  ipc,
+  shortcuts,
+  // tray,
+  // menubar,
+  dock,
   buildpplication,
 ));

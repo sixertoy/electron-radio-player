@@ -1,16 +1,25 @@
 # Electron App Boilerplate
 
-Electron Documentation
+## Tips
+
+**Nom de l'application**
+- setter: `package.json.{ productName }`
+- getter: `electron.app.getName()`
+
+**Version de l'application**
+- setter: `package.json.{ version }`
+- getter: `electron.app.getVersion()`
+
+## Links
+
+**Electron Documentation**<br>
 https://electronjs.org/docs/api
 
-Accessing Electron from the React App
-https://medium.freecodecamp.org/building-an-electron-application-with-create-react-app-97945861647c
-
-This project was bootstrapped with **Create React App**
+This project was bootstrapped with **Create React App**<br>
 https://github.com/facebookincubator/create-react-app
 
-DevTools
+**DevTools**<br>
 https://github.com/chentsulin/electron-react-boilerplate#devtools
 
-Electron Awesome List
+**Electron Awesome List**<br>
 https://github.com/sindresorhus/awesome-electron#tools

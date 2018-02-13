@@ -40,7 +40,7 @@ const presets = [{
   }],
 }, {
   key: '@franceculture',
-  name: 'France Culture ccu tuturre culreture',
+  name: 'France Culture',
   website: 'https://www.franceculture.fr/direct',
   url: 'https://chai5she.cdn.dvmr.fr/franceculture-midfi.mp3?ID=radiofrance',
   cover: {

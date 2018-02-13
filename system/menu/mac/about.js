@@ -2,35 +2,32 @@ const electron = require('electron');
 
 const { app } = electron;
 const submenu = () => ({
-  label: 'Radio Player',
+  label: app.getName(),
   submenu: [{
-    label: 'About Radio Player',
-    selector: 'orderFrontStandardAboutPanel:'
+    label: `About ${app.getName()}`,
+    selector: 'orderFrontStandardAboutPanel:',
   },
   { type: 'separator' },
-  {
-    label: 'Services',
-    submenu: []
-  },
+  { label: 'Services', submenu: [] },
   { type: 'separator' },
   {
-    label: 'Hide Radio Player',
+    label: `Hide ${app.getName()}`,
     accelerator: 'Command+H',
-    selector: 'hide:'
+    selector: 'hide:',
   }, {
     label: 'Hide Others',
     accelerator: 'Command+Shift+H',
-    selector: 'hideOtherApplications:'
+    selector: 'hideOtherApplications:',
   }, {
     label: 'Show All',
-    selector: 'unhideAllApplications:'
+    selector: 'unhideAllApplications:',
   },
   { type: 'separator' },
   {
     label: 'Quit',
     accelerator: 'Command+Q',
-    click: () => { app.quit(); }
-  }]
+    click: () => { app.quit(); },
+  }],
 });
 
 module.exports = submenu;

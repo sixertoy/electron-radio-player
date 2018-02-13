@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import stations from './stations';
 
-const volume = (state = 50, action) => {
+const volume = (state = 100, action) => {
   switch (action.type) {
   case 'onSetVolume':
     return action.volume;
