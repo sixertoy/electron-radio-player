@@ -9,6 +9,7 @@ const electron = require('electron');
 const ipc = require('./system/ipc');
 const dock = require('./system/darwin/dock');
 const shortcuts = require('./system/shortcuts');
+const menubar = require('./system/darwin/menubar');
 const {
   fp,
   noop,
@@ -51,9 +52,10 @@ function buildpplication () {
     background: '#282C34',
     //
     show: false,
-    fullscreenable: true,
-    resizable: isdevelopment(),
+    maximizable: false,
+    fullscreenable: false,
     titleBarStyle: 'hidden',
+    resizable: isdevelopment(),
     webPreferences: { preload: webcontext },
   });
 
@@ -95,7 +97,7 @@ app.on('ready', fp.compose(
   ipc,
   shortcuts,
   // tray,
-  // menubar,
+  menubar,
   dock,
   buildpplication,
 ));

@@ -6,7 +6,6 @@ module.exports = () => {
   const icon = getasset('tray-icon.png');
   const tray = new Tray(icon);
   const contextMenu = Menu.buildFromTemplate([
-    { label: app.getAppPath(), type: 'normal' },
     { type: 'separator' },
     { label: 'Quitter', type: 'normal', role: 'quit' },
   ]);
