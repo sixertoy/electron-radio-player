@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 // application
-import './stations.css';
 import { play, pause, changeStation } from './../actions';
+import './stations.css';
 
 const Stations = ({
   station,

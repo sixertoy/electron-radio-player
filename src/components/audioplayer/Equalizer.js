@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 // application
 import './equalizer.css';
 
-
 const Equalizer = ({ clickHandler, playing, muted }) => (
   // eslint-disable-next-line jsx-a11y/click-events-have-key-events
   <div className={`equalizer ${playing ? '' : 'inactive'} ${!muted ? '' : 'muted'}`}

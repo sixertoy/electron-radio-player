@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import './networker.css';
 import { offlineStatus } from './../actions';
+import './networker.css';
 
 class Networker extends React.Component {
 
