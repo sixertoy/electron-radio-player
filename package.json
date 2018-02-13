@@ -1,13 +1,26 @@
 {
   "name": "electron-radio-player",
-  "productName": "Electron Radio Player",
-  "os" : [ "darwin" ],
+  "productName": "Radio Player",
+  "os": [
+    "darwin"
+  ],
   "version": "0.4.0",
   "private": true,
   "main": "./main.js",
   "homepage": "./",
   "description": "My Electron App Favorites Radio Player",
+  "files": [
+    "/main.js",
+    "/yarn.lock",
+    "/README.md",
+    "/package.json",
+    "/package-lock.json",
+    "/build|/build/**/*",
+    "/assets|/assets/**/*",
+    "/system|/system/**/*"
+  ],
   "devDependencies": {
+    "electron": "^1.7.10",
     "electron-packager": "^10.1.1",
     "electron-winstaller": "^2.6.3",
     "eslint": "^4.17.0",
@@ -17,10 +30,11 @@
     "eslint-plugin-react": "^7.6.1",
     "foreman": "^2.0.0",
     "husky": "^0.14.3",
+    "micromatch": "^3.1.5",
+    "png2icons": "^0.9.1",
     "stylelint-config-standard": "^18.0.0"
   },
   "dependencies": {
-    "electron": "^1.7.10",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-custom-scrollbars": "^4.2.1",
@@ -36,8 +50,9 @@
     "build": "react-scripts build",
     "eject": "sh ./.scripts/eject",
     "electron": "electron .",
-    "pack-mac": "node ./.scripts/make-osx",
-    "pack-win": "node ./.scripts/make-win",
+    "prepack:mac": "yarn run build",
+    "pack:mac": "node ./.scripts/make-osx",
+    "pack:win": "node ./.scripts/make-win",
     "dev": "nf start -p 3000"
   }
 }

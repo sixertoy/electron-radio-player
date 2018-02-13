@@ -30,7 +30,7 @@ const webpage = (isdevelopment() ? process.env.ELECTRON_START_URL
   : url.format({
     slashes: true,
     protocol: 'file:',
-    pathname: path.join(__dirname, '..', 'build', 'index.html'),
+    pathname: path.join(__dirname, 'build', 'index.html'),
   }));
 
 
@@ -55,7 +55,7 @@ function buildpplication () {
     maximizable: false,
     fullscreenable: false,
     titleBarStyle: 'hidden',
-    resizable: isdevelopment(),
+    resizable: true, // isdevelopment(),
     webPreferences: { preload: webcontext },
   });
 
