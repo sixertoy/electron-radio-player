@@ -5,10 +5,7 @@ import { connect } from 'react-redux';
 // application
 import './equalizer.css';
 import './volumebar.css';
-import {
-  setVolume,
-  decreaseVolume,
-  increaseVolume } from './../actions';
+import { setVolume } from './../actions';
 
 class VolumeBar extends React.Component {
 
@@ -56,7 +53,6 @@ class VolumeBar extends React.Component {
   render () {
     const {
       volume,
-      dispatch,
       isactive,
     } = this.props;
     const thumbwidth = (volume * 100);
@@ -66,14 +62,7 @@ class VolumeBar extends React.Component {
           <span className="equalizers">
             <span className="equalizer" />
           </span>
-          {/* <span className="value">{Math.round(thumbwidth)}</span> */}
         </span>
-        <button className="button down"
-          onClick={() => {
-            dispatch(decreaseVolume());
-          }}>
-          <i className="icon icon-mute" />
-        </button>
         <div className="bar"
           ref={this.setVolumebarRef}>
           <span className="ruler"
@@ -85,12 +74,6 @@ class VolumeBar extends React.Component {
               style={{ width: `${thumbwidth}%` }} />
           </span>
         </div>
-        <button className="button up"
-          onClick={() => {
-            dispatch(increaseVolume());
-          }}>
-          <i className="icon icon-sound" />
-        </button>
       </div>
     );
   }
