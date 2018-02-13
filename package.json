@@ -30,6 +30,7 @@
     "redux": "^3.7.2"
   },
   "scripts": {
+    "precommit": "sh ./.scripts/git-hooks/pre-commit",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom",
     "build": "react-scripts build",
