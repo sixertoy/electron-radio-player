@@ -28,25 +28,3 @@
  EQUALIZER
 
 --------------------------------------------- */
-
-/*
-#audio-player-controls .equalizer {
-  top: -5px;
-  border: 0;
-  padding: 0;
-  overflow: inherit;
-  transform: scale(0.7);
-  background: transparent;
-}
-*/
-
-/* #audio-player-controls .equalizer-bar,
-#audio-player-controls .equalizer-bar::after,
-#audio-player-controls .equalizer-bar::before { background-color: #5DAEF2; } */
-
-/* #audio-player-controls .muted .equalizer-bar,
-#audio-player-controls .inactive .equalizer-bar,
-#audio-player-controls .muted .equalizer-bar::after,
-#audio-player-controls .inactive .equalizer-bar::after,
-#audio-player-controls .muted .equalizer-bar::before,
-#audio-player-controls .inactive .equalizer-bar::before { background-color: #24262A; } */

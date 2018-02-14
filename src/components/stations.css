@@ -26,19 +26,6 @@
   text-align: left;
 }
 
-.station-name .icon {
+#stations .station-name .icon {
   margin-right: 7px;
 }
-
-/*
-#stations-list .station .button {
-  border: 0;
-  width: 100%;
-  padding: 12px;
-  text-align: left;
-  background: transparent;
-}
-
-#stations-list .station .button .icon { margin-right: 7px; }
-
-*/

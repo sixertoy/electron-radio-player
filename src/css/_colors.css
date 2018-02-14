@@ -1,25 +1,9 @@
 /*
-background-color: #282C34;
-color: #ABB2C0;
-background-color: #282C34;
-border-bottom: 1px solid #3B4048;
-background-color: #2C313C;
-color: #9DA5B5;
-color: #ABB2C0;
-color: #59ADF5;
-color: #282C34;
-#audio-player-controls .inactive .equalizer-bar::before { background-color: #24262A; }
-color: #3B4048;
-#volume-bar.active .volume { color: #ABB2C0; }
-color: #2C313A;
-background-color: rgba(0, 0, 0, 0.1);
-#volume-bar .button:hover { color: #ABB2C0; }
-#volume-bar .button:active { color: #5DAEF2; }
+blue: #59ADF5
 */
 
 body,
 button { color: rgba(157, 165, 181, 1); }
-
 button { transition: all 0.5s; }
 
 button:hover,
@@ -51,9 +35,17 @@ button:disabled {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-#stations .station { transition: background-color 0.5s; }
-#stations .station:hover { background-color: rgba(0, 0, 0, 0.3); }
-#stations .station:nth-child(even):not(:hover) { background-color: rgba(0, 0, 0, 0.1); }
+#stations .station {
+  transition: background-color 0.5s;
+}
+
+#stations .station:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#stations .station:nth-child(even):not(:hover) {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 
 /* --------------------------------------------------
 
@@ -61,7 +53,9 @@ button:disabled {
 
 -------------------------------------------------- */
 
-#menubar { background-color: rgba(0, 0, 0, 0.6); }
+#menubar {
+  background-color: rgba(0, 0, 0, 0.6);
+}
 
 #search-form input {
   color: #FFF;
@@ -79,8 +73,14 @@ button:disabled {
   transition: background-color 0.5s;
   background-color: rgba(157, 165, 181, 0.35);
 }
-#volume-bar .bar:hover .thumb { background-color: #FFF; }
-#volume-bar .bar .track { background-color: rgba(157, 165, 181, 0.1); }
+
+#volume-bar .bar:hover .thumb {
+  background-color: #FFF;
+}
+
+#volume-bar .bar .track {
+  background-color: rgba(157, 165, 181, 0.1);
+}
 
 /* --------------------------------------------------
 
@@ -97,4 +97,6 @@ button:disabled {
 
 #audio-player-controls .equalizer:hover .equalizer-bar,
 #audio-player-controls .equalizer:hover .equalizer-bar::after,
-#audio-player-controls .equalizer:hover .equalizer-bar::before { background-color: #FFF; }
+#audio-player-controls .equalizer:hover .equalizer-bar::before {
+  background-color: #FFF;
+}

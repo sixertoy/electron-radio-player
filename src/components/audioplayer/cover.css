@@ -27,29 +27,3 @@
   width: 100%;
   position: absolute;
 }
-
-/*
-#audio-player-cover .button {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border: 0;
-  min-width: 100%;
-  text-align: center;
-  position: absolute;
-}
-
-#audio-player-cover .button .icon {
-  font-size: 3em;
-  margin-left: -62px;
-}
-
-#audio-player-cover .cover-image {
-  left: 0;
-  top: 33px;
-  width: 135px;
-  height: 135px;
-  position: absolute;
-}
-*/
