@@ -8,7 +8,7 @@ module.exports = (win) => {
   // globalShortcut.register('VolumeUp', () => {});
   // globalShortcut.register('VolumeMute', () => {});
   // globalShortcut.register('VolumeDown', () => {});
-  globalShortcut.register('VolumeMute', () => {});
-  globalShortcut.register('MediaPlayPause', () => {});
+  // globalShortcut.register('VolumeMute', () => {});
+  // globalShortcut.register('MediaPlayPause', () => {});
   return win;
 };
