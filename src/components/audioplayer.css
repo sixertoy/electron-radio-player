@@ -15,8 +15,12 @@
 #audio-player-controls {
   flex: 1;
   display: flex;
-  padding: 1px 7px;
+  padding: 5px 7px;
   flex-direction: row;
+}
+
+#audio-player-controls .equalizer {
+  transform: scale(0.6);
 }
 
 /* ---------------------------------------------

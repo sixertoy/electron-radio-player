@@ -48,16 +48,21 @@ function buildpplication () {
     maxHeight: 600,
     minHeight: 600,
     //
-    // frame: false,
-    vibrancy: 'dark', // 'dark',
-    transparent: true,
-    // background: '#282C34',
+    // -------- OSX/Light Theme --------
+    // frame: true,
+    // titleBarStyle: 'default',
+    // -------- Dark Theme --------
+    frame: false,
+    titleBarStyle: 'hidden',
+    //
+    vibrancy: 'dark', // 'dark'
+    backgroundColor: '#00282C34',
     //
     show: false,
-    maximizable: false,
-    fullscreenable: false,
-    titleBarStyle: 'hidden',
     resizable: true, // isdevelopment(),
+    maximizable: false,
+    transparent: false,
+    fullscreenable: false,
     webPreferences: { preload: webcontext },
   });
 
@@ -72,6 +77,7 @@ function buildpplication () {
   win.on('ready-to-show', () => {
     logger('BrowserWindow ready to show');
     win.show();
+    win.focus();
   });
 
   win.loadURL(`${webpage}`);
@@ -87,7 +93,7 @@ function buildpplication () {
 // quand l'user use CTR+Q
 app.on('before-quit', () => { shouldquit = true; });
 // quand l'user click sur l'icone dans le dock
-app.on('activate', () => (!win ? null : win.show()));
+app.on('activate', () => (!win ? null : win.show() && win.focus()));
 // quand l'utilisateur click sur l'icone de fermeture de fenetre
 app.on('window-all-closed', () => (!isdarwin() ? app.quit() : noop));
 app.on('will-quit', () => {

@@ -5,8 +5,8 @@ background-color: #282C34;
 border-bottom: 1px solid #3B4048;
 background-color: #2C313C;
 color: #9DA5B5;
-color: #59ADF5;
 color: #ABB2C0;
+color: #59ADF5;
 color: #282C34;
 #audio-player-controls .inactive .equalizer-bar::before { background-color: #24262A; }
 color: #3B4048;
@@ -17,16 +17,84 @@ background-color: rgba(0, 0, 0, 0.1);
 #volume-bar .button:active { color: #5DAEF2; }
 */
 
-#radio-player-screen { /* can be used a application background-color */ }
-#audio-player { /* can be used a top background-color */ }
+body,
+button { color: rgba(157, 165, 181, 1); }
 
-#draggable-header { background-color: #ACE539; }
+button { transition: all 0.5s; }
 
-#audio-player-cover { background-color: #F0B; }
+button:hover,
+button:active { color: #FFF; }
 
-#audio-player-controls { background-color: #D33A26; }
+button:disabled {
+  cursor: default;
+  color: rgba(157, 165, 181, 0.15);
+}
 
-#stations .station:nth-child(odd) { background-color: rgba(0, 0, 0, 0.05); }
-#stations .station:nth-child(even) { background-color: rgba(0, 0, 0, 0.01); }
+#application-screen {
+  /* main theme color */
+}
 
-#menubar { background-color: #438C6B; }
+#application-header {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+#audio-player-cover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#stations,
+#audio-player-controls {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#audio-player-controls {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+#stations .station { transition: background-color 0.5s; }
+#stations .station:hover { background-color: rgba(0, 0, 0, 0.3); }
+#stations .station:nth-child(even):not(:hover) { background-color: rgba(0, 0, 0, 0.1); }
+
+/* --------------------------------------------------
+
+ MENU
+
+-------------------------------------------------- */
+
+#menubar { background-color: rgba(0, 0, 0, 0.6); }
+
+#search-form input {
+  color: #FFF;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+#search-form input::placeholder { color: #2C313A; }
+
+/* --------------------------------------------------
+
+ VOLUME
+
+-------------------------------------------------- */
+
+#volume-bar .bar .thumb {
+  transition: background-color 0.5s;
+  background-color: rgba(157, 165, 181, 0.35);
+}
+#volume-bar .bar:hover .thumb { background-color: #FFF; }
+#volume-bar .bar .track { background-color: rgba(157, 165, 181, 0.1); }
+
+/* --------------------------------------------------
+
+ EQUALIZER/MUTE
+
+-------------------------------------------------- */
+
+#audio-player-controls .equalizer-bar,
+#audio-player-controls .equalizer-bar::after,
+#audio-player-controls .equalizer-bar::before {
+  transition: background-color 0.5s;
+  background-color: rgba(157, 165, 181, 0.3);
+}
+
+#audio-player-controls .equalizer:hover .equalizer-bar,
+#audio-player-controls .equalizer:hover .equalizer-bar::after,
+#audio-player-controls .equalizer:hover .equalizer-bar::before { background-color: #FFF; }

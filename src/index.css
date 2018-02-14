@@ -13,6 +13,7 @@ body {
   font-size: 13px;
   overflow: hidden;
   line-height: 1.6;
+  background: transparent;
   font-family: system, -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, "Segoe UI", sans-serif;
 }
 
@@ -23,7 +24,6 @@ body {
 
 button {
   border: 0;
-  background: transparent;
   outline: none;
   font-size: 1em;
   cursor: pointer;
@@ -32,6 +32,7 @@ button {
   text-align: center;
   white-space: nowrap;
   text-decoration: none;
+  background: transparent;
   text-overflow: ellipsis;
 }
 
@@ -58,7 +59,7 @@ button {
 
 -------------------------------------------------- */
 #root,
-#radio-player-screen {
+#application-screen {
   height: 100%;
   min-width: 280px;
   overflow: hidden;
@@ -66,7 +67,12 @@ button {
   max-height: 100%;
 }
 
-#radio-player-screen {
+#root {
+  border-radius: 5px;
+  background: transparent;
+}
+
+#application-screen {
   flex: 1;
   display: flex;
   position: relative;
@@ -75,15 +81,15 @@ button {
   justify-content: flex-start;
 }
 
-#radio-player-screen > * {
+#application-screen > * {
   width: 100%;
 }
 
-#draggable-header {
+#application-header {
   /* https://electronjs.org/docs/api/frameless-window#r%C3%A9gion-d%C3%A9pla%C3%A7able */
   -webkit-app-region: drag; /* error while devtools open */
-  height: 25px;
-  min-height: 25px;
+  height: 22px;
+  min-height: 22px; /* if titleBarStyle: 'hidden' */
 }
 
 @import url('./css/_zindex.css');

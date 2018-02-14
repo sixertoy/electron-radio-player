@@ -15,8 +15,8 @@ import AudioPlayer from './components/AudioPlayer';
 const store = configure();
 const Root = () => (
   <Provider store={store}>
-    <div id="radio-player-screen">
-      <div id="draggable-header" />
+    <div id="application-screen">
+      <div id="application-header" />
       <AudioPlayer />
       <Stations />
       <MenuBar />

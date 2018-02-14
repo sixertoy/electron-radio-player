@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
+import './search.css';
 import { searchpodcast } from './../actions';
 
 class Search extends React.Component {
@@ -26,9 +27,8 @@ class Search extends React.Component {
   render () {
     const { term } = this.state;
     return (
-      <div>
+      <div id="search-form">
         <label htmlFor="searchfield">
-          <span><span>Search</span></span>
           <input type="text"
             id="searchfield"
             name="searchfield"
