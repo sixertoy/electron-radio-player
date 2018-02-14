@@ -1,6 +1,7 @@
 /* eslint
   no-console: 0,
   no-underscore-dangle: 0 */
+import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 
 // application
@@ -13,7 +14,7 @@ export const configure = () => {
   // charge les states existants dans le localStorage
   const store = createStore(
     reducers,
-    applyMiddleware(logger),
+    applyMiddleware(logger, thunk),
   );
   return store;
 };

@@ -6,6 +6,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 // application
 import { play, pause, changeStation } from './../actions';
 import './stations.css';
+import Search from './Search';
 
 const Stations = ({
   station,
@@ -39,6 +40,9 @@ const Stations = ({
             </div>
           );
         })}
+      </div>
+      <div>
+        <Search />
       </div>
     </Scrollbars>
   </div>
