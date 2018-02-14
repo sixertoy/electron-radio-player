@@ -1,11 +1,11 @@
 #audio-player {
   flex: 0;
   width: 100%;
-  color: #ABB2C0;
+  /* color: #ABB2C0; */
   position: relative;
   align-items: inherit;
   padding: 20px 7px 8px 7px;
-  background-color: rgba(24, 26, 31, 1);
+  /* background-color: rgba(24, 26, 31, 1); */
 }
 
 #audio-player-controls {
@@ -23,13 +23,13 @@
 --------------------------------------------- */
 #audio-player-controls button {
   border: 0;
-  color: #282C34;
+  /* color: #282C34; */
   transition: color 0.5s;
   background-color: transparent;
 }
 
-#audio-player-controls button:disabled { color: rgba(40, 44, 52, 0.45); }
-#audio-player-controls button:enabled:hover { color: #ABB2C0; }
+/* #audio-player-controls button:disabled { color: rgba(40, 44, 52, 0.45); } */
+/* #audio-player-controls button:enabled:hover { color: #ABB2C0; } */
 
 /* ---------------------------------------------
 
@@ -46,13 +46,13 @@
   background: transparent;
 }
 
-#audio-player-controls .equalizer-bar,
+/* #audio-player-controls .equalizer-bar,
 #audio-player-controls .equalizer-bar::after,
-#audio-player-controls .equalizer-bar::before { background-color: #5DAEF2; }
+#audio-player-controls .equalizer-bar::before { background-color: #5DAEF2; } */
 
-#audio-player-controls .muted .equalizer-bar,
+/* #audio-player-controls .muted .equalizer-bar,
 #audio-player-controls .inactive .equalizer-bar,
 #audio-player-controls .muted .equalizer-bar::after,
 #audio-player-controls .inactive .equalizer-bar::after,
 #audio-player-controls .muted .equalizer-bar::before,
-#audio-player-controls .inactive .equalizer-bar::before { background-color: #24262A; }
+#audio-player-controls .inactive .equalizer-bar::before { background-color: #24262A; } */

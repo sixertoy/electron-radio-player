@@ -1,0 +1,17 @@
+
+background-color: #282C34;
+color: #ABB2C0;
+background-color: #282C34;
+border-bottom: 1px solid #3B4048;
+background-color: #2C313C;
+color: #9DA5B5;
+color: #59ADF5;
+/* color: #ABB2C0; */
+color: #282C34;
+#audio-player-controls .inactive .equalizer-bar::before { background-color: #24262A; }
+color: #3B4048;
+#volume-bar.active .volume { color: #ABB2C0; }
+color: #2C313A;
+background-color: rgba(0, 0, 0, 0.1);
+#volume-bar .button:hover { color: #ABB2C0; }
+#volume-bar .button:active { color: #5DAEF2; }

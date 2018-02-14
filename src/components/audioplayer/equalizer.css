@@ -33,7 +33,7 @@
   width: 3.5px;
   display: block;
   position: absolute;
-  background-color: #000;
+  /* background-color: #000; */
   left: 0;
   bottom: 0;
 
@@ -53,7 +53,7 @@
   width: 3.5px;
   height: 21px;
   position: absolute;
-  background-color: #000;
+  /* background-color: #000; */
 }
 
 .equalizer-bar::before {

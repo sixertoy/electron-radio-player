@@ -16,7 +16,7 @@
   right: 0;
   bottom: 0;
   border: 0;
-  color: #FFF;
+  /* color: #FFF; */
   min-width: 100%;
   text-align: center;
   position: absolute;
@@ -31,7 +31,7 @@
   font-size: 3em;
   margin-left: -62px;
   transition: opacity 0.5s;
-  text-shadow: 0 0 12px rgba(0, 0, 0, 0.65);
+  /* text-shadow: 0 0 12px rgba(0, 0, 0, 0.65); */
 }
 
 #cover .button .icon,

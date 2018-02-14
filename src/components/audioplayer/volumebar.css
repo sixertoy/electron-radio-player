@@ -10,12 +10,12 @@
 #volume-bar .volume {
   top: -7px;
   left: 50%;
-  color: #3B4048;
+  /* color: #3B4048; */
   font-size: 0.8em;
   position: absolute;
   transition: color 0.5s;
 }
-#volume-bar.active .volume { color: #ABB2C0; }
+/* #volume-bar.active .volume { color: #ABB2C0; } */
 
 /* ------------------------------------------------------------
 
@@ -24,15 +24,15 @@
 ------------------------------------------------------------ */
 #volume-bar .button {
   border: 0;
-  color: #2C313A;
+  /* color: #2C313A; */
   padding-top: 5px;
   padding-bottom: 5px;
   border-radius: 4px;
   transition: color 0.5s;
   background-color: rgba(0, 0, 0, 0.1);
 }
-#volume-bar .button:hover { color: #ABB2C0; }
-#volume-bar .button:active { color: #5DAEF2; }
+/* #volume-bar .button:hover { color: #ABB2C0; }
+#volume-bar .button:active { color: #5DAEF2; } */
 
 /* #volume-bar .button:active .icon { text-shadow: 0 0 7px #5DAEF2; } */
 
@@ -65,17 +65,17 @@
 }
 
 #volume-bar .bar .track {
-  background-color: rgba(255, 255, 255, 0.05);
+  /* background-color: rgba(255, 255, 255, 0.05); */
 }
 
 #volume-bar .bar .thumb {
-  background: #000;
-  transition: width 0.7s, background 0.5s, box-shadow 0.5s;
+  /* background: #000; */
+  /* transition: width 0.7s, background 0.5s, box-shadow 0.5s; */
 }
 
 #volume-bar.active .bar .thumb {
-  background: #5DAEF2;
-  box-shadow: 0 0 7px #5DAEF2;
+  /* background: #5DAEF2;
+  box-shadow: 0 0 7px #5DAEF2; */
 }
 
 #volume-bar .equalizers {
