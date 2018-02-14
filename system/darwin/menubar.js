@@ -6,8 +6,6 @@ const view = require('./menu/view');
 const help = require('./menu/help');
 const about = require('./menu/about');
 const fenetre = require('./menu/fenetre');
-// context menu
-// const devtools = require('./../menu/devtools');
 
 const { Menu } = electron;
 module.exports = (win) => {

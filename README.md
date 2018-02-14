@@ -10,6 +10,14 @@
 - setter: `package.json.{ version }`
 - getter: `electron.app.getVersion()`
 
+## ENV Variables
+
+```bash
+(
+  touch .env
+)
+```
+
 ## Links
 
 **Electron Documentation**<br>

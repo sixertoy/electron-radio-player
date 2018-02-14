@@ -10,6 +10,7 @@ const ipc = require('./system/ipc');
 const dock = require('./system/darwin/dock');
 const shortcuts = require('./system/shortcuts');
 const menubar = require('./system/darwin/menubar');
+const devtools = require('./system/menu/devtools');
 const {
   fp,
   noop,
@@ -47,9 +48,10 @@ function buildpplication () {
     maxHeight: 600,
     minHeight: 600,
     //
-    vibrancy: null, // 'dark',
-    transparent: false,
-    background: '#282C34',
+    // frame: false,
+    vibrancy: 'dark', // 'dark',
+    transparent: true,
+    // background: '#282C34',
     //
     show: false,
     maximizable: false,
@@ -67,13 +69,10 @@ function buildpplication () {
 
   win.on('swipe', () => {});
 
-  win.on(
-    'ready-to-show',
-    () => {
-      logger('BrowserWindow ready to show');
-      win.show();
-    },
-  );
+  win.on('ready-to-show', () => {
+    logger('BrowserWindow ready to show');
+    win.show();
+  });
 
   win.loadURL(`${webpage}`);
   return win;
@@ -85,8 +84,11 @@ function buildpplication () {
  https://electronjs.org/docs/api/app#%C3%89v%C3%A9nements
 
 ------------------------------------------------------ */
+// quand l'user use CTR+Q
 app.on('before-quit', () => { shouldquit = true; });
+// quand l'user click sur l'icone dans le dock
 app.on('activate', () => (!win ? null : win.show()));
+// quand l'utilisateur click sur l'icone de fermeture de fenetre
 app.on('window-all-closed', () => (!isdarwin() ? app.quit() : noop));
 app.on('will-quit', () => {
   globalShortcut.unregisterAll();
@@ -96,6 +98,7 @@ app.on('ready', fp.compose(
   /* FILO */
   ipc,
   shortcuts,
+  devtools,
   // tray,
   menubar,
   dock,

@@ -10,8 +10,8 @@
     "padded-blocks": 0,
     "max-len": [2, 100, { "ignoreTemplateLiterals": true }],
     "space-before-function-paren": [2, {
-        "anonymous": "always",
         "named": "always",
+        "anonymous": "always",
         "asyncArrow": "ignore"
     }],
     "no-underscore-dangle": [2, {
@@ -20,7 +20,10 @@
     }],
     "import/no-extraneous-dependencies": [2, {
       "devDependencies": [
-        "**/*.spec.js"
+        "main.js",
+        "system/**/*",
+        "**/*.spec.js",
+        ".scripts/**/*"
       ]
     }],
     "react/jsx-closing-bracket-location": [2, {
