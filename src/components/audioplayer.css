@@ -1,35 +1,23 @@
 #audio-player {
   flex: 0;
-  width: 100%;
-  /* color: #ABB2C0; */
-  position: relative;
-  align-items: inherit;
-  padding: 20px 7px 8px 7px;
-  /* background-color: rgba(24, 26, 31, 1); */
 }
 
-#audio-player-controls {
+#audio-player > * {
   width: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: flex-start;
 }
 
 /* ---------------------------------------------
 
- SOCIAL BUTONS
+ VOLUME & SOCIAL BAR
 
 --------------------------------------------- */
-#audio-player-controls button {
-  border: 0;
-  /* color: #282C34; */
-  transition: color 0.5s;
-  background-color: transparent;
-}
 
-/* #audio-player-controls button:disabled { color: rgba(40, 44, 52, 0.45); } */
-/* #audio-player-controls button:enabled:hover { color: #ABB2C0; } */
+#audio-player-controls {
+  flex: 1;
+  display: flex;
+  padding: 1px 7px;
+  flex-direction: row;
+}
 
 /* ---------------------------------------------
 
@@ -37,6 +25,7 @@
 
 --------------------------------------------- */
 
+/*
 #audio-player-controls .equalizer {
   top: -5px;
   border: 0;
@@ -45,6 +34,7 @@
   transform: scale(0.7);
   background: transparent;
 }
+*/
 
 /* #audio-player-controls .equalizer-bar,
 #audio-player-controls .equalizer-bar::after,

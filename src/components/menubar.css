@@ -1,0 +1,7 @@
+#menubar {
+  flex: 0;
+  display: flex;
+  padding: 1px 7px;
+  min-height: 35px;
+  flex-direction: row;
+}

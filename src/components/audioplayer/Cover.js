@@ -22,11 +22,15 @@ const Cover = ({
   const status = (!isplaying ? 'play' : 'pause');
   const custom = Object.assign({}, coverColors, (!cover ? {} : { ...cover }));
   return (
-    <div id="cover" className={`${disabled ? 'disabled' : ''}`}>
-      <Vinyl color={custom.color} background={custom.background} />
-      <div className="cover-image"
-        style={!custom.logo ? {} : { backgroundImage: `url(${custom.logo})` }} />
-      <button className="button"
+    <div id="audio-player-cover">
+      <div className="cover-container">
+        <Vinyl className="cover-background"
+          color={custom.color}
+          background={custom.background} />
+        <div className="cover-image"
+          style={!custom.logo ? {} : { backgroundImage: `url(${custom.logo})` }} />
+      </div>
+      <button className="button cover-button"
         disabled={disabled}
         onClick={() => dispatch(isplaying ? pause() : play())}>
         <i className={`icon icon-${disabled ? '' : status}`} />

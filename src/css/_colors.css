@@ -1,4 +1,4 @@
-
+/*
 background-color: #282C34;
 color: #ABB2C0;
 background-color: #282C34;
@@ -6,7 +6,7 @@ border-bottom: 1px solid #3B4048;
 background-color: #2C313C;
 color: #9DA5B5;
 color: #59ADF5;
-/* color: #ABB2C0; */
+color: #ABB2C0;
 color: #282C34;
 #audio-player-controls .inactive .equalizer-bar::before { background-color: #24262A; }
 color: #3B4048;
@@ -15,3 +15,18 @@ color: #2C313A;
 background-color: rgba(0, 0, 0, 0.1);
 #volume-bar .button:hover { color: #ABB2C0; }
 #volume-bar .button:active { color: #5DAEF2; }
+*/
+
+#radio-player-screen { /* can be used a application background-color */ }
+#audio-player { /* can be used a top background-color */ }
+
+#draggable-header { background-color: #ACE539; }
+
+#audio-player-cover { background-color: #F0B; }
+
+#audio-player-controls { background-color: #D33A26; }
+
+#stations .station:nth-child(odd) { background-color: rgba(0, 0, 0, 0.05); }
+#stations .station:nth-child(even) { background-color: rgba(0, 0, 0, 0.01); }
+
+#menubar { background-color: #438C6B; }

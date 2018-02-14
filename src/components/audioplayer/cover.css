@@ -1,55 +1,55 @@
-#cover {
-  flex: 0;
-  width: 200px;
-  display: flex;
-  height: 200px;
-  margin: 0 auto;
-  text-align: center;
+#audio-player-cover {
   position: relative;
-  flex-direction: column;
-  justify-content: space-around;
+  text-align: center;
 }
 
-#cover .button {
+#audio-player-cover .cover-container {
+  width: 200px; /* manage #audio-player-cover height */
+  height: auto;
+  margin: 0 auto;
+  position: relative;
+}
+
+#audio-player-cover .cover-background { /* unused */ }
+
+#audio-player-cover .cover-image {
+  top: 33px;
+  width: 135px;
+  height: 134px;
+  position: absolute;
+}
+
+#audio-player-cover .cover-button {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+}
+
+/*
+#audio-player-cover .button {
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   border: 0;
-  /* color: #FFF; */
   min-width: 100%;
   text-align: center;
   position: absolute;
-  background: transparent;
 }
 
-#cover.disabled .button {
-  cursor: default;
-}
-
-#cover .button .icon {
+#audio-player-cover .button .icon {
   font-size: 3em;
   margin-left: -62px;
-  transition: opacity 0.5s;
-  /* text-shadow: 0 0 12px rgba(0, 0, 0, 0.65); */
 }
 
-#cover .button .icon,
-#cover.disabled .button .icon {
-  opacity: 0;
-}
-
-#cover .button:hover .icon {
-  opacity: 1;
-}
-
-#cover .cover-image {
+#audio-player-cover .cover-image {
   left: 0;
   top: 33px;
   width: 135px;
   height: 135px;
   position: absolute;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
+*/

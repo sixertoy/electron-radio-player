@@ -16,7 +16,14 @@ body {
   font-family: system, -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, "Segoe UI", sans-serif;
 }
 
+* {
+  user-select: none;
+  box-sizing: border-box;
+}
+
 button {
+  border: 0;
+  background: transparent;
   outline: none;
   font-size: 1em;
   cursor: pointer;
@@ -28,19 +35,22 @@ button {
   text-overflow: ellipsis;
 }
 
-* {
-  user-select: none;
-  box-sizing: border-box;
-}
-
 *[role="button"] {
   outline: none;
   cursor: pointer;
 }
 
-button:disabled,
-.button.disabled,
-*[role="button"] { cursor: default; }
+/* --------------------------------------------------
+
+ CLASSES
+
+-------------------------------------------------- */
+
+.cover-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 /* --------------------------------------------------
 
@@ -48,7 +58,7 @@ button:disabled,
 
 -------------------------------------------------- */
 #root,
-#radio-player {
+#radio-player-screen {
   height: 100%;
   min-width: 280px;
   overflow: hidden;
@@ -56,7 +66,7 @@ button:disabled,
   max-height: 100%;
 }
 
-#radio-player {
+#radio-player-screen {
   flex: 1;
   display: flex;
   position: relative;
@@ -65,24 +75,16 @@ button:disabled,
   justify-content: flex-start;
 }
 
-#radio-player-draggable {
-  /* https://electronjs.org/docs/api/frameless-window#r%C3%A9gion-d%C3%A9pla%C3%A7able */
-  z-index: 10000;
-  -webkit-app-region: drag; /* error while devtools open */
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 30px;
-  position: absolute;
-  background-color: transparent;
+#radio-player-screen > * {
+  width: 100%;
 }
 
-/* --------------------------------------------------
+#draggable-header {
+  /* https://electronjs.org/docs/api/frameless-window#r%C3%A9gion-d%C3%A9pla%C3%A7able */
+  -webkit-app-region: drag; /* error while devtools open */
+  height: 25px;
+  min-height: 25px;
+}
 
- Z-INDEX
-
--------------------------------------------------- */
-
-/* #radio-player-draggable { z-index: 10000; } */
-#cover { z-index: 1000; }
-#networker { z-index: 5000; }
+@import url('./css/_zindex.css');
+@import url('./css/_colors.css');

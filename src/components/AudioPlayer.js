@@ -98,6 +98,23 @@ class AudioPlayer extends React.Component {
     dispatch(loaded());
   }
 
+  renderAudioWrapper () {
+    const { volume, station } = this.props;
+    return (
+      <audio volume={volume}
+        ref={(ref) => { this.audio = ref; }}
+        onError={this.onAudioLoadError}
+        onWaiting={this.onAudioStartLoading}
+        onCanPlayThrough={this.onAudioLoaded}
+        onLoadStart={this.onAudioStartLoading}>
+        <track kind="captions" />
+        <source type="audio/mpeg"
+          src={(station && station.url) || null}
+          ref={(ref) => { this.source = ref; }} />
+      </audio>
+    );
+  }
+
   render () {
     const {
       volume,
@@ -107,17 +124,7 @@ class AudioPlayer extends React.Component {
     } = this.props;
     return (
       <div id="audio-player">
-        <audio volume={volume}
-          ref={(ref) => { this.audio = ref; }}
-          onError={this.onAudioLoadError}
-          onWaiting={this.onAudioStartLoading}
-          onCanPlayThrough={this.onAudioLoaded}
-          onLoadStart={this.onAudioStartLoading}>
-          <track kind="captions" />
-          <source type="audio/mpeg"
-            src={(station && station.url) || null}
-            ref={(ref) => { this.source = ref; }} />
-        </audio>
+        {this.renderAudioWrapper()}
         <Cover isplaying={isplaying}
           disabled={!station || isloading}
           cover={((station && station.cover) ? { ...station.cover } : false)} />

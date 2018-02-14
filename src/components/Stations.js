@@ -6,7 +6,6 @@ import { Scrollbars } from 'react-custom-scrollbars';
 // application
 import { play, pause, changeStation } from './../actions';
 import './stations.css';
-import Search from './Search';
 
 const Stations = ({
   station,
@@ -15,35 +14,28 @@ const Stations = ({
   isloading,
   isplaying,
 }) => (
-  <div id="stations-list">
-    <Scrollbars style={{ width: '100%' }}>
-      <div className="list">
-        {stations && stations.map((item) => {
-          const isactive = (item.key === station.key);
-          const isactivepaused = (!isplaying && isactive);
-          let status = (isactive && !isactivepaused) ? 'pause' : 'play';
-          if (isloading && isactive) status = 'spin6 animate-spin';
-          //
-          return (
-            <div key={item.key}
-              className={`station ${isactive ? 'active' : ''}`}
-              style={{ borderLeft: `3px solid ${isactive ? item.cover.color : '#000000'}` }}>
-              <button className="button"
-                onClick={() => {
-                  if (isactive && isplaying) dispatch(pause());
-                  else if (isactive && !isplaying) dispatch(play());
-                  else dispatch(changeStation(item));
-                }}>
-                <i className={`icon icon-${status}`} />
-                <span>{item.name}</span>
-              </button>
-            </div>
-          );
-        })}
-      </div>
-      <div>
-        <Search />
-      </div>
+  <div id="stations">
+    <Scrollbars className="stations-scrollbox">
+      {stations && stations.map((item) => {
+        const isactive = (item.key === station.key);
+        const isactivepaused = (!isplaying && isactive);
+        let status = (isactive && !isactivepaused) ? 'pause' : 'play';
+        if (isloading && isactive) status = 'spin6 animate-spin';
+        //
+        return (
+          <div key={item.key} className="station">
+            <button className="button station-name"
+              onClick={() => {
+                if (isactive && isplaying) dispatch(pause());
+                else if (isactive && !isplaying) dispatch(play());
+                else dispatch(changeStation(item));
+              }}>
+              <i className={`icon icon-${status}`} />
+              <span className="name">{item.name}</span>
+            </button>
+          </div>
+        );
+      })}
     </Scrollbars>
   </div>
 );

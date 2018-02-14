@@ -6,19 +6,20 @@ import { Provider } from 'react-redux';
 import './index.css';
 import { configure } from './store';
 
+import MenuBar from './components/MenuBar';
 import Stations from './components/Stations';
-import Networker from './components/Networker';
+// import Networker from './components/Networker';
 import AudioPlayer from './components/AudioPlayer';
 
 // application
 const store = configure();
 const Root = () => (
   <Provider store={store}>
-    <div id="radio-player">
-      <div id="radio-player-draggable" />
-      <Networker />
+    <div id="radio-player-screen">
+      <div id="draggable-header" />
       <AudioPlayer />
       <Stations />
+      <MenuBar />
     </div>
   </Provider>
 );
