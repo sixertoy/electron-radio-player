@@ -4,9 +4,14 @@ import PropTypes from 'prop-types';
 // application
 import './equalizer.css';
 
-const Equalizer = ({ clickHandler, playing, muted }) => (
+const Equalizer = ({
+  muted,
+  active,
+  paused,
+  clickHandler,
+}) => (
   // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-  <div className={`equalizer ${playing ? '' : 'inactive'} ${!muted ? '' : 'muted'}`}
+  <div className={`equalizer ${(active && !paused) ? '' : 'inactive'} ${!muted ? '' : 'muted'}`}
     tabIndex="0"
     role="button"
     onClick={!clickHandler ? () => {} : clickHandler}>
@@ -16,19 +21,14 @@ const Equalizer = ({ clickHandler, playing, muted }) => (
   </div>
 );
 
-Equalizer.defaultProps = {
-  muted: false,
-  playing: false,
-  clickHandler: false,
-};
-
 Equalizer.propTypes = {
-  muted: PropTypes.bool,
-  playing: PropTypes.bool,
+  muted: PropTypes.bool.isRequired,
+  active: PropTypes.bool.isRequired,
+  paused: PropTypes.bool.isRequired,
   clickHandler: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.func,
-  ]),
+  ]).isRequired,
 };
 
 export default Equalizer;

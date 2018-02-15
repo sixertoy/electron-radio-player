@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // application
 import './cover.css';
 import Vinyl from './../../assets/vinyl-cover';
-import { play, pause } from './../../actions';
+import { resume, pause } from './../../actions';
 
 const coverColors = {
   logo: false,
@@ -15,11 +15,12 @@ const coverColors = {
 
 const Cover = ({
   cover,
-  disabled,
+  paused,
+  loading,
   dispatch,
-  isplaying,
 }) => {
-  const status = (!isplaying ? 'play' : 'pause');
+  let status = (paused ? 'play' : 'pause');
+  if (loading) status = 'spin6 animated-spin';
   const custom = Object.assign({}, coverColors, (!cover ? {} : { ...cover }));
   return (
     <div id="audio-player-cover">
@@ -31,26 +32,23 @@ const Cover = ({
           style={!custom.logo ? {} : { backgroundImage: `url(${custom.logo})` }} />
       </div>
       <button className="button cover-button"
-        disabled={disabled}
-        onClick={() => dispatch(isplaying ? pause() : play())}>
-        <i className={`icon icon-${disabled ? '' : status}`} />
+        disabled={loading}
+        onClick={() => dispatch(paused ? resume() : pause())}>
+        <i className={`icon icon-${status}`} />
       </button>
     </div>
   );
 };
 
 Cover.defaultProps = {
-  cover: false,
+  cover: null,
 };
 
 Cover.propTypes = {
+  cover: PropTypes.object,
+  paused: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  isplaying: PropTypes.bool.isRequired,
-  cover: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.object,
-  ]),
 };
 
 export default connect()(Cover);

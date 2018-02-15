@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 
 // application
 import './search.css';
-import { searchpodcast } from './../actions';
+import { search } from './../actions';
+
+const INPUT_DELAY = 800;
 
 class Search extends React.Component {
 
@@ -15,13 +17,18 @@ class Search extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  sendSearch (value) {
+    const term = value.toLocaleLowerCase().trim();
+    if (term.trim() === '') return;
+    const req = `attribute=authorTerm&entity=podcast&term=${term}`;
+    this.props.dispatch(search(req));
+  }
+
   handleChange (evt) {
     const { value } = evt.target;
     if (this.timer) clearTimeout(this.timer);
-    this.timer = setTimeout(() => {
-      this.setState({ term: value }, () =>
-        this.props.dispatch(searchpodcast(value)));
-    }, 800);
+    this.timer = setTimeout(() =>
+      this.setState({ term: value }, () => this.sendSearch(value)), INPUT_DELAY);
   }
 
   render () {
