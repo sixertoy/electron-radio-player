@@ -10,38 +10,38 @@ class Networker extends React.Component {
 
   constructor (props) {
     super(props);
-    this.state = { isoffline: false };
-    this.onStatusChange = this.onStatusChange.bind(this);
+    this.state = { isonline: false };
   }
 
-  componentWillMount () {
-    window.addEventListener('online', this.onStatusChange);
-    window.addEventListener('offline', this.onStatusChange);
-  }
-
-  onStatusChange (evt) {
-    const { dispatch } = this.props;
-    const isoffline = (evt.type === 'offline' && evt.returnValue);
-    this.setState({ isoffline }, () =>
-      dispatch(offlineStatus(isoffline)));
-  }
-
-  componentWillUnount () {
-    window.removeEventListener('online', this.onStatusChange);
-    window.removeEventListener('offline', this.onStatusChange);
+  componentWillReceiveProps () {
+    const status = navigator.onLine;
+    if (status === this.state.isonline) return;
+    const { statusChanged } = this.props;
+    this.setState({ isonline: status }, () => statusChanged(status));
   }
 
   render () {
-    const { isoffline } = this.state;
+    const { isonline } = this.state;
     return (
       <div id="networker"
-        className={`${isoffline ? 'isoffline' : ''}`} />
+        className={`${isonline ? '' : 'offline'}`} />
     );
   }
 }
 
 Networker.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  statusChanged: PropTypes.func.isRequired,
 };
 
-export default connect()(Networker);
+const mapStateToProps = state => ({
+  loading: state.loading,
+});
+
+const mapStateToDispatch = dispatch => ({
+  statusChanged: online => dispatch(offlineStatus(!online)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapStateToDispatch,
+)(Networker);

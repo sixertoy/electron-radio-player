@@ -8,7 +8,7 @@ import { configure } from './store';
 
 import MenuBar from './components/MenuBar';
 import Stations from './components/Stations';
-// import Networker from './components/Networker';
+import Networker from './components/Networker';
 import AudioPlayer from './components/AudioPlayer';
 
 // application
@@ -20,6 +20,7 @@ const Root = () => (
       <AudioPlayer />
       <Stations />
       <MenuBar />
+      <Networker />
     </div>
   </Provider>
 );
