@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // application
 import './audioplayer.css';
 import Cover from './audioplayer/Cover';
+import { mute, unmute } from './../actions';
 // import VolumeBar from './audioplayer/VolumeBar';
 import Equalizer from './audioplayer/Equalizer';
 import AudioWrapper from './audioplayer/AudioWrapper';
@@ -15,6 +16,7 @@ const AudioPlayer = ({
   paused,
   source,
   loading,
+  dispatch,
 }) => (
   <div id="audio-player">
     {!source ? null
@@ -26,10 +28,10 @@ const AudioPlayer = ({
       loading={loading}
       cover={(source && source.cover)} />
     <div id="audio-player-controls">
-      <Equalizer muted={false}
+      <Equalizer muted={muted}
         paused={paused}
-        clickHandler={() => {}}
-        active={Boolean(source && !loading)} />
+        active={Boolean(source && !loading)}
+        clickHandler={() => dispatch(!muted ? mute() : unmute())} />
       {/* <VolumeBar volume={volume}
         muted={muted}
         loading={loading}
@@ -64,7 +66,7 @@ AudioPlayer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  muted: state.paused,
+  muted: state.muted,
   paused: state.paused,
   source: state.source,
   loading: state.loading,

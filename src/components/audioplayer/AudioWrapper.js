@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import { loading, loaded } from './../../actions';
+import { loading, loaded, loadError } from './../../actions';
 
 /* eslint-disable */
 const debugAudioEventListener = (evt) => {
@@ -64,15 +64,23 @@ class AudioWrapper extends React.Component {
   }
 
   onAudioLoadError () {
-    const { url } = this.props;
-    if (!url) return;
+    const { dispatch } = this.props;
+    let error = false;
     const code = this.audioref.networkState;
-    // 1 = MEDIA_ERR_ABORTED - fetching process aborted by user
-    // 2 = MEDIA_ERR_NETWORK - error occurred when downloading
-    // 3 = MEDIA_ERR_DECODE - error occurred when decoding
-    // 4 = MEDIA_ERR_SRC_NOT_SUPPORTED - audio/video not supported
-    // eslint-disable-next-line no-console
-    console.log('code', code);
+    switch (code) {
+    case 1:
+      error = 'fetching process aborted by user';
+      break;
+    case 3: error = 'error occurred when decoding';
+      break;
+    case 4:
+      error = 'audio/video not supported';
+      break;
+    case 2:
+    default:
+      error = 'error occurred when downloading';
+    }
+    dispatch(loadError(error));
   }
 
   onAudioLoaded () {

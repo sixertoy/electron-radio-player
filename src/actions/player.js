@@ -19,19 +19,7 @@ export const loading = () => ({
   type: 'onLoading',
 });
 
-export const loadError = () => ({
+export const loadError = message => ({
+  message,
   type: 'onLoadError',
-});
-
-export const setVolume = volume => ({
-  volume,
-  type: 'onSetVolume',
-});
-
-export const increaseVolume = () => ({
-  type: 'onVolumeUp',
-});
-
-export const decreaseVolume = () => ({
-  type: 'onVolumeDown',
 });

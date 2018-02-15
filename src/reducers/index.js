@@ -6,6 +6,7 @@ import {
   volume,
   source,
   loading,
+  loaderror,
 } from './player';
 import stations from './stations';
 
@@ -19,6 +20,7 @@ const isoffline = (state = false, action) => {
 };
 
 export const reducers = combineReducers({
+  stations,
   isoffline,
   // player
   muted,
@@ -26,7 +28,7 @@ export const reducers = combineReducers({
   volume,
   source,
   loading,
-  stations,
+  loaderror,
 });
 
 export default reducers;

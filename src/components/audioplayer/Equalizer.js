@@ -14,7 +14,7 @@ const Equalizer = ({
   <div className={`equalizer ${(active && !paused) ? '' : 'inactive'} ${!muted ? '' : 'muted'}`}
     tabIndex="0"
     role="button"
-    onClick={!clickHandler ? () => {} : clickHandler}>
+    onClick={clickHandler}>
     <span className="equalizer-bars">
       <span className="equalizer-bar" />
     </span>

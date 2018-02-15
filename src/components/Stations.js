@@ -27,13 +27,14 @@ class Stations extends React.Component {
     });
   }
 
-  renderStation (item) {
-    const { loading, paused } = this.props;
+  renderStation (item, parent) {
+    const { loading, paused, loaderror } = this.props;
     const isselected = (item.key === this.state.selected.key);
-    let status = (isselected && !paused) ? 'pause' : 'play';
+    let status = (isselected && !paused && !loaderror) ? 'pause' : 'play';
     if (isselected && loading) status = 'spin6 animated-spin';
+    const key = `${parent ? `${parent.key}::` : ''}${item.key}`;
     return (
-      <div key={item.key}
+      <div key={key}
         className="station">
         <button className="button station-name"
           onClick={() => this.onStationClick(item)}>
@@ -49,7 +50,7 @@ class Stations extends React.Component {
     return (
       <div id="stations">
         <Scrollbars className="stations-scrollbox">
-          {stations && stations.map(item => this.renderStation(item))}
+          {stations && stations.map(item => this.renderStation(item, null))}
         </Scrollbars>
       </div>
     );
@@ -60,6 +61,7 @@ Stations.propTypes = {
   paused: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
   stations: PropTypes.array.isRequired,
+  loaderror: PropTypes.bool.isRequired,
   // actions
   play: PropTypes.func.isRequired,
   pause: PropTypes.func.isRequired,
@@ -70,6 +72,7 @@ const mapStateToProps = state => ({
   paused: state.paused,
   loading: state.loading,
   stations: state.stations,
+  loaderror: (state.loaderror && (typeof state.loaderror === 'string')),
 });
 
 const mapDispatchToProps = dispatch => ({

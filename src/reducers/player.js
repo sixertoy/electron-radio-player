@@ -1,11 +1,24 @@
 export const paused = (state = true, action) => {
   switch (action.type) {
   case 'onPause':
+  case 'onLoadError':
     return true;
   case 'onPlay':
   case 'onResume':
   case 'onLoaded':
+  case 'onLoading':
     return false;
+  default:
+    return state;
+  }
+};
+
+export const loaderror = (state = false, action) => {
+  switch (action.type) {
+  case 'onLoading':
+    return false;
+  case 'onLoadError':
+    return action.message;
   default:
     return state;
   }
