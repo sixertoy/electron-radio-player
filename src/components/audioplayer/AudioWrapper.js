@@ -71,7 +71,8 @@ class AudioWrapper extends React.Component {
     case 1:
       error = 'fetching process aborted by user';
       break;
-    case 3: error = 'error occurred when decoding';
+    case 3:
+      error = 'error occurred when decoding';
       break;
     case 4:
       error = 'audio/video not supported';

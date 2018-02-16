@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 
 import {
   muted,
@@ -8,20 +9,22 @@ import {
   loading,
   loaderror,
 } from './player';
+import searches from './searches';
 import stations from './stations';
 
-const isoffline = (state = false, action) => {
+const isonline = (state = false, action) => {
   switch (action.type) {
-  case 'onOfflineStatus':
-    return action.isoffline;
+  case 'onNetworkStatus':
+    return action.isonline;
   default:
     return state;
   }
 };
 
 export const reducers = combineReducers({
+  searches,
   stations,
-  isoffline,
+  isonline,
   // player
   muted,
   paused,
@@ -29,6 +32,7 @@ export const reducers = combineReducers({
   source,
   loading,
   loaderror,
+  router: routerReducer,
 });
 
 export default reducers;

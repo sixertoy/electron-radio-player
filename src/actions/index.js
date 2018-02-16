@@ -2,7 +2,7 @@ export * from './search';
 export * from './player';
 export * from './volume';
 
-export const offlineStatus = isoffline => ({
-  isoffline,
-  type: 'onOfflineStatus',
+export const networkStatus = isonline => ({
+  isonline,
+  type: 'onNetworkStatus',
 });

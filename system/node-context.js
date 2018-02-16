@@ -1,5 +1,14 @@
 const electron = require('electron');
 
+/**
+ * Get current Webpage parameters
+ * Defined by 'main.js' during loading application process
+ *
+ * @param  {[type]} key [description]
+ * @return {[type]}     [description]
+ *
+ */
+// eslint-disable-next-line
 function getUrlParameter (key) {
   // eslint-disable-next-line
   const name = key.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -9,7 +18,11 @@ function getUrlParameter (key) {
 }
 
 // Do Not Expose All The Things
-const { shell } = electron;
 window.NodeContext = {
-  openExternalURL: shell.openExternal,
+  openExternalURL: url =>
+    electron.shell.openExternal(url),
+  getLocale: (inuppercase) => {
+    const locale = electron.app.getLocale();
+    return (inuppercase ? locale.toLocaleUpperCase() : locale);
+  },
 };

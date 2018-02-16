@@ -1,23 +1,68 @@
+import { replace } from 'react-router-redux';
+import { searchQuery } from './../fp/searchquery';
+
+const ITUNES_BASE_URI = 'https://itunes.apple.com/search';
+
 const searching = () => ({
-  type: 'onSearching'
+  type: 'onSearching',
 });
 
-const searchComplete = () => ({
-  type: 'onSearchComplete'
+const searchComplete = results => ({
+  results,
+  type: 'onSearchComplete',
 });
 
 const searchError = () => ({
-  type: 'onSearchError'
+  type: 'onSearchError',
 });
 
-export const search = req => (dispatch) => {
+/*
+const gettoken = () => {
+  // http://marxoft.co.uk/doc/cuteradio-api/
+  // const form = new FormData();
+  // form.append('username', 'user');
+  // form.append('password', 'helloworld');
+  // const uri = 'http://marxoft.co.uk/api/cuteradio/token';
+  // fetch(uri, { body: form, method: 'POST', headers: new Headers({
+  // 'Content-Type': 'application/www-form-urlencoded' }), }),
+  // { "id":1662, "token":"20341a0acc810e91ab9a25601dfc44f8", "roles":"user" }
+  return '20341a0acc810e91ab9a25601dfc44f8';
+};
+*/
+
+export const searchAuthors = term => (dispatch) => {
   dispatch(searching());
-  const baseuri = 'https://itunes.apple.com/search';
-  const uri = `${baseuri}?${req}`;
-  fetch(uri, { method: 'GET' })
-    .then(resp => resp.json())
-    .then(json => console.log(json))
-    .catch(err => console.log(err));
+  // Podcasts URI
+  const params = searchQuery({
+    term,
+    limit: '200',
+    country: 'FR',
+    media: 'podcast',
+    entity: 'podcastAuthor',
+  });
+  const route = `${ITUNES_BASE_URI}?${params}`;
+  console.log('CALL: ', route);
+  // Radios URI
+  // const radiosuri = 'http://marxoft.co.uk/api/cuteradio/searches';
+  Promise.all([
+    fetch(route, { method: 'GET' }),
+    /*
+    fetch(radiosuri, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/www-form-urlencoded',
+        Authorization: `Basic ${base64.encode('20341a0acc810e91ab9a25601dfc44f8: ')}`,
+      },
+    }),
+    */
+  ])
+    .then(resps => Promise.all(resps.map(resp => resp.json())))
+    .then(([podcasts]) => {
+      console.log('podcasts.results', podcasts.results);
+      dispatch(searchComplete(podcasts.results));
+      dispatch(replace('/search'));
+    })
+    .catch(err => dispatch(searchError(err)));
 };
 
-export default search;
+export default searchAuthors;

@@ -2,7 +2,7 @@ import React from 'react';
 
 // application
 import './menubar.css';
-import Search from './Search';
+import Search from './menu/Search';
 
 const MenuBar = () => (
   <div id="menubar">

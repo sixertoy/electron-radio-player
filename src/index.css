@@ -59,7 +59,7 @@ button {
 
 -------------------------------------------------- */
 #root,
-#application-screen {
+#application {
   height: 100%;
   min-width: 280px;
   overflow: hidden;
@@ -72,6 +72,7 @@ button {
   background: transparent;
 }
 
+#application,
 #application-screen {
   flex: 1;
   display: flex;
@@ -81,6 +82,7 @@ button {
   justify-content: flex-start;
 }
 
+#application > *,
 #application-screen > * {
   width: 100%;
 }
@@ -91,6 +93,7 @@ button {
   height: 22px;
   min-height: 22px; /* if titleBarStyle: 'hidden' */
 }
+#networker { top: 22px; /* equals application-header heights */ }
 
 @import url('./css/_zindex.css');
 @import url('./css/_colors.css');

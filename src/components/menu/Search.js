@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 // application
 import './search.css';
-import { search } from './../actions';
+import { searchAuthors } from './../../actions';
 
 const INPUT_DELAY = 800;
 
@@ -20,15 +20,15 @@ class Search extends React.Component {
   sendSearch (value) {
     const term = value.toLocaleLowerCase().trim();
     if (term.trim() === '') return;
-    const req = `attribute=authorTerm&entity=podcast&term=${term}`;
-    this.props.dispatch(search(req));
+    this.props.dispatch(searchAuthors(term));
   }
 
   handleChange (evt) {
     const { value } = evt.target;
+    // const locale = window.NodeContext.getLocale();
     if (this.timer) clearTimeout(this.timer);
-    this.timer = setTimeout(() =>
-      this.setState({ term: value }, () => this.sendSearch(value)), INPUT_DELAY);
+    this.timer = setTimeout(() => this.setState({ term: value }, () =>
+      this.sendSearch(value)), INPUT_DELAY);
   }
 
   render () {
@@ -41,7 +41,7 @@ class Search extends React.Component {
             name="searchfield"
             defaultValue={term}
             onChange={this.handleChange}
-            placeholder="Search a podcast" />
+            placeholder="Search for podcasters, radios..." />
         </label>
       </div>
     );
