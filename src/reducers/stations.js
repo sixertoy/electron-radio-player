@@ -1,6 +1,7 @@
 const presets = [{
   key: '@fipradio',
   name: 'FIP',
+  type: 'radio',
   website: 'https://www.fip.fr/player',
   url: 'http://direct.fipradio.fr/live/fip-midfi.mp3',
   cover: {
@@ -13,35 +14,43 @@ const presets = [{
   channels: [{
     key: 'fip-electro',
     name: 'FIP Electro',
+    type: 'radio',
     url: 'http://direct.fipradio.fr/live/fip-webradio8.mp3',
   }, {
     key: 'fip-rock',
     name: 'FIP Rock',
+    type: 'radio',
     url: 'http://direct.fipradio.fr/live/fip-webradio1.mp3',
   }, {
     key: 'fip-jazz',
     name: 'FIP Jazz',
+    type: 'radio',
     url: 'http://direct.fipradio.fr/live/fip-webradio2.mp3',
   }, {
     key: 'fip-groove',
     name: 'FIP Groove',
+    type: 'radio',
     url: 'http://direct.fipradio.fr/live/fip-webradio3.mp3',
   }, {
     key: 'fip-world',
     name: 'FIP World',
+    type: 'radio',
     url: 'http://direct.fipradio.fr/live/fip-webradio4.mp3',
   }, {
     key: 'fip-nouveaute',
     name: 'FIP Nouveauté',
+    type: 'radio',
     url: 'http://direct.fipradio.fr/live/fip-webradio5.mp3',
   }, {
     key: 'fip-reggae',
     name: 'FIP Reggae',
+    type: 'radio',
     url: 'http://direct.fipradio.fr/live/fip-webradio6.mp3',
   }],
 }, {
   key: '@franceculture',
   name: 'France Culture',
+  type: 'radio',
   website: 'https://www.franceculture.fr/direct',
   url: 'https://chai5she.cdn.dvmr.fr/franceculture-midfi.mp3?ID=radiofrance',
   cover: {
@@ -53,6 +62,7 @@ const presets = [{
 }, {
   key: '@radiomeuh',
   name: 'Radio Meuh',
+  type: 'radio',
   url: 'https://radiomeuh.ice.infomaniak.ch/radiomeuh-128.mp3',
   cover: {
     color: '#FFFFFF',
@@ -63,6 +73,7 @@ const presets = [{
 }, {
   key: '@laradionova',
   name: 'Radio Nova',
+  type: 'radio',
   url: 'http://novazz.ice.infomaniak.ch/novazz-128.mp3',
   cover: {
     color: '#F85453',

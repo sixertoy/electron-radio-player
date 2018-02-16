@@ -58,18 +58,18 @@
   padding: 8px 7px 8px 0;
 }
 
-.scrollbox-list.editable .item {
+.scrollbox-list.removable .item {
   justify-content: space-between;
 }
 
-.scrollbox-list.editable .name {
+.scrollbox-list.removable .name {
   padding-left: 11px;
 }
 
-.scrollbox-list.editable .item .icon {
+.scrollbox-list.removable .item .icon {
   width: 0;
 }
 
-.scrollbox-list.editable .item:hover .icon.icon-right {
+.scrollbox-list.removable .item:hover .icon.icon-right {
   width: 32px;
 }

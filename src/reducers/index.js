@@ -12,9 +12,9 @@ import {
 import searches from './searches';
 import stations from './stations';
 
-const editable = (state = false, action) => {
+const removable = (state = false, action) => {
   switch (action.type) {
-  case 'onTogglEditable':
+  case 'onToggleRemovable':
     return !state;
   default:
     return state;
@@ -34,7 +34,7 @@ export const reducers = combineReducers({
   searches,
   stations,
   isonline,
-  editable,
+  removable,
   // player
   muted,
   paused,

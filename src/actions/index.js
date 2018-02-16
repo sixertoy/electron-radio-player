@@ -7,8 +7,8 @@ export const networkStatus = isonline => ({
   type: 'onNetworkStatus',
 });
 
-export const togglEditable = () => ({
-  type: 'onTogglEditable',
+export const toggleRemovable = () => ({
+  type: 'onToggleRemovable',
 });
 
 export const removeStation = item => ({

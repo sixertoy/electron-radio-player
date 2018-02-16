@@ -36,9 +36,9 @@ class Stations extends React.Component {
     const {
       paused,
       loading,
-      editable,
+      removable,
       loaderror,
-      removeStation,
+      removeHandler,
     } = this.props;
     const isselected = (item.key === this.state.selected.key);
     let status = (isselected && !paused && !loaderror) ? 'pause' : 'play';
@@ -48,8 +48,8 @@ class Stations extends React.Component {
       <button key={key}
         className={`item button ${isselected ? 'active' : ''}`}
         onClick={() => {
-          if (!editable) this.stationClick(item);
-          else removeStation(item);
+          if (!removable) this.stationClick(item);
+          else removeHandler(item);
         }}>
         <i className={`icon icon-left icon-${status}`} />
         <span className="name">{item.name}</span>
@@ -59,10 +59,10 @@ class Stations extends React.Component {
   }
 
   render () {
-    const { stations, editable } = this.props;
+    const { stations, removable } = this.props;
     return (
       <Scrollbars id="stations"
-        className={`scrollbox-list ${editable ? 'editable' : ''}`}>
+        className={`scrollbox-list ${removable ? 'removable' : ''}`}>
         {stations && stations.map(item => this.renderStation(item, null))}
       </Scrollbars>
     );
@@ -72,21 +72,21 @@ class Stations extends React.Component {
 Stations.propTypes = {
   paused: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
-  editable: PropTypes.bool.isRequired,
+  removable: PropTypes.bool.isRequired,
   stations: PropTypes.array.isRequired,
   loaderror: PropTypes.bool.isRequired,
   // actions
   play: PropTypes.func.isRequired,
   pause: PropTypes.func.isRequired,
   resume: PropTypes.func.isRequired,
-  removeStation: PropTypes.func.isRequired,
+  removeHandler: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   paused: state.paused,
   loading: state.loading,
   stations: state.stations,
-  editable: state.editable,
+  removable: state.removable,
   loaderror: (state.loaderror && (typeof state.loaderror === 'string')),
 });
 
@@ -94,7 +94,7 @@ const mapDispatchToProps = dispatch => ({
   pause: () => dispatch(pause()),
   resume: () => dispatch(resume()),
   play: item => dispatch(play(item)),
-  removeStation: item => dispatch(removeStation(item)),
+  removeHandler: item => dispatch(removeStation(item)),
 });
 
 export default connect(

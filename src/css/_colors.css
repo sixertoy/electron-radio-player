@@ -11,10 +11,6 @@ button:hover {
   color: #FFF;
 }
 
-button.active:hover {
-  color: #59ADF5;
-}
-
 button:disabled {
   cursor: default;
   color: rgba(157, 165, 181, 0.15);
@@ -31,7 +27,7 @@ button:disabled {
   transition-property: border-width, background-color;
 }
 
-.scrollbox-list.editable .item {
+.scrollbox-list.removable .item {
   border-right: 3px solid #FA603F;
 }
 
@@ -49,7 +45,7 @@ button:disabled {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.scrollbox-list.editable .item:hover .icon {
+.scrollbox-list.removable .item:hover .icon {
   background-color: #FA603F;
 }
 
@@ -99,9 +95,9 @@ button:disabled {
 }
 #search-form input::placeholder { color: #2C313A; }
 
-#menubar .editable:hover,
-#menubar .editable.active { color: #FA603F; }
-#menubar .editable:hover.active { color: #FFF; }
+#menubar .removable:hover,
+#menubar .removable.active { color: #FA603F; }
+#menubar .removable:hover.active { color: #FFF; }
 
 /* --------------------------------------------------
 
