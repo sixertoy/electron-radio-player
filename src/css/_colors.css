@@ -14,6 +14,30 @@ button:disabled {
   color: rgba(157, 165, 181, 0.15);
 }
 
+/* --------------------------------------------------
+
+ CLASSES
+
+-------------------------------------------------- */
+
+.scrollbox-list .item {
+  transition: background-color 0.5s;
+}
+
+.scrollbox-list .item:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.scrollbox-list .item:nth-child(even):not(:hover) {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* --------------------------------------------------
+
+ APPLICATION
+
+-------------------------------------------------- */
+
 #application-screen {
   /* main theme color */
 }
@@ -33,18 +57,6 @@ button:disabled {
 
 #audio-player-controls {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-#stations .station {
-  transition: background-color 0.5s;
-}
-
-#stations .station:hover {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-#stations .station:nth-child(even):not(:hover) {
-  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* --------------------------------------------------

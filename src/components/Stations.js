@@ -34,14 +34,12 @@ class Stations extends React.Component {
     if (isselected && loading) status = 'spin6 animated-spin';
     const key = `${parent ? `${parent.key}::` : ''}${item.key}`;
     return (
-      <div key={key}
-        className="station">
-        <button className="button station-name"
-          onClick={() => this.onStationClick(item)}>
-          <i className={`icon icon-${status}`} />
-          <span className="name">{item.name}</span>
-        </button>
-      </div>
+      <button key={key}
+        className="item button"
+        onClick={() => this.onStationClick(item)}>
+        <i className={`icon icon-${status}`} />
+        <span className="name">{item.name}</span>
+      </button>
     );
   }
 
@@ -49,7 +47,7 @@ class Stations extends React.Component {
     const { stations } = this.props;
     return (
       <div id="stations">
-        <Scrollbars className="stations-scrollbox">
+        <Scrollbars className="scrollbox-list">
           {stations && stations.map(item => this.renderStation(item, null))}
         </Scrollbars>
       </div>

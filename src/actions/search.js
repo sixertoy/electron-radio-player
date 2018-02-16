@@ -1,4 +1,4 @@
-import { replace } from 'react-router-redux';
+import { push } from 'react-router-redux';
 import { searchQuery } from './../fp/searchquery';
 
 const ITUNES_BASE_URI = 'https://itunes.apple.com/search';
@@ -60,7 +60,7 @@ export const searchAuthors = term => (dispatch) => {
     .then(([podcasts]) => {
       console.log('podcasts.results', podcasts.results);
       dispatch(searchComplete(podcasts.results));
-      dispatch(replace('/search'));
+      dispatch(push('/search'));
     })
     .catch(err => dispatch(searchError(err)));
 };

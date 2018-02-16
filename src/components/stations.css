@@ -6,26 +6,3 @@
   flex-direction: column;
   justify-content: flex-start;
 }
-
-#stations .stations-scrollbox {
-  width: 100%;
-  scroll-behavior: smooth;
-}
-
-#stations .station {
-  padding: 7px;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: flex-start;
-  border-left: 3px solid transparent;
-}
-
-#stations .station-name {
-  flex: 1;
-  text-align: left;
-}
-
-#stations .station-name .icon {
-  margin-right: 7px;
-}
