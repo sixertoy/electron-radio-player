@@ -80,7 +80,8 @@ function buildpplication () {
     win.focus();
   });
 
-  win.loadURL(`${webpage}`);
+  // load 'player' screen at startup
+  win.loadURL(`${webpage}#player`);
   return win;
 }
 
