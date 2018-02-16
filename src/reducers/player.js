@@ -5,8 +5,6 @@ export const paused = (state = true, action) => {
     return true;
   case 'onPlay':
   case 'onResume':
-  case 'onLoaded':
-  case 'onLoading':
     return false;
   default:
     return state;
@@ -39,7 +37,13 @@ export const loading = (state = false, action) => {
 export const source = (state = null, action) => {
   switch (action.type) {
   case 'onPlay':
-    return action.source;
+    // called on station click
+    return Object.assign({}, { ...action.source }, { ready: false });
+  case 'onLoaded':
+    // called when stream is loaded
+    // on recree pas la reference si le streal a deja ete charge
+    if (state.ready) return state;
+    return Object.assign({}, { ...state }, { ready: true });
   default:
     return state;
   }

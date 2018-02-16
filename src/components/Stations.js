@@ -31,7 +31,7 @@ class Stations extends React.Component {
     const { loading, paused, loaderror } = this.props;
     const isselected = (item.key === this.state.selected.key);
     let status = (isselected && !paused && !loaderror) ? 'pause' : 'play';
-    if (isselected && loading) status = 'spin6 animated-spin';
+    if (isselected && loading) status = 'spin6 animate-spin';
     const key = `${parent ? `${parent.key}::` : ''}${item.key}`;
     return (
       <button key={key}

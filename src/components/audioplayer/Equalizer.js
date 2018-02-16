@@ -5,13 +5,11 @@ import PropTypes from 'prop-types';
 import './equalizer.css';
 
 const Equalizer = ({
-  muted,
   active,
-  paused,
-  clickHandler,
+  clickHandler, // mute toggler
 }) => (
   // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-  <div className={`equalizer ${(active && !paused) ? '' : 'inactive'} ${!muted ? '' : 'muted'}`}
+  <div className={`equalizer ${active ? 'active' : ''}`}
     tabIndex="0"
     role="button"
     onClick={clickHandler}>
@@ -22,13 +20,8 @@ const Equalizer = ({
 );
 
 Equalizer.propTypes = {
-  muted: PropTypes.bool.isRequired,
   active: PropTypes.bool.isRequired,
-  paused: PropTypes.bool.isRequired,
-  clickHandler: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.func,
-  ]).isRequired,
+  clickHandler: PropTypes.func.isRequired,
 };
 
 export default Equalizer;

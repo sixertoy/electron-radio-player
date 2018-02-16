@@ -12,13 +12,13 @@ const MenuBar = ({
   dispatch,
 }) => (
   <div id="menubar">
-    {canedit ? null : (
+    {!canedit && (
       <button onClick={() => dispatch(replace('/player'))}>
         <i className="icon icon-left-thin" />
       </button>
     )}
     <Search />
-    {!canedit ? null : (
+    {canedit && (
       <button onClick={() => {}}>
         <i className="icon icon-pencil" />
       </button>

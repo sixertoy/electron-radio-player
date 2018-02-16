@@ -20,19 +20,18 @@ const AudioPlayer = ({
   toggleMute,
 }) => (
   <div id="audio-player">
-    {!source ? null
-      : <AudioWrapper url={source.url}
+    {source && (
+      <AudioWrapper url={source.url}
         muted={muted}
         paused={paused}
-        volume={volume} />}
+        volume={volume} />)}
     <Cover paused={paused}
       loading={loading}
       cover={(source && source.cover)} />
     <div id="audio-player-controls">
       <Equalizer muted={muted}
-        paused={paused}
-        clickHandler={toggleMute}
-        active={Boolean(source && !loading)} />
+        clickHandler={() => toggleMute(!muted)}
+        active={((source && source.ready) && !loading && !paused) || false} />
       <VolumeBar volume={volume}
         muted={muted}
         loading={loading}
@@ -73,9 +72,12 @@ const mapStateToProps = state => ({
   volume: (state.volume / 100),
 });
 
-const mapDispatchToProps = (dispatch, props) => ({
+const mapDispatchToProps = dispatch => ({
   openURL: value => window.NodeContext.openExternalURL(value),
-  toggleMute: () => dispatch(props.muted ? unmute() : mute()),
+  toggleMute: (muted) => {
+    if (muted) dispatch(mute());
+    else dispatch(unmute());
+  },
 });
 
 export default connect(

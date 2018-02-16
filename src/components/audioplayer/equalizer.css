@@ -152,13 +152,24 @@
  STATES
 
 ------------------------------------------------------------ */
-.equalizer.inactive .equalizer-bars {
+.equalizer .equalizer-bars {
   top: 18px;
   height: 3px;
 }
 
-.equalizer.inactive .equalizer-bar,
-.equalizer.inactive .equalizer-bar::before,
-.equalizer.inactive .equalizer-bar::after {
+.equalizer .equalizer-bar,
+.equalizer .equalizer-bar::before,
+.equalizer .equalizer-bar::after {
   animation-play-state: paused;
+}
+
+.equalizer.active .equalizer-bars {
+  top: 0;
+  height: 21px;
+}
+
+.equalizer.active .equalizer-bar,
+.equalizer.active .equalizer-bar::before,
+.equalizer.active .equalizer-bar::after {
+  animation-play-state: running;
 }

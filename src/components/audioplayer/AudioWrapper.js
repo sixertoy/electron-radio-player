@@ -42,7 +42,7 @@ class AudioWrapper extends React.Component {
   }
 
   componentWillReceiveProps (nextprops) {
-    this.audioref.muted = this.props.muted;
+    this.audioref.muted = nextprops.muted;
     this.audioref.volume = nextprops.volume;
     // conditionnals
     if (this.props.paused !== nextprops.paused) {
@@ -86,8 +86,8 @@ class AudioWrapper extends React.Component {
 
   onAudioLoaded () {
     const { dispatch } = this.props;
-    this.audioref.play(); // autoplay when loaded
     dispatch(loaded());
+    this.audioref.play(); // autoplay when loaded
   }
 
   onAudioStartLoading () {
