@@ -4,11 +4,12 @@ import React from 'react';
 import Stations from './../components/Stations';
 import AudioPlayer from './../components/AudioPlayer';
 
-const SearchScreen = () => (
-  <div id="application-screen">
+const PlayerScreen = () => (
+  <div id="player-screen"
+    className="application-screen">
     <AudioPlayer />
     <Stations />
   </div>
 );
 
-export default SearchScreen;
+export default PlayerScreen;

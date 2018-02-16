@@ -1,4 +1,6 @@
-import { push } from 'react-router-redux';
+import { replace } from 'react-router-redux';
+
+// application
 import { searchQuery } from './../fp/searchquery';
 
 const ITUNES_BASE_URI = 'https://itunes.apple.com/search';
@@ -41,7 +43,6 @@ export const searchAuthors = term => (dispatch) => {
     entity: 'podcastAuthor',
   });
   const route = `${ITUNES_BASE_URI}?${params}`;
-  console.log('CALL: ', route);
   // Radios URI
   // const radiosuri = 'http://marxoft.co.uk/api/cuteradio/searches';
   Promise.all([
@@ -58,9 +59,11 @@ export const searchAuthors = term => (dispatch) => {
   ])
     .then(resps => Promise.all(resps.map(resp => resp.json())))
     .then(([podcasts]) => {
-      console.log('podcasts.results', podcasts.results);
-      dispatch(searchComplete(podcasts.results));
-      dispatch(push('/search'));
+      const results = {
+        podcasts: podcasts.results,
+      };
+      dispatch(searchComplete(results));
+      dispatch(replace('/player/search'));
     })
     .catch(err => dispatch(searchError(err)));
 };

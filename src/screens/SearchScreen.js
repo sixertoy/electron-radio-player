@@ -4,7 +4,8 @@ import React from 'react';
 import SearchResults from './../components/search/SearchResults';
 
 const SearchScreen = () => (
-  <div id="application-screen">
+  <div id="search-screen"
+    className="application-screen">
     <SearchResults />
   </div>
 );

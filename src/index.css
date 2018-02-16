@@ -73,7 +73,7 @@ button {
 }
 
 #application,
-#application-screen {
+.application-screen {
   flex: 1;
   display: flex;
   position: relative;
@@ -82,8 +82,8 @@ button {
   justify-content: flex-start;
 }
 
-#application > *,
-#application-screen > * {
+.application-screen > *,
+#application > * {
   width: 100%;
 }
 
@@ -98,3 +98,26 @@ button {
 @import url('./css/scrollbox.css');
 @import url('./css/_zindex.css');
 @import url('./css/_colors.css');
+
+/* --------------------------------------------------
+
+ ROUTER
+
+-------------------------------------------------- */
+.application-screen {
+  overflow: hidden;
+  transition-duration: 0.3s;
+  transition-property: height, max-height;
+}
+
+body.player #search-screen,
+body.player-search #player-screen {
+  height: 0;
+  max-height: 0;
+}
+
+body.player #player-screen,
+body.player-search #search-screen {
+  height: auto;
+  max-height: inherit;
+}

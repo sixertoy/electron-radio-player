@@ -4,7 +4,7 @@ const searches = (state = [], action) => {
   case 'onSearchError':
     return [];
   case 'onSearchComplete':
-    return [].concat(action.results);
+    return [].concat(action.results.podcasts);
   default:
     return state;
   }

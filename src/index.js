@@ -1,36 +1,49 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
+import { connect, Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createHashHistory';
-import { Route, Switch, Redirect } from 'react-router-dom';
 
 // application
 import './index.css';
 import { configure } from './store';
+import { slugify } from './fp/slugify';
 import MenuBar from './components/MenuBar';
 import Networker from './components/Networker';
 import PlayerScreen from './screens/PlayerScreen';
 import SearchScreen from './screens/SearchScreen';
 
-const App = () => (
+/* --------------------------------------------
+
+ MAIN APPLICATION COMPONENT
+
+-------------------------------------------- */
+const AppComponent = ({
+  path,
+}) => (
   <div id="application">
+    <Helmet>
+      <body className={path} />
+    </Helmet>
     <div id="application-header" />
-    <Switch>
-      <Route path="/search"
-        key="search-component"
-        component={SearchScreen} />
-      <Route path="/player"
-        key="player-component"
-        component={PlayerScreen} />
-      <Redirect from="/" to="/player" />
-    </Switch>
-    <MenuBar />
+    <PlayerScreen />
+    <MenuBar canedit={path === 'player'} />
+    <SearchScreen />
     <Networker />
   </div>
 );
+AppComponent.propTypes = { path: PropTypes.string.isRequired };
+const App = connect(state => ({
+  path: slugify(state.router.location.pathname || 'player'),
+}))(AppComponent);
 
-// application
+/* --------------------------------------------
+
+ REACT DOM RENDER
+
+-------------------------------------------- */
 const history = createHistory();
 const store = configure(history);
 const Root = () => (

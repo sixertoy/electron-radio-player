@@ -1,16 +1,38 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { replace } from 'react-router-redux';
 
 // application
 import './menubar.css';
 import Search from './menu/Search';
 
-const MenuBar = () => (
+const MenuBar = ({
+  canedit,
+  dispatch,
+}) => (
   <div id="menubar">
+    {canedit ? null : (
+      <button onClick={() => dispatch(replace('/player'))}>
+        <i className="icon icon-left-thin" />
+      </button>
+    )}
     <Search />
-    <button onClick={() => {}}>
-      <i className="icon icon-pencil" />
-    </button>
+    {!canedit ? null : (
+      <button onClick={() => {}}>
+        <i className="icon icon-pencil" />
+      </button>
+    )}
   </div>
 );
 
-export default MenuBar;
+MenuBar.defaultProps = {
+  canedit: false,
+};
+
+MenuBar.propTypes = {
+  canedit: PropTypes.bool,
+  dispatch: PropTypes.func.isRequired,
+};
+
+export default connect()(MenuBar);

@@ -46,11 +46,10 @@ class Stations extends React.Component {
   render () {
     const { stations } = this.props;
     return (
-      <div id="stations">
-        <Scrollbars className="scrollbox-list">
-          {stations && stations.map(item => this.renderStation(item, null))}
-        </Scrollbars>
-      </div>
+      <Scrollbars id="stations"
+        className="scrollbox-list">
+        {stations && stations.map(item => this.renderStation(item, null))}
+      </Scrollbars>
     );
   }
 }

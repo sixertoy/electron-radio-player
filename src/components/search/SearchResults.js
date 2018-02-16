@@ -5,7 +5,6 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 // application
 import { pick } from './../../fp/pick';
-import ScrollboxHeader from './../scrollbox/ScrollboxHeader';
 
 const whitelist = ['artistId', 'artistName'];
 
@@ -13,15 +12,15 @@ const SearchResults = ({
   searches,
 }) => (
   <div className="scrollbox">
-    <ScrollboxHeader />
     <Scrollbars className="scrollbox-list">
       {searches && searches.map((item) => {
         const picked = pick(item, whitelist);
         return (
-          <div key={picked.artistId}
-            className="item">
+          <button key={picked.artistId}
+            className="item"
+            onClick={() => {}}>
             <span className="name">{picked.artistName}</span>
-          </div>
+          </button>
         );
       })}
     </Scrollbars>
