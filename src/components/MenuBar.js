@@ -6,10 +6,12 @@ import { replace } from 'react-router-redux';
 // application
 import './menubar.css';
 import Search from './menu/Search';
+import { togglEditable } from './../actions';
 
 const MenuBar = ({
   canedit,
   dispatch,
+  editable,
 }) => (
   <div id="menubar">
     {!canedit && (
@@ -19,8 +21,9 @@ const MenuBar = ({
     )}
     <Search />
     {canedit && (
-      <button onClick={() => {}}>
-        <i className="icon icon-pencil" />
+      <button onClick={() => dispatch(togglEditable())}
+        className={`button editable ${editable ? 'active' : ''}`}>
+        <i className="icon icon-trash" />
       </button>
     )}
   </div>
@@ -32,6 +35,7 @@ MenuBar.defaultProps = {
 
 MenuBar.propTypes = {
   canedit: PropTypes.bool,
+  editable: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 

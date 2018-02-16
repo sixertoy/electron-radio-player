@@ -61,12 +61,6 @@
       "src": "entypo"
     },
     {
-      "uid": "70370693ada58ef0a60fa0984fe8d52a",
-      "css": "plus",
-      "code": 59393,
-      "src": "entypo"
-    },
-    {
       "uid": "c709da589c923ba3c2ad48d9fc563e93",
       "css": "cancel",
       "code": 59395,
@@ -89,6 +83,36 @@
       "css": "medium",
       "code": 62010,
       "src": "fontawesome"
+    },
+    {
+      "uid": "3eb93689881ad0804f87052a53edc2b6",
+      "css": "minus-circled",
+      "code": 59403,
+      "src": "entypo"
+    },
+    {
+      "uid": "2626e3a1bbcd90e45849af3b58a1d594",
+      "css": "trash",
+      "code": 59404,
+      "src": "entypo"
+    },
+    {
+      "uid": "a66cdc7278e6b33b8bd44a141f5e1a8d",
+      "css": "plus-circled",
+      "code": 59393,
+      "src": "entypo"
+    },
+    {
+      "uid": "3e617d8049807e128c80d0344ba09e37",
+      "css": "rss",
+      "code": 59405,
+      "src": "entypo"
+    },
+    {
+      "uid": "1e099a876c8a6a83f10c9bafa9886614",
+      "css": "mic",
+      "code": 59406,
+      "src": "entypo"
     },
     {
       "uid": "7928804323dd069e99de202b732d86c1",

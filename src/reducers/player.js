@@ -37,13 +37,13 @@ export const loading = (state = false, action) => {
 export const source = (state = null, action) => {
   switch (action.type) {
   case 'onPlay':
-    // called on station click
     return Object.assign({}, { ...action.source }, { ready: false });
   case 'onLoaded':
-    // called when stream is loaded
-    // on recree pas la reference si le streal a deja ete charge
-    if (state.ready) return state;
-    return Object.assign({}, { ...state }, { ready: true });
+    return (state.ready)
+      ? state : Object.assign({}, { ...state }, { ready: true });
+  case 'onRemoveStation':
+    return ((state && state.key) === action.item.key)
+      ? null : state;
   default:
     return state;
   }

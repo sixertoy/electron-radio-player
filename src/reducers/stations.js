@@ -73,6 +73,9 @@ const presets = [{
 
 const stations = (state = presets, action) => {
   switch (action.type) {
+  case 'onRemoveStation':
+    return state.filter(obj =>
+      (obj.key !== action.item.key));
   default:
     return state;
   }

@@ -27,7 +27,12 @@ button:disabled {
 -------------------------------------------------- */
 
 .scrollbox-list .item {
-  transition: background-color 0.5s;
+  transition-duration: 0.5s;
+  transition-property: border-width, background-color;
+}
+
+.scrollbox-list.editable .item {
+  border-right: 3px solid #FA603F;
 }
 
 .scrollbox-list .item:hover,
@@ -35,16 +40,17 @@ button:disabled {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.scrollbox-list .item.active {
-  color: #59ADF5;
-}
-
+.scrollbox-list .item.active,
 .scrollbox-list .item:hover.active {
   color: #FFF;
 }
 
 .scrollbox-list .item:nth-child(even):not(:hover) {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.scrollbox-list.editable .item:hover .icon {
+  background-color: #FA603F;
 }
 
 /* --------------------------------------------------
@@ -92,6 +98,10 @@ button:disabled {
   background-color: rgba(0, 0, 0, 0.2);
 }
 #search-form input::placeholder { color: #2C313A; }
+
+#menubar .editable:hover,
+#menubar .editable.active { color: #FA603F; }
+#menubar .editable:hover.active { color: #FFF; }
 
 /* --------------------------------------------------
 

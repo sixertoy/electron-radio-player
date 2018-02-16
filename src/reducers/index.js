@@ -12,6 +12,15 @@ import {
 import searches from './searches';
 import stations from './stations';
 
+const editable = (state = false, action) => {
+  switch (action.type) {
+  case 'onTogglEditable':
+    return !state;
+  default:
+    return state;
+  }
+};
+
 const isonline = (state = false, action) => {
   switch (action.type) {
   case 'onNetworkStatus':
@@ -25,6 +34,7 @@ export const reducers = combineReducers({
   searches,
   stations,
   isonline,
+  editable,
   // player
   muted,
   paused,

@@ -22,6 +22,7 @@ import SearchScreen from './screens/SearchScreen';
 -------------------------------------------- */
 const AppComponent = ({
   path,
+  editable,
 }) => (
   <div id="application">
     <Helmet>
@@ -29,13 +30,20 @@ const AppComponent = ({
     </Helmet>
     <div id="application-header" />
     <PlayerScreen />
-    <MenuBar canedit={path === 'player'} />
+    <MenuBar canedit={path === 'player'}
+      editable={editable} />
     <SearchScreen />
     <Networker />
   </div>
 );
-AppComponent.propTypes = { path: PropTypes.string.isRequired };
+
+AppComponent.propTypes = {
+  path: PropTypes.string.isRequired,
+  editable: PropTypes.bool.isRequired,
+};
+
 const App = connect(state => ({
+  editable: state.editable,
   path: slugify(state.router.location.pathname || 'player'),
 }))(AppComponent);
 
