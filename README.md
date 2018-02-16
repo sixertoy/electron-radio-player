@@ -12,6 +12,7 @@
 
 ## Services
 
+- [iTunes API](https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/)
 - [Cuteradio API](http://marxoft.co.uk/doc/cuteradio-api/)
 - [Dar.fm API](https://docs.google.com/document/d/12HNoXI-z40QLQiSi30g2qSWb8U9YbMd4u5_jrre-YTw/edit)
 
