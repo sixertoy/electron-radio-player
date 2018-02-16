@@ -26,4 +26,10 @@
   bottom: 0;
   width: 100%;
   position: absolute;
+
+  /* position */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
 }

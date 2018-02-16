@@ -65,6 +65,9 @@ button:disabled {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+#audio-player-cover button { color: #FFF; }
+#audio-player-cover button:hover { color: #59ADF5; }
+
 #stations,
 #audio-player-controls {
   background-color: rgba(0, 0, 0, 0.5);

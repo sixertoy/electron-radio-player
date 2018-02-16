@@ -26,6 +26,7 @@ const AudioPlayer = ({
         paused={paused}
         volume={volume} />)}
     <Cover paused={paused}
+      muted={muted}
       loading={loading}
       cover={(source && source.cover)} />
     <div id="audio-player-controls">
