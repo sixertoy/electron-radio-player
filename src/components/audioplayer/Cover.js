@@ -10,7 +10,7 @@ import { resume, pause } from './../../actions';
 const coverColors = {
   logo: false,
   color: '#282C34',
-  background: '#181A1F',
+  background: 'transparent',
 };
 
 const Cover = ({
@@ -23,7 +23,8 @@ const Cover = ({
   if (loading) status = 'spin6 animated-spin';
   const custom = Object.assign({}, coverColors, (!cover ? {} : { ...cover }));
   return (
-    <div id="audio-player-cover">
+    <div id="audio-player-cover"
+      style={{ backgroundColor: custom.background }}>
       <div className="cover-container">
         <Vinyl className="cover-background"
           color={custom.color}

@@ -5,6 +5,7 @@ const presets = [{
   url: 'http://direct.fipradio.fr/live/fip-midfi.mp3',
   cover: {
     color: '#E2007A',
+    background: '#E2007A',
     logo: `
       https://upload.wikimedia.org/wikipedia/fr/thumb/d/d5/FIP_logo_2005.svg/1200px-FIP_logo_2005.svg.png
     `,
@@ -65,6 +66,7 @@ const presets = [{
   url: 'http://novazz.ice.infomaniak.ch/novazz-128.mp3',
   cover: {
     color: '#F85453',
+    background: '#F85453',
     logo: 'http://www.nova.fr/sites/default/files/CQCT/default.jpg',
   },
 }];
