@@ -12,7 +12,6 @@
   left: 50%;
   font-size: 0.8em;
   position: absolute;
-  transition: color 0.5s;
 }
 
 /* ------------------------------------------------------------
@@ -25,7 +24,6 @@
   padding-top: 5px;
   padding-bottom: 5px;
   border-radius: 4px;
-  transition: color 0.5s;
   background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -57,4 +55,7 @@
   bottom: 5px;
 }
 
-#volume-bar .bar .thumb { transition: width 0.7s; }
+#volume-bar .bar .thumb {
+  transition-duration: 0.7s;
+  transition-property: width, background-color;
+}

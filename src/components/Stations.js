@@ -35,7 +35,7 @@ class Stations extends React.Component {
     const key = `${parent ? `${parent.key}::` : ''}${item.key}`;
     return (
       <button key={key}
-        className="item button"
+        className={`item button ${isselected ? 'active' : ''}`}
         onClick={() => this.onStationClick(item)}>
         <i className={`icon icon-${status}`} />
         <span className="name">{item.name}</span>

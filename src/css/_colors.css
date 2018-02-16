@@ -1,13 +1,19 @@
-/*
-blue: #59ADF5
-*/
+body {
+  color: rgba(157, 165, 181, 1);
+}
 
-body,
-button { color: rgba(157, 165, 181, 1); }
-button { transition: all 0.5s; }
+button {
+  transition: all 0.5s;
+  color: rgba(157, 165, 181, 0.6);
+}
 
-button:hover,
-button:active { color: #FFF; }
+button:hover {
+  color: #FFF;
+}
+
+button.active:hover {
+  color: #59ADF5;
+}
 
 button:disabled {
   cursor: default;
@@ -24,8 +30,17 @@ button:disabled {
   transition: background-color 0.5s;
 }
 
-.scrollbox-list .item:hover {
+.scrollbox-list .item:hover,
+.scrollbox-list .item.active {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.scrollbox-list .item.active {
+  color: #59ADF5;
+}
+
+.scrollbox-list .item:hover.active {
+  color: #FFF;
 }
 
 .scrollbox-list .item:nth-child(even):not(:hover) {
@@ -81,13 +96,18 @@ button:disabled {
 
 -------------------------------------------------- */
 
-#volume-bar .bar .thumb {
-  transition: background-color 0.5s;
+#volume-bar .bar .thumb,
+#volume-bar.active.muted .bar .thumb {
   background-color: rgba(157, 165, 181, 0.35);
 }
 
-#volume-bar .bar:hover .thumb {
+#volume-bar.active .bar .thumb {
   background-color: #FFF;
+  box-shadow: 0 0 7px #59ADF5;
+}
+
+#volume-bar.active .bar:hover .thumb {
+  background-color: #59ADF5;
 }
 
 #volume-bar .bar .track {
@@ -107,8 +127,20 @@ button:disabled {
   background-color: rgba(157, 165, 181, 0.3);
 }
 
+#audio-player-controls .equalizer.active .equalizer-bar,
+#audio-player-controls .equalizer.active .equalizer-bar::after,
+#audio-player-controls .equalizer.active .equalizer-bar::before {
+  background-color: #FFF;
+}
+
+#audio-player-controls .equalizer.muted .equalizer-bar,
+#audio-player-controls .equalizer.muted .equalizer-bar::after,
+#audio-player-controls .equalizer.muted .equalizer-bar::before {
+  background-color: rgba(157, 165, 181, 0.3);
+}
+
 #audio-player-controls .equalizer:hover .equalizer-bar,
 #audio-player-controls .equalizer:hover .equalizer-bar::after,
 #audio-player-controls .equalizer:hover .equalizer-bar::before {
-  background-color: #FFF;
+  background-color: #59ADF5;
 }

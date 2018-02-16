@@ -50,10 +50,11 @@ class VolumeBar extends React.Component {
   }
 
   render () {
-    const { volume, active } = this.props;
+    const { muted, volume, active } = this.props;
     const thumbwidth = (volume * 100);
     return (
-      <div id="volume-bar" className={`${active ? 'active' : ''}`}>
+      <div id="volume-bar"
+        className={`${active ? 'active' : ''} ${muted ? 'muted' : ''}`}>
         <div className="bar"
           ref={this.setVolumebarRef}>
           <span className="ruler"
@@ -76,6 +77,7 @@ VolumeBar.defaultProps = {
 
 VolumeBar.propTypes = {
   active: PropTypes.bool,
+  muted: PropTypes.bool.isRequired,
   volume: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
