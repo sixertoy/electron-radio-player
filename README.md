@@ -1,5 +1,21 @@
 # Electron App Boilerplate
 
+> OSX Only
+
+## Install
+
+```bash
+git clone git@github.com:sixertoy/electron-radio-player.git
+yarn install
+(
+  touch .toto
+  echo "NODE_ENV=development" > .toto
+  echo "ELECTRON_ENABLE_LOGGING=1" >> .toto
+)
+yarn run dev
+```
+
+
 ## Tips
 
 **Nom de l'application**
@@ -16,15 +32,10 @@
 - [Cuteradio API](http://marxoft.co.uk/doc/cuteradio-api/)
 - [Dar.fm API](https://docs.google.com/document/d/12HNoXI-z40QLQiSi30g2qSWb8U9YbMd4u5_jrre-YTw/edit)
 
-## ENV Variables
-
-```bash
-(
-  touch .env
-)
-```
-
 ## Links
+
+**Original Bootstrapper**
+https://github.com/sixertoy/create-react-electron-app
 
 **Electron Documentation**<br>
 https://electronjs.org/docs/api
