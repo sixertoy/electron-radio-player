@@ -22,6 +22,10 @@ button:disabled {
 
 -------------------------------------------------- */
 
+.scrollbox-list {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .scrollbox-list-item {
   transition-duration: 0.5s;
   transition-property: background-color;
@@ -68,12 +72,8 @@ button:disabled {
 #audio-player-cover button { color: #FFF; }
 #audio-player-cover button:hover { color: #59ADF5; }
 
-#stations,
 #audio-player-controls {
   background-color: rgba(0, 0, 0, 0.5);
-}
-
-#audio-player-controls {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 

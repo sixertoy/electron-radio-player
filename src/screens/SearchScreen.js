@@ -1,7 +1,7 @@
 import React from 'react';
 
 // application
-import SearchResults from './../components/search/SearchResults';
+import SearchResults from './../components/lists/SearchResults';
 
 const SearchScreen = () => (
   <div id="search-screen"
