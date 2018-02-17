@@ -59,7 +59,7 @@ class AudioWrapper extends React.Component {
 
   shouldComponentUpdate () {
     // never update the component
-    // the audio player is controller with tag reference
+    // the audio player is controlled by the html 'audio' tag events
     return false;
   }
 

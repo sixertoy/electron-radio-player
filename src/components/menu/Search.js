@@ -5,13 +5,14 @@ import { replace } from 'react-router-redux';
 
 // application
 import './search.css';
+// import { isurl } from './../../fp/isurl';
 import { slugify } from './../../fp/slugify';
 import { searchAuthors } from './../../actions';
 
 const INPUT_DELAY = 800;
 const ENTER_CHAR_CODE = 13;
 
-class Search extends React.Component {
+class Search extends React.PureComponent {
 
   constructor (props) {
     super(props);
@@ -44,8 +45,11 @@ class Search extends React.Component {
     const value = (evt.target.value || '').trim();
     if (value === this.state.term) return;
     if (this.timer) clearTimeout(this.timer);
-    this.timer = setTimeout(() => this.setState({ term: value }, () =>
-      this.sendSearch(value)), INPUT_DELAY);
+    this.timer = setTimeout(() => this.setState({ term: value }, () => {
+      // if (isurl(value)) this.props.dispatch(addStation(value));
+      // else
+      this.sendSearch(value);
+    }), INPUT_DELAY);
   }
 
   render () {

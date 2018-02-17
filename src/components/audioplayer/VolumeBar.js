@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import './volumebar.css';
 import { setVolume } from './../../actions';
 
-class VolumeBar extends React.Component {
+class VolumeBar extends React.PureComponent {
 
   constructor (props) {
     super(props);

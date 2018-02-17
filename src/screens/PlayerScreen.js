@@ -1,7 +1,7 @@
 import React from 'react';
 
 // application
-import Stations from './../components/Stations';
+import Stations from './../components/lists/Stations';
 import AudioPlayer from './../components/AudioPlayer';
 
 const PlayerScreen = () => (
