@@ -14,28 +14,32 @@
   line-height: 32px;
 }
 
+.scrollbox-list-item .name {
+  max-width: 60%;
+}
+
 /* -------------------------------------------------
 
  REMOVE TRANSITION
 
 ------------------------------------------------- */
 
-.list-animated-item-enter {
+.animated-list-item-enter {
   opacity: 0.01;
 }
 
-.list-animated-item-enter.list-animated-item-enter-active {
+.animated-list-item-enter.animated-list-item-enter-active {
   opacity: 1;
   transition-duration: 500ms;
   transition-property: opacity;
   transition-timing-function: ease-in;
 }
 
-.list-animated-item-leave {
+.animated-list-item-leave {
   opacity: 1;
 }
 
-.list-animated-item-leave.list-animated-item-leave-active {
+.animated-list-item-leave.animated-list-item-leave-active {
   opacity: 0.01;
   transition-duration: 300ms;
   transition-property: opacity;

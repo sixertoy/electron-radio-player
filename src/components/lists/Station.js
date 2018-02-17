@@ -13,6 +13,7 @@ const Station = ({
     {active && !loading && <i className="icon icon-pause" />}
     {loading && <i className="icon icon-spin6 animate-spin" />}
     <span className="name">{item.name}</span>
+    <i className={`icon icon-${item.type}`} />
   </button>
 );
 

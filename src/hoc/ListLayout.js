@@ -17,10 +17,11 @@ const ListLayout = ({
     <CSSTransitionGroup component="div"
       transitionEnterTimeout={500}
       transitionLeaveTimeout={300}
-      transitionName="animated-list-items">
+      transitionName="animated-list-item">
       {children.map(child => (
         <div key={`scrollbox-list-item-${child.key}`}
-          className="scrollbox-list-item">{child}
+          className="scrollbox-list-item">
+          {child}
         </div>
       ))}
     </CSSTransitionGroup>

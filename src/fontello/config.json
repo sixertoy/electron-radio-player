@@ -104,13 +104,13 @@
     },
     {
       "uid": "3e617d8049807e128c80d0344ba09e37",
-      "css": "rss",
+      "css": "podcast",
       "code": 59405,
       "src": "entypo"
     },
     {
       "uid": "1e099a876c8a6a83f10c9bafa9886614",
-      "css": "mic",
+      "css": "radio",
       "code": 59406,
       "src": "entypo"
     },

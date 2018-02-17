@@ -11,42 +11,6 @@ const presets = [{
       https://upload.wikimedia.org/wikipedia/fr/thumb/d/d5/FIP_logo_2005.svg/1200px-FIP_logo_2005.svg.png
     `,
   },
-  channels: [{
-    key: 'fip-electro',
-    name: 'FIP Electro',
-    type: 'radio',
-    url: 'http://direct.fipradio.fr/live/fip-webradio8.mp3',
-  }, {
-    key: 'fip-rock',
-    name: 'FIP Rock',
-    type: 'radio',
-    url: 'http://direct.fipradio.fr/live/fip-webradio1.mp3',
-  }, {
-    key: 'fip-jazz',
-    name: 'FIP Jazz',
-    type: 'radio',
-    url: 'http://direct.fipradio.fr/live/fip-webradio2.mp3',
-  }, {
-    key: 'fip-groove',
-    name: 'FIP Groove',
-    type: 'radio',
-    url: 'http://direct.fipradio.fr/live/fip-webradio3.mp3',
-  }, {
-    key: 'fip-world',
-    name: 'FIP World',
-    type: 'radio',
-    url: 'http://direct.fipradio.fr/live/fip-webradio4.mp3',
-  }, {
-    key: 'fip-nouveaute',
-    name: 'FIP Nouveauté',
-    type: 'radio',
-    url: 'http://direct.fipradio.fr/live/fip-webradio5.mp3',
-  }, {
-    key: 'fip-reggae',
-    name: 'FIP Reggae',
-    type: 'radio',
-    url: 'http://direct.fipradio.fr/live/fip-webradio6.mp3',
-  }],
 }, {
   key: '@franceculture',
   name: 'France Culture',
@@ -79,6 +43,16 @@ const presets = [{
     color: '#F85453',
     background: '#F85453',
     logo: 'http://www.nova.fr/sites/default/files/CQCT/default.jpg',
+  },
+}, {
+  key: '@jaimejouercast',
+  name: 'J\'aime Jouer',
+  type: 'podcast',
+  url: 'http://jaimejouer.lepodcast.fr/rss',
+  cover: {
+    color: '#00A6E3',
+    background: '#00A6E3',
+    logo: 'http://jaimejouer.lepodcast.fr/uploads/feed/cover/medium_cover_5886348a6e73343401a97600.jpg',
   },
 }];
 

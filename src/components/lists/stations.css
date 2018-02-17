@@ -36,6 +36,11 @@
   transition: width, min-width 0.5s;
 }
 
+#stations .station .icon:last-child {
+  opacity: 0.2;
+  margin-left: auto;
+}
+
 #stations .isremovable .station .icon {
   width: 0;
   min-width: 0;
