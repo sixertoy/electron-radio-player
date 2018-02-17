@@ -1,6 +1,7 @@
 export * from './search';
 export * from './player';
 export * from './volume';
+export * from './stations';
 
 export const networkStatus = isonline => ({
   isonline,
@@ -9,9 +10,4 @@ export const networkStatus = isonline => ({
 
 export const toggleRemovable = () => ({
   type: 'onToggleRemovable',
-});
-
-export const removeStation = item => ({
-  item,
-  type: 'onRemoveStation',
 });

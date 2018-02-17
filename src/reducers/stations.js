@@ -1,6 +1,6 @@
 const presets = [{
   key: '@fipradio',
-  name: 'FIP',
+  name: 'FIP et c\'est une radio super cool parce qu\'il passe pas de pubs',
   type: 'radio',
   website: 'https://www.fip.fr/player',
   url: 'http://direct.fipradio.fr/live/fip-midfi.mp3',
@@ -84,6 +84,8 @@ const presets = [{
 
 const stations = (state = presets, action) => {
   switch (action.type) {
+  case 'onAddStation':
+    return state.concat([action.item]);
   case 'onRemoveStation':
     return state.filter(obj =>
       (obj.key !== action.item.key));

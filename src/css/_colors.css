@@ -22,30 +22,28 @@ button:disabled {
 
 -------------------------------------------------- */
 
-.scrollbox-list .item {
+.scrollbox-list-item {
   transition-duration: 0.5s;
-  transition-property: border-width, background-color;
+  transition-property: background-color;
 }
 
-.scrollbox-list.removable .item {
-  border-right: 3px solid #FA603F;
-}
-
-.scrollbox-list .item:hover,
-.scrollbox-list .item.active {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-.scrollbox-list .item.active,
-.scrollbox-list .item:hover.active {
+.scrollbox-list-item .active {
   color: #FFF;
 }
 
-.scrollbox-list .item:nth-child(even):not(:hover) {
+.scrollbox-list-item:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.scrollbox-list-item:nth-child(even):not(:hover) {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.scrollbox-list.removable .item:hover .icon {
+.removable-item .removable-button {
+  color: #FFF;
+}
+
+.removable-item.isremovable .removable-button {
   background-color: #FA603F;
 }
 

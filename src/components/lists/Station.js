@@ -7,7 +7,7 @@ const Station = ({
   loading,
   clickHandler,
 }) => (
-  <button className={`item button ${active ? 'active' : ''}`}
+  <button className={`station button ${active ? 'active' : ''}`}
     onClick={clickHandler}>
     {!active && !loading && <i className="icon icon-play" />}
     {active && !loading && <i className="icon icon-pause" />}

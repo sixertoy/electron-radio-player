@@ -1,0 +1,22 @@
+.removable-item {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.removable-item .removable-button {
+  width: 0;
+  overflow: hidden;
+  text-align: center;
+  transition: width 0.5s;
+}
+
+.removable-item.isremovable .removable-button {
+  width: 3px;
+}
+
+.removable-item.isremovable:hover .removable-button {
+  width: 32px;
+}

@@ -1,0 +1,43 @@
+/* ------------------------------------------------
+
+ SCROLLBOX
+
+------------------------------------------------ */
+
+.scrollbox-list {
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
+.scrollbox-list-item {
+  height: 32px;
+  line-height: 32px;
+}
+
+/* -------------------------------------------------
+
+ REMOVE TRANSITION
+
+------------------------------------------------- */
+
+.list-animated-item-enter {
+  opacity: 0.01;
+}
+
+.list-animated-item-enter.list-animated-item-enter-active {
+  opacity: 1;
+  transition-duration: 500ms;
+  transition-property: opacity;
+  transition-timing-function: ease-in;
+}
+
+.list-animated-item-leave {
+  opacity: 1;
+}
+
+.list-animated-item-leave.list-animated-item-leave-active {
+  opacity: 0.01;
+  transition-duration: 300ms;
+  transition-property: opacity;
+  transition-timing-function: ease-in;
+}
