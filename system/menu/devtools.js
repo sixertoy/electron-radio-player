@@ -3,7 +3,7 @@ const { isdevelopment, logger } = require('./../utils');
 
 const { Menu } = electron;
 module.exports = (win) => {
-  if (!isdevelopment()) return;
+  if (!isdevelopment()) return win;
   logger('Devtools context menu is activated');
   win.webContents.on('context-menu', (e, props) => {
     const { x, y } = props;
@@ -12,4 +12,5 @@ module.exports = (win) => {
       click: () => win.inspectElement(x, y),
     }]).popup(win);
   });
+  return win;
 };

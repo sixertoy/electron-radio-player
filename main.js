@@ -27,19 +27,18 @@ const { app, BrowserWindow, globalShortcut } = electron;
 const webcontext = path.join(__dirname, 'system', 'node-context.js');
 
 // URL de la page Web de l'application
-const webpage = (isdevelopment() ? process.env.ELECTRON_START_URL
+const apppage = (isdevelopment() ? process.env.ELECTRON_START_URL
   : url.format({
     slashes: true,
     protocol: 'file:',
     pathname: path.join(__dirname, 'build', 'index.html'),
   }));
 
-
-let win = null;
+let mainwin = null;
 let shouldquit = false;
 function buildpplication () {
   logger('Application is Ready');
-  win = new BrowserWindow({
+  mainwin = new BrowserWindow({
     title: app.getName(),
     icon: getasset('app-icon.png'),
     width: 285,
@@ -66,23 +65,23 @@ function buildpplication () {
     webPreferences: { preload: webcontext },
   });
 
-  win.on('close', (evt) => {
+  mainwin.on('close', (evt) => {
     if (!isdarwin() || shouldquit) return;
     evt.preventDefault();
-    win.hide();
+    mainwin.hide();
   });
 
-  win.on('swipe', () => {});
+  mainwin.on('swipe', () => {});
 
-  win.on('ready-to-show', () => {
+  mainwin.on('ready-to-show', () => {
     logger('BrowserWindow ready to show');
-    win.show();
-    win.focus();
+    mainwin.show();
+    mainwin.focus();
   });
 
   // load 'player' screen at startup
-  win.loadURL(`${webpage}#player`);
-  return win;
+  mainwin.loadURL(`${apppage}#player`);
+  return mainwin;
 }
 
 /* ------------------------------------------------------
@@ -94,12 +93,12 @@ function buildpplication () {
 // quand l'user use CTR+Q
 app.on('before-quit', () => { shouldquit = true; });
 // quand l'user click sur l'icone dans le dock
-app.on('activate', () => (!win ? null : win.show() && win.focus()));
+app.on('activate', () => (!mainwin ? null : mainwin.show() && mainwin.focus()));
 // quand l'utilisateur click sur l'icone de fermeture de fenetre
 app.on('window-all-closed', () => (!isdarwin() ? app.quit() : noop));
 app.on('will-quit', () => {
   globalShortcut.unregisterAll();
-  win = null;
+  mainwin = null;
 });
 app.on('ready', fp.compose(
   /* FILO */
