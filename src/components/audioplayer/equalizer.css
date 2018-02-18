@@ -5,6 +5,7 @@
  https://www.sassmeister.com
 
 ------------------------------------------------------------ */
+
 .equalizer {
   display: block;
   position: relative;
@@ -39,7 +40,9 @@
 
 .equalizer-bar,
 .equalizer-bar::before,
-.equalizer-bar::after { animation: equalize 1.25s steps(25, end) 0s infinite; }
+.equalizer-bar::after {
+  animation: equalize 1.25s steps(25, end) 0s infinite;
+}
 
 .equalizer-bar::before,
 .equalizer-bar::after {

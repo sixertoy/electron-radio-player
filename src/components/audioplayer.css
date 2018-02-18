@@ -1,3 +1,7 @@
 #audio-player {
   flex: 0;
 }
+
+#audio-controls .equalizer {
+  transform: scale(0.6);
+}

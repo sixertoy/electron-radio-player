@@ -35,7 +35,9 @@ class VolumeBar extends React.PureComponent {
     const { dispatch } = this.props;
     const { width, left } = this.state;
     const size = (evt.clientX - left);
-    const volumepercent = ((100 * size) / width);
+    let volumepercent = ((100 * size) / width);
+    if (volumepercent < 0) volumepercent = 0;
+    if (volumepercent < 1) volumepercent = 1;
     dispatch(setVolume(volumepercent));
   }
 

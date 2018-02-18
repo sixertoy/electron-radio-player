@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
+import './audiocontrols.css';
 import VolumeBar from './VolumeBar';
 import Equalizer from './Equalizer';
 import { mute, unmute } from './../../actions';

@@ -1,21 +1,12 @@
-/* ---------------------------------------------
-
- VOLUME & SOCIAL BAR
-
---------------------------------------------- */
-
-/*
-#audio-player-controls {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-}
-*/
-
 #audio-controls {
-  padding: 5px 6px 6px 6px;
+  padding: 3px 6px;
 }
 
-#audio-controls .equalizer {
-  transform: scale(0.6);
+#audio-controls .button {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#audio-controls .button + .button {
+  margin-left: 6px;
 }
