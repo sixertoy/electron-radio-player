@@ -136,17 +136,18 @@ button {
   transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-#stations-screen {
-  top: 0;
-  bottom: 40px;
-}
-
 #podcasts-screen {
   top: 300px;
   bottom: 40px;
 }
 
-body:not(.player) #stations-screen {
+#stations-screen {
+  top: 0;
+  bottom: 40px;
+}
+
+body.player-search #stations-screen,
+body.player-podcasts #stations-screen {
   top: -300px;
   bottom: 340px;
 }
