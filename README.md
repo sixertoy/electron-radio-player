@@ -8,9 +8,9 @@
 git clone git@github.com:sixertoy/electron-radio-player.git
 yarn install
 (
-  touch .toto
-  echo "NODE_ENV=development" > .toto
-  echo "ELECTRON_ENABLE_LOGGING=1" >> .toto
+  touch .env
+  echo "NODE_ENV=development" > .env
+  echo "ELECTRON_ENABLE_LOGGING=1" >> .env
 )
 yarn run dev
 ```
