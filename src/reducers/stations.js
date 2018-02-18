@@ -16,7 +16,7 @@ const presets = [{
   name: 'France Culture',
   type: 'radio',
   website: 'https://www.franceculture.fr/direct',
-  url: 'https://chai5she.cdn.dvmr.fr/franceculture-midfi.mp3?ID=radiofrance',
+  url: 'https://chai5she.cdn.dvmr.fr/franceculture-midfi.mp3',
   cover: {
     color: '#773594',
     logo: `

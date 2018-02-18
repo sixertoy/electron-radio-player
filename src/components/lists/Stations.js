@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { replace } from 'react-router-redux';
 
 // application
 import './stations.css';
@@ -20,15 +21,20 @@ class Stations extends React.PureComponent {
     super(props);
     this.renderItem = this.renderItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
-    this.stationClick = this.stationClick.bind(this);
+    this.radioClick = this.radioClick.bind(this);
+    this.podcastClick = this.podcastClick.bind(this);
     this.state = { selected: false, items: [].concat(props.stations) };
   }
 
   componentWillReceiveProps ({ stations }) {
-    this.setState({ items: [].concat(stations) });
+    if (stations.length !== this.state.items.length) {
+      // update state from props
+      // only if add/remove stations from another component
+      this.setState({ items: [].concat(stations) });
+    }
   }
 
-  stationClick (index, item) {
+  radioClick (index, item) {
     const { selected } = this.state;
     const { paused, loading } = this.props;
     if (loading) return;
@@ -40,10 +46,18 @@ class Stations extends React.PureComponent {
     });
   }
 
+  podcastClick (index, item) {
+    const { openCollection, loading } = this.props;
+    if (loading) return;
+    openCollection(item);
+  }
+
   removeItem (index) {
+    const item = this.state.items[index];
+    const { remove } = this.props;
     this.setState(({ items }) => ({
       items: items.filter((itm, idx) => (index !== idx)),
-    }));
+    }), () => remove(item));
   }
 
   renderItem (item, index) {
@@ -55,7 +69,14 @@ class Stations extends React.PureComponent {
         item={item}
         loading={isloading}
         active={isactive && !loaderror}
-        clickHandler={() => this.stationClick(index, item)} />
+        clickHandler={() => {
+          switch (item.type) {
+          case 'radio':
+            return this.radioClick(index, item);
+          default:
+            return this.podcastClick(index, item);
+          }
+        }} />
     );
   }
 
@@ -77,12 +98,13 @@ Stations.propTypes = {
   paused: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
   loaderror: PropTypes.bool.isRequired,
-  // removable: PropTypes.bool.isRequired,
   stations: PropTypes.array.isRequired,
   // actions
   play: PropTypes.func.isRequired,
   pause: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
   resume: PropTypes.func.isRequired,
+  openCollection: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -97,6 +119,9 @@ const mapDispatchToProps = dispatch => ({
   resume: () => dispatch(resume()),
   play: item => dispatch(play(item)),
   remove: index => dispatch(removeStation(index)),
+  openCollection: () => {
+    dispatch(replace('/player/podcasts'));
+  },
 });
 
 export default connect(

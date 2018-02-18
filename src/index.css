@@ -103,20 +103,65 @@ button {
  ROUTER
 
 -------------------------------------------------- */
-.application-screen {
+#screens-container {
+  flex: 1;
+  width: 100%;
+  min-width: 100%;
   overflow: hidden;
-  transition-duration: 0.3s;
-  transition-property: height, max-height;
+  position: relative;
 }
 
-body.player #search-screen,
-body.player-search #player-screen {
-  height: 0;
-  max-height: 0;
+.application-screen {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 340px;
+  overflow: hidden;
+  position: absolute;
+
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
 }
 
-body.player #player-screen,
+#menubar {
+  left: 0;
+  right: 0;
+  top: 300px;
+  position: absolute;
+}
+
+.application-screen,
+#menubar {
+  transition-duration: 0.5s;
+  transition-property: top, bottom;
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+#stations-screen {
+  top: 0;
+  bottom: 40px;
+}
+
+#podcasts-screen {
+  top: 300px;
+  bottom: 40px;
+}
+
+body:not(.player) #stations-screen {
+  top: -300px;
+  bottom: 340px;
+}
+
+body.player-search #menubar {
+  top: 0;
+  bottom: 300px;
+}
+
 body.player-search #search-screen {
-  height: auto;
-  max-height: inherit;
+  top: 40px;
+  bottom: 0;
+}
+
+body.player-podcasts #podcasts-screen {
+  top: 0;
+  bottom: 40px;
 }

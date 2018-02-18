@@ -11,6 +11,7 @@ import {
 } from './player';
 import searches from './searches';
 import stations from './stations';
+import podcasts from './podcasts';
 
 const removable = (state = false, action) => {
   switch (action.type) {
@@ -34,6 +35,7 @@ export const reducers = combineReducers({
   searches,
   stations,
   isonline,
+  podcasts,
   removable,
   // player
   muted,

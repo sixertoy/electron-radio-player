@@ -3,3 +3,7 @@
  Z-INDEX
 
 -------------------------------------------------- */
+#menubar { z-index: 2000; }
+#search-screen { z-index: 1500; }
+#podcasts-screen { z-index: 1000; }
+#stations-screen { z-index: 500; }

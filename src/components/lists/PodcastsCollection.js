@@ -7,38 +7,35 @@ import { pick } from './../../fp/pick';
 import ListLayout from './../../hoc/ListLayout';
 import { searchPodcasts } from './../../actions';
 
-const whitelist = ['collectionId', 'collectionName', 'artistName'];
+const whitelist = ['artistId', 'artistName'];
 
 const renderItem = (item, dispatch) => {
   const picked = pick(item, whitelist);
   return (
-    <button key={picked.collectionId}
+    <button key={picked.artistId}
       className="item"
       onClick={() => dispatch(searchPodcasts(picked.artistName))}>
-      <span className="name">
-        <b>{picked.artistName}</b>
-        <b>{picked.collectionName}</b>
-      </span>
+      <span className="name">{picked.artistName}</span>
     </button>
   );
 };
 
-const SearchResults = ({
+const PodcastsCollection = ({
   items,
   dispatch,
 }) => (
-  <ListLayout id="search-results">
+  <ListLayout id="podcasts-collection">
     {items && items.map(item => renderItem(item, dispatch))}
   </ListLayout>
 );
 
-SearchResults.propTypes = {
+PodcastsCollection.propTypes = {
   items: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  items: state.searches,
+  items: state.podcasts,
 });
 
-export default connect(mapStateToProps)(SearchResults);
+export default connect(mapStateToProps)(PodcastsCollection);

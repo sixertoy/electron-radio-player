@@ -2,14 +2,12 @@ import React from 'react';
 
 // application
 import Stations from './../components/lists/Stations';
-import AudioPlayer from './../components/AudioPlayer';
 
-const PlayerScreen = () => (
-  <div id="player-screen"
+const StationScreen = () => (
+  <div id="stations-screen"
     className="application-screen">
-    <AudioPlayer />
     <Stations />
   </div>
 );
 
-export default PlayerScreen;
+export default StationScreen;

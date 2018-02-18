@@ -12,8 +12,10 @@ import { configure } from './store';
 import { slugify } from './fp/slugify';
 import MenuBar from './components/MenuBar';
 import Networker from './components/Networker';
-import PlayerScreen from './screens/PlayerScreen';
 import SearchScreen from './screens/SearchScreen';
+import AudioPlayer from './components/AudioPlayer';
+import StationScreen from './screens/StationScreen';
+import PodcastScreen from './screens/PodcastScreen';
 
 /* --------------------------------------------
 
@@ -29,10 +31,14 @@ const AppComponent = ({
       <body className={path} />
     </Helmet>
     <div id="application-header" />
-    <PlayerScreen />
-    <MenuBar canedit={path === 'player'}
-      removable={removable} />
-    <SearchScreen />
+    <AudioPlayer />
+    <div id="screens-container">
+      <StationScreen />
+      <PodcastScreen />
+      <MenuBar canedit={path === 'player'}
+        removable={removable} />
+      <SearchScreen />
+    </div>
     <Networker />
   </div>
 );

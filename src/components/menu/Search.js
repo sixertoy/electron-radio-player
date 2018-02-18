@@ -5,9 +5,7 @@ import { replace } from 'react-router-redux';
 
 // application
 import './search.css';
-// import { isurl } from './../../fp/isurl';
-import { slugify } from './../../fp/slugify';
-import { searchAuthors } from './../../actions';
+import { searchPodcasts } from './../../actions';
 
 const INPUT_DELAY = 800;
 const ENTER_CHAR_CODE = 13;
@@ -18,38 +16,19 @@ class Search extends React.PureComponent {
     super(props);
     this.timer = null;
     this.state = { term: '' };
-    this.onKeypress = this.onKeypress.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.inputChange = this.inputChange.bind(this);
   }
 
-  onKeypress (evt) {
-    const charcode = evt.charCode;
-    const { location, dispatch } = this.props;
-    if (charcode !== ENTER_CHAR_CODE) return;
+  inputChange (evt) {
     if (this.timer) clearTimeout(this.timer);
-    const value = (evt.target.value || '').trim();
-    if (value !== this.state.term) {
-      this.setState({ term: value }, () => this.sendSearch(value));
-    } else if (location !== 'player-search') {
-      dispatch(replace('/player/search'));
-    }
-  }
-
-  sendSearch (value) {
-    const term = value.toLocaleLowerCase();
-    if (term.trim() === '') return;
-    this.props.dispatch(searchAuthors(term));
-  }
-
-  handleChange (evt) {
-    const value = (evt.target.value || '').trim();
-    if (value === this.state.term) return;
-    if (this.timer) clearTimeout(this.timer);
-    this.timer = setTimeout(() => this.setState({ term: value }, () => {
-      // if (isurl(value)) this.props.dispatch(addStation(value));
-      // else
-      this.sendSearch(value);
-    }), INPUT_DELAY);
+    const value = (evt.target.value || '');
+    const isequal = (value.trim() === this.state.term);
+    const isenter = (evt.charCode === ENTER_CHAR_CODE);
+    if (!isenter && isequal) return;
+    this.timer = setTimeout(() => this.setState(
+      { term: value },
+      () => this.props.sendSearch(value, isequal),
+    ), (isenter || INPUT_DELAY));
   }
 
   render () {
@@ -61,8 +40,7 @@ class Search extends React.PureComponent {
             id="searchfield"
             name="searchfield"
             defaultValue={term}
-            onChange={this.handleChange}
-            onKeyPress={this.onKeypress}
+            onKeyPress={this.inputChange}
             placeholder="Search for podcasters, radios..." />
         </label>
       </div>
@@ -71,10 +49,18 @@ class Search extends React.PureComponent {
 }
 
 Search.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  location: PropTypes.string.isRequired,
+  sendSearch: PropTypes.func.isRequired,
 };
 
-export default connect(state => ({
-  location: slugify(state.router.location.pathname || ''),
-}))(Search);
+const mapDispatchToProps = dispatch => ({
+  sendSearch: (term, isequal) => {
+    dispatch(replace('/player/search'));
+    if (isequal || (term.trim() === '' || term.trim().length < 3)) return;
+    dispatch(searchPodcasts(term));
+  },
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Search);
