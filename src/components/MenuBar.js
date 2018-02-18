@@ -1,42 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { replace } from 'react-router-redux';
 
 // application
 import './menubar.css';
-import Search from './menu/Search';
-import { toggleRemovable } from './../actions';
+import BackButton from './menu/BackButton';
+import SearchInput from './menu/SearchInput';
+import CommitButton from './menu/CommitButton';
+import RemovableButton from './menu/RemovableButton';
 
 const MenuBar = ({
   canedit,
-  dispatch,
-  removable,
+  cancommit,
 }) => (
   <div id="menubar">
-    {!canedit && (
-      <button onClick={() => dispatch(replace('/player'))}>
-        <i className="icon icon-left-thin" />
-      </button>
-    )}
-    <Search />
-    {canedit && (
-      <button onClick={() => dispatch(toggleRemovable())}
-        className={`button removable ${removable ? 'active' : ''}`}>
-        <i className="icon icon-trash" />
-      </button>
-    )}
+    {(!canedit || cancommit) && <BackButton />}
+    <SearchInput />
+    {canedit && <RemovableButton />}
+    {(!canedit && cancommit) && <CommitButton />}
   </div>
 );
 
-MenuBar.defaultProps = {
-  canedit: false,
-};
-
 MenuBar.propTypes = {
-  canedit: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired,
-  removable: PropTypes.bool.isRequired,
+  canedit: PropTypes.bool.isRequired,
+  cancommit: PropTypes.bool.isRequired,
 };
 
-export default connect()(MenuBar);
+const mapStateToProps = (state) => {
+  const { pathname } = state.router.location;
+  const canedit = (pathname === '/player');
+  const cancommit = (pathname === '/player/create');
+  return ({ canedit, cancommit });
+};
+
+export default connect(mapStateToProps)(MenuBar);

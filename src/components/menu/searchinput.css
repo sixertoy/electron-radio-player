@@ -1,0 +1,7 @@
+#search-form {
+  flex: 1;
+}
+
+#search-form label {
+  display: block;
+}

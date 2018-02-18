@@ -1,3 +1,5 @@
+import { slugify } from './../fp/slugify';
+
 const presets = [{
   key: '@fipradio',
   name: 'FIP et c\'est une radio super cool parce qu\'il passe pas de pubs',
@@ -56,10 +58,23 @@ const presets = [{
   },
 }];
 
-const stations = (state = presets, action) => {
+export const createform = (state = null, action) => {
   switch (action.type) {
-  case 'onAddStation':
-    return state.concat([action.item]);
+  case 'onCommitForm':
+    return {};
+  case 'onCreateForm':
+    return action.item;
+  default:
+    return state;
+  }
+};
+
+export const stations = (state = presets, action) => {
+  switch (action.type) {
+  case 'onCommitForm':
+    return state.concat([Object.assign({}, action.item, {
+      key: slugify(action.item.twitter || action.item.name),
+    })]);
   case 'onRemoveStation':
     return state.filter(obj =>
       (obj.key !== action.item.key));
@@ -67,5 +82,3 @@ const stations = (state = presets, action) => {
     return state;
   }
 };
-
-export default stations;

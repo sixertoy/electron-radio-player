@@ -16,15 +16,28 @@ button:disabled {
   color: rgba(157, 165, 181, 0.15);
 }
 
+input[type="url"],
+input[type="text"] {
+  color: #FFF;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+input[type="url"]::placeholder,
+input[type="text"]::placeholder {
+  color: #2C313A;
+  transition: color 0.5s;
+}
+
+input[type="url"]:focus::placeholder,
+input[type="text"]:focus::placeholder {
+  color: #5C6371;
+}
+
 /* --------------------------------------------------
 
  CLASSES
 
 -------------------------------------------------- */
-
-.scrollbox-list {
-  background-color: rgba(0, 0, 0, 0.5);
-}
 
 .scrollbox-list-item {
   transition-duration: 0.5s;
@@ -58,7 +71,7 @@ button:disabled {
 -------------------------------------------------- */
 
 .application-screen {
-  /* main theme color */
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 #application-header {
@@ -67,6 +80,7 @@ button:disabled {
 
 #audio-player-cover {
   background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px inset rgba(0, 0, 0, 0.5);
 }
 
 #audio-player-cover button { color: #FFF; }
@@ -86,12 +100,6 @@ button:disabled {
 #menubar {
   background-color: rgba(0, 0, 0, 0.6);
 }
-
-#search-form input {
-  color: #FFF;
-  background-color: rgba(0, 0, 0, 0.2);
-}
-#search-form input::placeholder { color: #2C313A; }
 
 #menubar .removable:hover,
 #menubar .removable.active { color: #FA603F; }

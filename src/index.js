@@ -12,6 +12,7 @@ import { configure } from './store';
 import { slugify } from './fp/slugify';
 import MenuBar from './components/MenuBar';
 import Networker from './components/Networker';
+import CreateScreen from './screens/CreateScreen';
 import SearchScreen from './screens/SearchScreen';
 import AudioPlayer from './components/AudioPlayer';
 import StationScreen from './screens/StationScreen';
@@ -24,7 +25,6 @@ import PodcastScreen from './screens/PodcastScreen';
 -------------------------------------------- */
 const AppComponent = ({
   path,
-  removable,
 }) => (
   <div id="application">
     <Helmet>
@@ -35,9 +35,9 @@ const AppComponent = ({
     <div id="screens-container">
       <StationScreen />
       <PodcastScreen />
-      <MenuBar canedit={path === 'player'}
-        removable={removable} />
+      <MenuBar />
       <SearchScreen />
+      <CreateScreen />
     </div>
     <Networker />
   </div>
@@ -45,11 +45,9 @@ const AppComponent = ({
 
 AppComponent.propTypes = {
   path: PropTypes.string.isRequired,
-  removable: PropTypes.bool.isRequired,
 };
 
 const App = connect(state => ({
-  removable: state.removable,
   path: slugify(state.router.location.pathname || 'player'),
 }))(AppComponent);
 

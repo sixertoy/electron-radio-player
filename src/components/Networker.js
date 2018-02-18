@@ -2,9 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+
 // application
 import './networker.css';
 import { networkStatus } from './../actions';
+
+function onAppError ({ message }) {
+  // send message to main renderer
+  window.NodeContext.onApplicationError(message);
+}
 
 class Networker extends React.Component {
 
@@ -13,14 +19,15 @@ class Networker extends React.Component {
     // this will not work in VM
     // instead use ipcMain/ipcRenderer
     // https://electronjs.org/docs/tutorial/online-offline-events
-    this.onOnline = this.onOnline.bind(this);
-    this.onOffline = this.onOffline.bind(this);
+    this.onAppOnline = this.onAppOnline.bind(this);
+    this.onAppOffline = this.onAppOffline.bind(this);
     this.state = { isonline: navigator.onLine };
   }
 
   componentWillMount () {
-    window.addEventListener('online', this.onOnline);
-    window.addEventListener('offline', this.onOffline);
+    window.addEventListener('error', onAppError);
+    window.addEventListener('online', this.onAppOnline);
+    window.addEventListener('offline', this.onAppOffline);
   }
 
   componentDidMount () {
@@ -31,21 +38,22 @@ class Networker extends React.Component {
   componentWillReceiveProps () {
     const online = navigator.onLine;
     if (online === this.state.isonline) return;
-    if (online) this.onOnline();
-    else this.onOffline();
+    if (online) this.onAppOnline();
+    else this.onAppOffline();
   }
 
   componentWillUnmount () {
-    window.removeEventListener('online', this.onOnline);
-    window.removeEventListener('offline', this.onOffline);
+    window.removeEventListener('error', onAppError);
+    window.removeEventListener('online', this.onAppOnline);
+    window.removeEventListener('offline', this.onAppOffline);
   }
 
-  onOnline () {
+  onAppOnline () {
     const { statusChanged } = this.props;
     this.setState({ isonline: true }, () => statusChanged(true));
   }
 
-  onOffline () {
+  onAppOffline () {
     const { statusChanged } = this.props;
     this.setState({ isonline: false }, () => statusChanged(false));
   }

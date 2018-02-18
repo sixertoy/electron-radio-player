@@ -1,3 +1,4 @@
+/*
 export const addStation = url => ({
   type: 'onAddStation',
   item: {
@@ -14,6 +15,17 @@ export const addStation = url => ({
       `,
     },
   },
+});
+*/
+
+export const commitStation = item => ({
+  item,
+  type: 'onCommitForm',
+});
+
+export const createStation = (uri, type) => ({
+  type: 'onCreateForm',
+  item: { uri, type },
 });
 
 export const removeStation = item => ({
