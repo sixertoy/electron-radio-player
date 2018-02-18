@@ -1,0 +1,21 @@
+/* ---------------------------------------------
+
+ VOLUME & SOCIAL BAR
+
+--------------------------------------------- */
+
+/*
+#audio-player-controls {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+*/
+
+#audio-controls {
+  padding: 5px 6px 6px 6px;
+}
+
+#audio-controls .equalizer {
+  transform: scale(0.6);
+}

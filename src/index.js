@@ -10,13 +10,8 @@ import createHistory from 'history/createHashHistory';
 import './index.css';
 import { configure } from './store';
 import { slugify } from './fp/slugify';
-import MenuBar from './components/MenuBar';
-import Networker from './components/Networker';
-import CreateScreen from './screens/CreateScreen';
-import SearchScreen from './screens/SearchScreen';
-import AudioPlayer from './components/AudioPlayer';
-import StationScreen from './screens/StationScreen';
-import PodcastScreen from './screens/PodcastScreen';
+import Player from './components/pages/Player';
+import Preferences from './components/pages/Preferences';
 
 /* --------------------------------------------
 
@@ -24,34 +19,41 @@ import PodcastScreen from './screens/PodcastScreen';
 
 -------------------------------------------- */
 const AppComponent = ({
-  path,
+  pageslug,
+  screenslug,
 }) => (
-  <div id="application" style={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}>
+  <div id="application"
+    className="flex-rows"
+    style={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}>
     <Helmet>
-      <body className={path} />
+      <body className={`${pageslug} ${screenslug}`} />
     </Helmet>
     <div id="application-header">
       <div className="overlay" />
     </div>
-    <AudioPlayer />
-    <div id="screens-container">
-      <StationScreen />
-      <PodcastScreen />
-      <MenuBar />
-      <SearchScreen />
-      <CreateScreen />
+    <div id="application-container">
+      <Preferences />
+      <Player />
     </div>
-    <Networker />
   </div>
 );
 
 AppComponent.propTypes = {
-  path: PropTypes.string.isRequired,
+  pageslug: PropTypes.string.isRequired,
+  screenslug: PropTypes.string.isRequired,
 };
 
-const App = connect(state => ({
-  path: slugify(state.router.location.pathname || 'player'),
-}))(AppComponent);
+const mapStateToProps = (state) => {
+  let { pathname } = state.router.location;
+  pathname = slugify(pathname || 'player');
+  pathname = pathname.split('-');
+  return ({
+    pageslug: (pathname[0] ? `page-${pathname[0]}` : ''),
+    screenslug: (pathname[1] ? `screen-${pathname[1]}` : ''),
+  });
+};
+
+const App = connect(mapStateToProps)(AppComponent);
 
 /* --------------------------------------------
 

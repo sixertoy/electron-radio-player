@@ -1,3 +1,4 @@
+/*
 #volume-bar {
   flex: 1;
   display: flex;
@@ -13,12 +14,14 @@
   font-size: 0.8em;
   position: absolute;
 }
+*/
 
 /* ------------------------------------------------------------
 
  BUTTONS
 
 ------------------------------------------------------------ */
+/*
 #volume-bar .button {
   border: 0;
   padding-top: 5px;
@@ -26,12 +29,14 @@
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.1);
 }
+*/
 
 /* ------------------------------------------------------------
 
  VOLUME BAR
 
 ------------------------------------------------------------ */
+/*
 #volume-bar .bar {
   flex: 1;
   height: 11px;
@@ -59,3 +64,4 @@
   transition-duration: 0.7s;
   transition-property: width, background-color;
 }
+*/

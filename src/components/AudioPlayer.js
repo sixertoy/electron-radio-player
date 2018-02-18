@@ -4,11 +4,9 @@ import { connect } from 'react-redux';
 
 // application
 import './audioplayer.css';
-import Cover from './audioplayer/Cover';
-import { mute, unmute } from './../actions';
-import VolumeBar from './audioplayer/VolumeBar';
-import Equalizer from './audioplayer/Equalizer';
+import TrackCover from './audioplayer/TrackCover';
 import AudioWrapper from './audioplayer/AudioWrapper';
+import AudioControls from './audioplayer/AudioControls';
 
 const AudioPlayer = ({
   muted,
@@ -16,8 +14,6 @@ const AudioPlayer = ({
   paused,
   source,
   loading,
-  openURL,
-  toggleMute,
 }) => (
   <div id="audio-player">
     {source && (
@@ -25,29 +21,15 @@ const AudioPlayer = ({
         muted={muted}
         paused={paused}
         volume={volume} />)}
-    <Cover paused={paused}
+    <TrackCover paused={paused}
       muted={muted}
       loading={loading}
       cover={(source && source.cover)} />
-    <div id="audio-player-controls">
-      <Equalizer muted={muted}
-        clickHandler={() => toggleMute(!muted)}
-        active={((source && source.ready) && !loading && !paused) || false} />
-      <VolumeBar volume={volume}
-        muted={muted}
-        loading={loading}
-        active={(source && !paused)} />
-      <button className="button twitter"
-        disabled={(!source || source.key.indexOf('@') < 0)}
-        onClick={() => openURL(`https://twitter.com/${source && source.key}`)}>
-        <i className="icon icon-twitter" />
-      </button>
-      <button className="button website"
-        disabled={(!source || !source.website)}
-        onClick={() => openURL((source && source.website))}>
-        <i className="icon icon-info-circled" />
-      </button>
-    </div>
+    <AudioControls muted={muted}
+      source={source}
+      volume={volume}
+      paused={paused}
+      loading={loading} />
   </div>
 );
 
@@ -60,9 +42,7 @@ AudioPlayer.propTypes = {
   muted: PropTypes.bool.isRequired,
   paused: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
-  openURL: PropTypes.func.isRequired,
   volume: PropTypes.number.isRequired,
-  toggleMute: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -73,15 +53,4 @@ const mapStateToProps = state => ({
   volume: (state.volume / 100),
 });
 
-const mapDispatchToProps = dispatch => ({
-  openURL: value => window.NodeContext.openExternalURL(value),
-  toggleMute: (muted) => {
-    if (muted) dispatch(mute());
-    else dispatch(unmute());
-  },
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(AudioPlayer);
+export default connect(mapStateToProps)(AudioPlayer);

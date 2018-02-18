@@ -19,7 +19,10 @@ class CreateForm extends React.PureComponent {
 
   inputChange ({ target }) {
     const { name, value } = target;
-    this.setState(prev => ({ form: Object.assign({}, prev, { [name]: value }) }));
+    this.setState(
+      prev => ({ form: Object.assign({}, prev, { [name]: value }) }),
+      () => {},
+    );
   }
 
   render () {
@@ -59,14 +62,17 @@ class CreateForm extends React.PureComponent {
 
 CreateForm.defaultProps = {
   form: null,
+  stations: null,
 };
 
 CreateForm.propTypes = {
   form: PropTypes.object,
+  stations: PropTypes.array,
 };
 
 const mapStateToProps = state => ({
   form: state.createform,
+  stations: state.stations,
 });
 
 export default connect(mapStateToProps)(CreateForm);

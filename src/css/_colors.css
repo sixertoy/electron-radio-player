@@ -72,37 +72,20 @@ input[type="text"]:focus::placeholder {
 
 -------------------------------------------------- */
 
+/*
 .application-screen {
-  /* background-color: rgba(0, 0, 0, 0.1); */
+  background-color: rgba(0, 0, 0, 0.1);
   background-color: rgba(0, 0, 0, 0.3);
 }
+ */
 
 #application-header {
   overflow: hidden;
   background-color: #181A1F;
 }
 
-/* --------------------------------------------------
-
- APPLICATION
-
--------------------------------------------------- */
-
 #application-header .overlay {
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
-}
-
-#audio-player-cover {
-  background-color: rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 10px inset rgba(0, 0, 0, 0.5);
-}
-
-#audio-player-cover button { color: #FFF; }
-#audio-player-cover button:hover { color: #59ADF5; }
-
-#audio-player-controls {
-  background-color: rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 /* --------------------------------------------------
@@ -121,18 +104,46 @@ input[type="text"]:focus::placeholder {
 
 /* --------------------------------------------------
 
+ AUDIO COVER
+
+-------------------------------------------------- */
+
+#track-cover {
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px inset rgba(0, 0, 0, 0.5);
+}
+
+#track-cover button { color: #FFF; }
+#track-cover button:hover { color: #59ADF5; }
+
+/* --------------------------------------------------
+
+ AUDIO CONTROLS
+
+-------------------------------------------------- */
+
+#audio-controls {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* --------------------------------------------------
+
  VOLUME
 
 -------------------------------------------------- */
 
-#volume-bar .bar .thumb,
-#volume-bar.active.muted .bar .thumb {
+#volume-bar .bar .thumb {
   background-color: rgba(157, 165, 181, 0.35);
 }
 
 #volume-bar.active .bar .thumb {
   background-color: #FFF;
   box-shadow: 0 0 7px #59ADF5;
+}
+
+#volume-bar.active.muted .bar .thumb {
+  background-color: rgba(157, 165, 181, 0.35);
 }
 
 #volume-bar.active .bar:hover .thumb {
@@ -149,27 +160,27 @@ input[type="text"]:focus::placeholder {
 
 -------------------------------------------------- */
 
-#audio-player-controls .equalizer-bar,
-#audio-player-controls .equalizer-bar::after,
-#audio-player-controls .equalizer-bar::before {
+#audio-controls .equalizer-bar,
+#audio-controls .equalizer-bar::after,
+#audio-controls .equalizer-bar::before {
   transition: background-color 0.5s;
   background-color: rgba(157, 165, 181, 0.3);
 }
 
-#audio-player-controls .equalizer.active .equalizer-bar,
-#audio-player-controls .equalizer.active .equalizer-bar::after,
-#audio-player-controls .equalizer.active .equalizer-bar::before {
+#audio-controls .equalizer.active .equalizer-bar,
+#audio-controls .equalizer.active .equalizer-bar::after,
+#audio-controls .equalizer.active .equalizer-bar::before {
   background-color: #FFF;
 }
 
-#audio-player-controls .equalizer.muted .equalizer-bar,
-#audio-player-controls .equalizer.muted .equalizer-bar::after,
-#audio-player-controls .equalizer.muted .equalizer-bar::before {
+#audio-controls .equalizer.muted .equalizer-bar,
+#audio-controls .equalizer.muted .equalizer-bar::after,
+#audio-controls .equalizer.muted .equalizer-bar::before {
   background-color: rgba(157, 165, 181, 0.3);
 }
 
-#audio-player-controls .equalizer:hover .equalizer-bar,
-#audio-player-controls .equalizer:hover .equalizer-bar::after,
-#audio-player-controls .equalizer:hover .equalizer-bar::before {
+#audio-controls .equalizer:hover .equalizer-bar,
+#audio-controls .equalizer:hover .equalizer-bar::after,
+#audio-controls .equalizer:hover .equalizer-bar::before {
   background-color: #59ADF5;
 }

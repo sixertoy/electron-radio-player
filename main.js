@@ -41,7 +41,7 @@ function buildpplication () {
   mainwin = new BrowserWindow({
     title: app.getName(),
     icon: getasset('app-icon.png'),
-    width: 285,
+    width: 285, // -> see in src/css/_variables.css
     height: 600,
     minWidth: 285,
     maxHeight: 600,

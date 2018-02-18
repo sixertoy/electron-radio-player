@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 // application
 import './networker.css';
-import { networkStatus } from './../actions';
+import { networkStatus } from './../../actions';
 
 function onAppError ({ message }) {
   // send message to main renderer

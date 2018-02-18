@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import './cover.css';
+import './trackcover.css';
 import Vinyl from './../../assets/vinyl-cover';
 import { resume, unmute, pause } from './../../actions';
 
@@ -24,7 +24,7 @@ const Cover = ({
   if (loading) status = 'spin6 animate-spin';
   const custom = Object.assign({}, coverColors, (!cover ? {} : { ...cover }));
   return (
-    <div id="audio-player-cover"
+    <div id="track-cover"
       style={{ backgroundColor: custom.background }}>
       <div className="cover-container">
         <Vinyl className="cover-background"

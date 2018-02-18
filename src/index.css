@@ -1,6 +1,12 @@
 @import url('./fontello/css/animation.css');
 @import url('./fontello/css/fontello-embedded.css');
 
+/* Project Imports */
+@import url('./css/_variables.css');
+@import url('./css/_tweenings.css');
+@import url('./css/_zindex.css');
+@import url('./css/_colors.css');
+
 html,
 body {
   margin: 0;
@@ -41,6 +47,21 @@ button {
   cursor: pointer;
 }
 
+label {
+  width: 100%;
+  display: block;
+}
+label + label { margin-top: 12px; }
+
+label span {
+  opacity: 0.5;
+  display: block;
+  font-size: 0.75em;
+  margin-bottom: 5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
 input[type="url"],
 input[type="text"] {
   border: 0;
@@ -60,19 +81,20 @@ input[type="text"] {
 
 -------------------------------------------------- */
 
-label {
-  width: 100%;
-  display: block;
+.flex-rows,
+.flex-columns {
+  flex: 1;
+  display: flex;
 }
-label + label { margin-top: 12px; }
 
-label span {
-  opacity: 0.5;
-  display: block;
-  font-size: 0.75em;
-  margin-bottom: 5px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+.flex-rows {
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.flex-columns {
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 .cover-image {
@@ -86,35 +108,25 @@ label span {
  LAYOUTS
 
 -------------------------------------------------- */
+
 #root,
 #application {
+  width: var(--appWidth);
+  max-width: var(--appWidth);
+  min-width: var(--appWidth);
   height: 100%;
-  min-width: 280px;
-  overflow: hidden;
   min-height: 100%;
   max-height: 100%;
+  overflow: hidden;
   border-radius: 5px;
   background: transparent;
-}
-
-#application,
-.application-screen {
-  flex: 1;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.application-screen > *,
-#application > * {
-  width: 100%;
 }
 
 #application-header {
   /* https://electronjs.org/docs/api/frameless-window#r%C3%A9gion-d%C3%A9pla%C3%A7able */
   -webkit-app-region: drag; /* error while devtools open */
+  flex: 0;
+  width: 100%;
   height: 22px;
   min-height: 22px; /* if titleBarStyle: 'hidden' */
 }
@@ -124,81 +136,109 @@ label span {
   height: 100%;
 }
 
-#networker { top: 22px; /* equals application-header heights */ }
-
-@import url('./css/_zindex.css');
-@import url('./css/_colors.css');
-
-/* --------------------------------------------------
-
- ROUTER
-
--------------------------------------------------- */
-#screens-container {
+#application-container {
   flex: 1;
-  width: 100%;
-  min-width: 100%;
   overflow: hidden;
   position: relative;
 }
 
-.application-screen {
+.app-page {
+  top: 0;
   left: 0;
-  right: 0;
   bottom: 0;
-  top: 340px;
+  position: absolute;
+  width: var(--appWidth);
+  transition: left 0.2s var(--easeInQuart);
+}
+
+.page-screens-container {
+  flex: 1;
   overflow: hidden;
-  position: absolute;
+  position: relative;
+}
 
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+.page-screen {
+  top: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  bottom: var(--menubarHeight);
 }
 
 #menubar {
   left: 0;
   right: 0;
-  top: 300px;
   position: absolute;
+  height: var(--menubarHeight);
 }
 
-.application-screen,
-#menubar {
-  transition-duration: 0.5s;
+#menubar,
+.page-screen {
+  transition-duration: 0.2s;
   transition-property: top, bottom;
-  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition-timing-function: var(--easeInQuart);
 }
 
-#podcasts-screen {
-  top: 300px;
-  bottom: 40px;
+/* --------------------------------------------------
+
+ ROUTER PAGES
+
+-------------------------------------------------- */
+
+body:not(.page-preferences) #page-preferences {
+  /* stylelint-disable-next-line length-zero-no-unit */
+  left: calc(0px - var(--appWidth));
 }
 
-#stations-screen {
+body.page-preferences #page-preferences {
+  left: 0;
+}
+
+body.page-preferences #page-player {
+  left: var(--appWidth);
+}
+
+/* --------------------------------------------------
+
+ ROUTER SCREENS
+
+-------------------------------------------------- */
+
+body.page-player #create-screen,
+body.page-player #podcasts-screen,
+body.page-player #searchresults-screen {
+  top: 100%;
+  bottom: var(--menubarHeight);
+}
+
+body.page-player.screen-create #playlist-screen,
+body.page-player.screen-podcasts #playlist-screen,
+body.page-player.screen-searchresults #playlist-screen {
+  top: calc(-100% + var(--menubarHeight));
+  bottom: 100%;
+}
+
+body.page-player.screen-create #create-screen,
+body.page-player.screen-podcasts #podcasts-screen {
   top: 0;
-  bottom: 40px;
+  bottom: var(--menubarHeight);
 }
 
-body.player-create #stations-screen,
-body.player-search #stations-screen,
-body.player-podcasts #stations-screen {
-  top: -300px;
-  bottom: 340px;
-}
-
-body.player-create #menubar,
-body.player-search #menubar {
-  /* screens opened: create, search */
-  top: 0;
-  bottom: 300px;
-}
-
-body.player-create #create-screen,
-body.player-search #search-screen {
-  /* width menubar on top */
-  top: 40px;
+body.page-player.screen-searchresults #searchresults-screen {
   bottom: 0;
+  top: var(--menubarHeight);
 }
 
-body.player-podcasts #podcasts-screen {
+/* --------------------------------------------------
+
+ ROUTER MENUBAR
+
+-------------------------------------------------- */
+
+body.page-player.screen-searchresults #menubar {
   top: 0;
-  bottom: 40px;
+}
+
+body.page-player:not(.screen-searchresults) #menubar {
+  top: calc(100% - var(--menubarHeight));
 }

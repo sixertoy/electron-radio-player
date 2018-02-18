@@ -1,3 +1,4 @@
+/*
 #stations {
   flex: 1;
   display: flex;
@@ -20,13 +21,8 @@
   overflow: hidden;
   padding-left: 7px;
   text-overflow: ellipsis;
-
-  /* transition: padding-left 0.5s; */
 }
 
-#stations .isremovable .station .name {
-  /* unused */
-}
 
 #stations .station .icon {
   width: 22px;
@@ -45,3 +41,4 @@
   width: 0;
   min-width: 0;
 }
+*/
