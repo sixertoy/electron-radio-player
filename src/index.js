@@ -26,11 +26,13 @@ import PodcastScreen from './screens/PodcastScreen';
 const AppComponent = ({
   path,
 }) => (
-  <div id="application">
+  <div id="application" style={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}>
     <Helmet>
       <body className={path} />
     </Helmet>
-    <div id="application-header" />
+    <div id="application-header">
+      <div className="overlay" />
+    </div>
     <AudioPlayer />
     <div id="screens-container">
       <StationScreen />

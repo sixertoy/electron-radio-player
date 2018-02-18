@@ -24,13 +24,13 @@ input[type="text"] {
 
 input[type="url"]::placeholder,
 input[type="text"]::placeholder {
-  color: #2C313A;
+  color: rgba(255, 255, 255, 0.05);
   transition: color 0.5s;
 }
 
 input[type="url"]:focus::placeholder,
 input[type="text"]:focus::placeholder {
-  color: #5C6371;
+  color: rgba(255, 255, 255, 0.1);
 }
 
 /* --------------------------------------------------
@@ -66,16 +66,30 @@ input[type="text"]:focus::placeholder {
 
 /* --------------------------------------------------
 
- APPLICATION
+ THEMING
+ Heade Dark: #181A1F;
+ Heade Light: #FBFBFB;
 
 -------------------------------------------------- */
 
 .application-screen {
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.1); */
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 #application-header {
-  background-color: rgba(0, 0, 0, 1);
+  overflow: hidden;
+  background-color: #181A1F;
+}
+
+/* --------------------------------------------------
+
+ APPLICATION
+
+-------------------------------------------------- */
+
+#application-header .overlay {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
 }
 
 #audio-player-cover {
