@@ -9,6 +9,9 @@
   "main": "./main.js",
   "homepage": "./",
   "description": "My Electron App Favorites Radio Player",
+  "workspaces": [
+    "server"
+  ],
   "files": [
     "/main.js",
     "/yarn.lock",
@@ -17,7 +20,8 @@
     "/package-lock.json",
     "/build|/build/**/*",
     "/assets|/assets/**/*",
-    "/system|/system/**/*"
+    "/system|/system/**/*",
+    "/server|/server/**/*"
   ],
   "devDependencies": {
     "electron": "^1.7.10",
