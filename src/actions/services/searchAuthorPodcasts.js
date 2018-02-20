@@ -1,10 +1,10 @@
-// import { replace } from 'react-router-redux';
+import { replace } from 'react-router-redux';
 import { searchQuery } from './../../fp/searchquery';
 import { searching, searchComplete, searchError } from './../search';
 
 const ITUNES_BASE_URI = 'https://itunes.apple.com/search';
 
-export const searchPodcasts = (term, country = 'FR') => (dispatch) => {
+export const searchAuthorPodcasts = (term, country = 'FR') => (dispatch) => {
   dispatch(searching());
   // Podcasts URI
   const params = searchQuery({
@@ -24,13 +24,14 @@ export const searchPodcasts = (term, country = 'FR') => (dispatch) => {
       const results = {
         podcasts: podcastsauthors.results,
       };
-      console.log('results', results);
+      // console.log('results', results);
       dispatch(searchComplete(results));
+      dispatch(replace('/player/searchresults'));
     })
     .catch(err => dispatch(searchError(err)));
 };
 
-export default searchPodcasts;
+export default searchAuthorPodcasts;
 
 /*
 export const searchPodcasts = term => (dispatch) => {

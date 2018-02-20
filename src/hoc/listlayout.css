@@ -16,24 +16,25 @@
   justify-content: flex-start;
 }
 
-.scrollbox-list-item .list-item {
-  display: flex;
-  padding: 10px 6px;
-  flex-direction: row;
-  justify-content: flex-start;
+.list-item {
   width: 100%;
+  display: flex;
   max-width: 100%;
   overflow: hidden;
+  padding: 10px 6px;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
-.scrollbox-list-item .name {
+.list-item .name {
   overflow: hidden;
   margin-left: 3px;
   margin-right: 12px;
   text-overflow: ellipsis;
 }
 
-.scrollbox-list-item .list-item .icon {
+.list-item .icon {
   width: 22px;
   min-width: 22px;
   overflow: hidden;
@@ -41,11 +42,12 @@
   transition: width, min-width 0.5s;
 }
 
-.scrollbox-list-item .list-item .name + .icon {
+.list-item .type-icon {
+  font-size: 0.7em;
   margin-left: auto;
 }
 
-.scrollbox-list-item .isremovable .list-item .icon {
+.isremovable .list-item .icon {
   width: 0;
   min-width: 0;
 }

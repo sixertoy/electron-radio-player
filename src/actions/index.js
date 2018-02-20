@@ -3,7 +3,8 @@ export * from './player';
 export * from './volume';
 export * from './stations';
 
-export * from './services/searchpodcasts';
+export * from './services/searchPodcasters';
+export * from './services/searchAuthorPodcasts';
 
 export const networkStatus = isonline => ({
   isonline,

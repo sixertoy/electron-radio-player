@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { replace } from 'react-router-redux';
 
 // application
-import Station from './Station';
 import ListLayout from './../../hoc/ListLayout';
 import RemovableItem from './../../hoc/RemovableItem';
 import {
@@ -61,21 +60,23 @@ class Stations extends React.PureComponent {
 
   renderItem (item, index) {
     const { loading, loaderror } = this.props;
-    const isactive = (index === this.state.selected);
+    const isactive = (index === this.state.selected) && !loaderror;
     const isloading = (isactive && loading);
+    const clickHandler = (item.type === 'radio')
+      ? () => this.radioClick(index, item)
+      : () => this.podcastClick(index, item);
     return (
-      <Station key={item.key}
-        item={item}
-        loading={isloading}
-        active={isactive && !loaderror}
-        clickHandler={() => {
-          switch (item.type) {
-          case 'radio':
-            return this.radioClick(index, item);
-          default:
-            return this.podcastClick(index, item);
-          }
-        }} />
+      <button key={item.key}
+        className={`list-item button ${isactive ? 'active' : ''}`}
+        onClick={clickHandler}>
+        {!isactive && !isloading && <i className="icon icon-play" />}
+        {isactive && !isloading && <i className="icon icon-pause" />}
+        {isloading && <i className="icon icon-spin6 animate-spin" />}
+        <span className="name">
+          <span>{item.name}</span>
+        </span>
+        <i className={`icon type-icon icon-${item.type}`} />
+      </button>
     );
   }
 

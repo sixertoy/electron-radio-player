@@ -6,12 +6,12 @@ import { replace } from 'react-router-redux';
 // application
 import './searchinput.css';
 import { isPodcast, isRadio } from './../../fp/isurl';
-import { searchPodcasts, createStation } from './../../actions';
+import { searchPodcasters, createStation } from './../../actions';
 
 const INPUT_DELAY = 800;
 const ENTER_CHAR_CODE = 13;
 
-class Search extends React.PureComponent {
+class SearchInput extends React.PureComponent {
 
   constructor (props) {
     super(props);
@@ -59,7 +59,7 @@ class Search extends React.PureComponent {
   }
 }
 
-Search.propTypes = {
+SearchInput.propTypes = {
   sendSearch: PropTypes.func.isRequired,
   routepath: PropTypes.string.isRequired,
 };
@@ -78,7 +78,7 @@ const mapDispatchToProps = dispatch => ({
       dispatch(createStation(term, type));
       dispatch(replace('/player/create'));
     } else {
-      dispatch(searchPodcasts(term));
+      dispatch(searchPodcasters(term));
       dispatch(replace('/player/search'));
     }
   },
@@ -87,4 +87,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Search);
+)(SearchInput);

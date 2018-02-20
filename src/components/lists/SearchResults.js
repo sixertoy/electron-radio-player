@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // application
 import { pick } from './../../fp/pick';
 import ListLayout from './../../hoc/ListLayout';
-import { searchPodcasts } from './../../actions';
+import { searchAuthorPodcasts } from './../../actions';
 
 const whitelist = ['collectionId', 'collectionName', 'artistName'];
 
@@ -13,12 +13,12 @@ const renderItem = (item, dispatch) => {
   const picked = pick(item, whitelist);
   return (
     <button key={picked.collectionId}
-      className="item"
-      onClick={() => dispatch(searchPodcasts(picked.artistName))}>
+      className="button list-item"
+      onClick={() => dispatch(searchAuthorPodcasts(picked.artistName))}>
       <span className="name">
-        <b>{picked.artistName}</b>
-        <b>{picked.collectionName}</b>
+        <span>{picked.artistName}</span>
       </span>
+      <i className="icon type-icon icon-rss" />
     </button>
   );
 };
