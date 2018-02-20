@@ -21,14 +21,17 @@ class Stations extends React.PureComponent {
     this.removeItem = this.removeItem.bind(this);
     this.radioClick = this.radioClick.bind(this);
     this.podcastClick = this.podcastClick.bind(this);
-    this.state = { selected: false, items: [].concat(props.stations) };
+    this.state = {
+      selected: false,
+      stations: [].concat(props.stations),
+    };
   }
 
   componentWillReceiveProps ({ stations }) {
-    if (stations.length !== this.state.items.length) {
+    if (stations.length !== this.state.stations.length) {
       // update state from props
-      // only if add/remove stations from another component
-      this.setState({ items: [].concat(stations) });
+      // only if add/remove radios from another component
+      this.setState({ stations: [].concat(stations) });
     }
   }
 
@@ -81,10 +84,10 @@ class Stations extends React.PureComponent {
   }
 
   render () {
-    const { items } = this.state;
+    const { stations } = this.state;
     return (
       <ListLayout id="playlist">
-        {items && items.map((item, index) => (
+        {stations && stations.map((item, index) => (
           <RemovableItem key={item.key}
             removeHandler={() => this.removeItem(index)}
             itemRenderer={() => this.renderItem(item, index)} />
@@ -97,8 +100,8 @@ class Stations extends React.PureComponent {
 Stations.propTypes = {
   paused: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
-  loaderror: PropTypes.bool.isRequired,
   stations: PropTypes.array.isRequired,
+  loaderror: PropTypes.bool.isRequired,
   // actions
   play: PropTypes.func.isRequired,
   pause: PropTypes.func.isRequired,

@@ -34,7 +34,8 @@
   text-overflow: ellipsis;
 }
 
-.list-item .icon {
+.list-item .icon,
+.list-item .badge-icon {
   width: 22px;
   min-width: 22px;
   overflow: hidden;
@@ -42,9 +43,17 @@
   transition: width, min-width 0.5s;
 }
 
-.list-item .type-icon {
+.list-item .type-icon,
+.list-item .badge-icon {
   font-size: 0.7em;
   margin-left: auto;
+}
+
+.list-item .badge-icon {
+  height: 22px;
+  line-height: 22px;
+  border-radius: 50%;
+  background-color: #ACE539;
 }
 
 .isremovable .list-item .icon {

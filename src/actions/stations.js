@@ -32,3 +32,8 @@ export const removeStation = item => ({
   item,
   type: 'onRemoveStation',
 });
+
+export const subscribe = podcast => ({
+  podcast,
+  type: 'onSubscribeToPodcast',
+});

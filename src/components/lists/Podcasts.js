@@ -3,42 +3,34 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import { pick } from './../../fp/pick';
 import ListLayout from './../../hoc/ListLayout';
-import { searchPodcasters } from './../../actions';
 
-const whitelist = ['artistId', 'artistName'];
-
-const renderItem = (item, dispatch) => {
-  const picked = pick(item, whitelist);
-  return (
-    <button key={picked.artistId}
-      className="list-item button"
-      onClick={() => dispatch(searchPodcasters(picked.artistName))}>
-      <span className="name">
-        <span>{picked.artistName}</span>
-      </span>
-      <i className="icon type-icon icon-rss" />
-    </button>
-  );
-};
+const renderItem = item => (
+  <button key={`podcast_key::${item.key}`}
+    className="list-item button"
+    onClick={() => { /* load podcasts episode */ }}>
+    <span className="name">
+      <span>{item.name}</span>
+    </span>
+    <i className="icon type-icon icon-rss" />
+  </button>
+);
 
 const Podcasts = ({
-  items,
-  dispatch,
+  podcasts,
 }) => (
   <ListLayout id="podcasts">
-    {items && items.map(item => renderItem(item, dispatch))}
+    {(podcasts && Object.keys(podcasts)
+      .map(key => renderItem(podcasts[key]))) || []}
   </ListLayout>
 );
 
 Podcasts.propTypes = {
-  items: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  podcasts: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  items: state.podcasts,
+  podcasts: state.podcasts || {},
 });
 
 export default connect(mapStateToProps)(Podcasts);

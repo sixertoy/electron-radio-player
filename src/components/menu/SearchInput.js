@@ -79,7 +79,7 @@ const mapDispatchToProps = dispatch => ({
       dispatch(replace('/player/create'));
     } else {
       dispatch(searchPodcasters(term));
-      dispatch(replace('/player/search'));
+      dispatch(replace('/player/searchresults'));
     }
   },
 });

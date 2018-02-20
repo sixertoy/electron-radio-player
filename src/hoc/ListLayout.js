@@ -18,7 +18,7 @@ const ListLayout = ({
       transitionEnterTimeout={500}
       transitionLeaveTimeout={300}
       transitionName="animated-list-item">
-      {children.map(child => (
+      {children && children.map(child => (
         <div key={`scrollbox-list-item-${child.key}`}
           className="scrollbox-list-item">
           {child}
