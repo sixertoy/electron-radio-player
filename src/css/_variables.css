@@ -1,8 +1,9 @@
 :root {
-  /* --appHeight: 600px; */
-
   --appWidth: 285px;
   --screenHeight: 300px;
   --menubarHeight: 40px;
   --removableButtonWidth: 52px;
+
+  /* Tweenings */
+  --easeInQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
 }

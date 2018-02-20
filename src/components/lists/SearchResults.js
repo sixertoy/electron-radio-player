@@ -27,7 +27,7 @@ const SearchResults = ({
   items,
   dispatch,
 }) => (
-  <ListLayout id="search-results">
+  <ListLayout id="searchresults">
     {items && items.map(item => renderItem(item, dispatch))}
   </ListLayout>
 );

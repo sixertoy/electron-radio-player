@@ -83,7 +83,7 @@ class Stations extends React.PureComponent {
   render () {
     const { items } = this.state;
     return (
-      <ListLayout id="stations">
+      <ListLayout id="playlist">
         {items && items.map((item, index) => (
           <RemovableItem key={item.key}
             removeHandler={() => this.removeItem(index)}

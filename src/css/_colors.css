@@ -68,17 +68,10 @@ input[type="text"]:focus::placeholder {
 /* --------------------------------------------------
 
  THEMING
- Heade Dark: #181A1F;
+ Header Dark: #181A1F;
  Heade Light: #FBFBFB;
 
 -------------------------------------------------- */
-
-/*
-.application-screen {
-  background-color: rgba(0, 0, 0, 0.1);
-  background-color: rgba(0, 0, 0, 0.3);
-}
- */
 
 #application-header {
   overflow: hidden;

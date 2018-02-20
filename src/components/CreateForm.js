@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import './createform.css';
-
 class CreateForm extends React.PureComponent {
 
   constructor (props) {
@@ -28,7 +26,7 @@ class CreateForm extends React.PureComponent {
   render () {
     const { form } = this.state;
     return (
-      <div id="creation-form"
+      <div id="createform"
         className="form">
         <label htmlFor="name">
           <span>Name</span>
@@ -62,17 +60,14 @@ class CreateForm extends React.PureComponent {
 
 CreateForm.defaultProps = {
   form: null,
-  stations: null,
 };
 
 CreateForm.propTypes = {
   form: PropTypes.object,
-  stations: PropTypes.array,
 };
 
 const mapStateToProps = state => ({
   form: state.createform,
-  stations: state.stations,
 });
 
 export default connect(mapStateToProps)(CreateForm);

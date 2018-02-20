@@ -27,7 +27,7 @@ const Podcasts = ({
   items,
   dispatch,
 }) => (
-  <ListLayout id="podcasts-collection">
+  <ListLayout id="podcasts">
     {items && items.map(item => renderItem(item, dispatch))}
   </ListLayout>
 );

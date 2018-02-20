@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import './menubar.css';
 import BackButton from './menu/BackButton';
 import SearchInput from './menu/SearchInput';
 import CommitButton from './menu/CommitButton';
@@ -13,7 +12,8 @@ const MenuBar = ({
   canedit,
   cancommit,
 }) => (
-  <div id="menubar">
+  <div id="menubar"
+    className="flex-columns">
     {(!canedit || cancommit) && <BackButton />}
     <SearchInput />
     {canedit && <RemovableButton />}

@@ -83,6 +83,7 @@ input[type="text"] {
 
 .form {
   flex: 1;
+  padding: 12px;
 }
 
 .flex-rows,
@@ -170,9 +171,13 @@ input[type="text"] {
 }
 
 #menubar {
+  flex: 0;
   left: 0;
   right: 0;
+  padding: 0 7px;
   position: absolute;
+  align-items: center;
+  justify-content: space-between;
   height: var(--menubarHeight);
 }
 

@@ -1,7 +1,3 @@
-:root {
-  --easeInQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
-}
-
 .easeInQuart {
   transition-timing-function: var(--easeInQuart);
 }

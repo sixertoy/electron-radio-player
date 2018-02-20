@@ -1,8 +1,0 @@
-#menubar {
-  flex: 0;
-  display: flex;
-  padding: 0 7px;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-}
