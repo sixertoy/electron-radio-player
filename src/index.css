@@ -81,6 +81,10 @@ input[type="text"] {
 
 -------------------------------------------------- */
 
+.form {
+  flex: 1;
+}
+
 .flex-rows,
 .flex-columns {
   flex: 1;

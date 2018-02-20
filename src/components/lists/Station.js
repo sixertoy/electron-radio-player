@@ -7,12 +7,14 @@ const Station = ({
   loading,
   clickHandler,
 }) => (
-  <button className={`station button ${active ? 'active' : ''}`}
+  <button className={`list-item station button ${active ? 'active' : ''}`}
     onClick={clickHandler}>
     {!active && !loading && <i className="icon icon-play" />}
     {active && !loading && <i className="icon icon-pause" />}
     {loading && <i className="icon icon-spin6 animate-spin" />}
-    <span className="name">{item.name}</span>
+    <span className="name">
+      <span>{item.name}</span>
+    </span>
     <i className={`icon icon-${item.type}`} />
   </button>
 );

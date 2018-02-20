@@ -10,12 +10,44 @@
 }
 
 .scrollbox-list-item {
-  height: 32px;
-  line-height: 32px;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.scrollbox-list-item .list-item {
+  display: flex;
+  padding: 10px 6px;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .scrollbox-list-item .name {
-  max-width: 60%;
+  overflow: hidden;
+  margin-left: 3px;
+  margin-right: 12px;
+  text-overflow: ellipsis;
+}
+
+.scrollbox-list-item .list-item .icon {
+  width: 22px;
+  min-width: 22px;
+  overflow: hidden;
+  text-align: center;
+  transition: width, min-width 0.5s;
+}
+
+.scrollbox-list-item .list-item .name + .icon {
+  margin-left: auto;
+}
+
+.scrollbox-list-item .isremovable .list-item .icon {
+  width: 0;
+  min-width: 0;
 }
 
 /* -------------------------------------------------

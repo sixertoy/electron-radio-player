@@ -42,7 +42,8 @@ class Search extends React.PureComponent {
     const { term } = this.state;
     const { routepath } = this.props;
     return (
-      <div id="search-form">
+      <div id="search-form"
+        className="form">
         <label htmlFor="searchfield">
           <input type="text"
             id="searchfield"

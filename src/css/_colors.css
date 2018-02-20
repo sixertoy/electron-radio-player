@@ -56,11 +56,12 @@ input[type="text"]:focus::placeholder {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.removable-item .removable-button {
+.removable-container.isremovable:hover button {
   color: #FFF;
 }
 
-.removable-item.isremovable .removable-button {
+.removable-button {
+  color: #FFF;
   background-color: #FA603F;
 }
 

@@ -11,16 +11,18 @@ const RemovableItem = ({
   itemRenderer,
   removeHandler,
 }) => (
-  <div className={`removable-item ${removable ? 'isremovable' : ''}`}
+  <div className={`removable-container ${removable ? 'isremovable' : ''}`}
     // prevent phase capture onClick
     onClickCapture={!removable ? noop : (evt) => {
       evt.stopPropagation();
       removeHandler();
     }}>
-    {itemRenderer()}
-    <span className="removable-button">
+    <div className="removable-item">
+      {itemRenderer()}
+    </div>
+    <div className="removable-button">
       <i className="icon icon-minus-circled" />
-    </span>
+    </div>
   </div>
 );
 

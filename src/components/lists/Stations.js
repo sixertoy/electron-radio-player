@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { replace } from 'react-router-redux';
 
 // application
-import './stations.css';
 import Station from './Station';
 import ListLayout from './../../hoc/ListLayout';
 import RemovableItem from './../../hoc/RemovableItem';

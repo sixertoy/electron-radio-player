@@ -1,22 +1,59 @@
-.removable-item {
+.removable-container {
   flex: 1;
-  height: 100%;
   display: flex;
+  cursor: default;
+  overflow: hidden;
+  position: relative;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.removable-item .removable-button {
-  width: 0;
+.removable-item,
+.removable-button {
   overflow: hidden;
+  transition-duration: 0.4s;
+  transition-property: right, margin-right;
+}
+
+.removable-item {
+  flex: 1;
+  margin-right: 0;
+}
+
+.removable-button {
+  width: var(--removableButtonWidth);
   text-align: center;
-  transition: width 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+
+  /* stylelint-disable-next-line length-zero-no-unit */
+  right: calc(0px - var(--removableButtonWidth));
 }
 
-.removable-item.isremovable .removable-button {
-  width: 3px;
+/* ------------------------------------------------------
+
+ STATE
+
+------------------------------------------------------ */
+
+.removable-container.isremovable {
+  cursor: pointer;
 }
 
-.removable-item.isremovable:hover .removable-button {
-  width: 32px;
+.removable-container.isremovable .removable-button {
+  /* add a (n)px border on right on 'can be deleted' state  */
+  /* stylelint-disable-next-line length-zero-no-unit */
+  right: calc(1px - var(--removableButtonWidth));
+}
+
+.removable-container.isremovable:hover .removable-item {
+  margin-right: var(--removableButtonWidth);
+}
+
+.removable-container.isremovable:hover .removable-button {
+  right: 0;
 }
