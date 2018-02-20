@@ -50,16 +50,21 @@ export const source = (state = null, action) => {
 };
 
 export const volume = (state = 100, action) => {
+  let vol = state;
   switch (action.type) {
   case 'onSetVolume':
-    return action.volume;
+    vol = action.volume;
+    break;
   case 'onVolumeUp':
-    return Math.min(100, (state + 5));
+    vol += 5;
+    break;
   case 'onVolumeDown':
-    return Math.max(0, (state - 5));
+    vol -= 5;
+    break;
   default:
-    return state;
+    break;
   }
+  return Math.min(Math.max(0, vol), 100);
 };
 
 export const muted = (state = false, action) => {
