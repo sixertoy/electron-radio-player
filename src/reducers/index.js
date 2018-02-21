@@ -9,8 +9,8 @@ import {
   loading,
   loaderror,
 } from './player';
-import searches from './searches';
-import { createform } from './forms';
+import { form } from './forms';
+import { searches } from './searches';
 import { stations } from './stations';
 
 const removable = (state = false, action) => {
@@ -32,10 +32,10 @@ const isonline = (state = false, action) => {
 };
 
 export const reducers = combineReducers({
+  form,
   searches,
   isonline,
   removable,
-  createform,
   // radios & podcasts
   stations,
   // player

@@ -3,26 +3,32 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import { commitStation } from './../../actions';
+import { formCommit } from './../../actions';
 
-const CommitButton = ({ dispatch, newstation }) => (
-  <button disabled={!newstation}
-    onClick={() => dispatch(commitStation(newstation))}>
+const CommitButton = ({ dispatch, form, disabled }) => (
+  <button disabled={disabled}
+    onClick={() => dispatch(formCommit(form))}>
     <i className="icon icon-floppy" />
   </button>
 );
 
 CommitButton.defaultProps = {
-  newstation: null,
+  form: null,
+  disabled: true,
 };
 
 CommitButton.propTypes = {
-  newstation: PropTypes.object,
+  form: PropTypes.object,
+  disabled: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  newstation: state.newstation,
-});
+const mapStateToProps = ({ form }) => {
+  // required fields
+  const disabled = !(form
+    && (form.url && (form.url.trim() !== ''))
+    && (form.name && (form.name.trim() !== '')));
+  return ({ form, disabled });
+};
 
 export default connect(mapStateToProps)(CommitButton);

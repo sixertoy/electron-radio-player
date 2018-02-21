@@ -54,10 +54,10 @@ class Stations extends React.PureComponent {
   }
 
   removeItem (index) {
-    const item = this.state.items[index];
+    const item = this.state.stations[index];
     const { remove } = this.props;
-    this.setState(({ items }) => ({
-      items: items.filter((itm, idx) => (index !== idx)),
+    this.setState(({ stations }) => ({
+      stations: stations.filter((itm, idx) => (index !== idx)),
     }), () => remove(item));
   }
 

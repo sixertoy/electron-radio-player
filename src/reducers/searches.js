@@ -1,4 +1,4 @@
-const searches = (state = {}, action) => {
+export const searches = (state = {}, action) => {
   switch (action.type) {
   case 'onSearching':
   case 'onSearchError':

@@ -3,23 +3,26 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
+import { formUpdate } from './../actions';
+
 class CreateForm extends React.PureComponent {
 
   constructor (props) {
     super(props);
+    this.timer = null;
     this.inputChange = this.inputChange.bind(this);
     this.state = { form: Object.assign({}, props.form) };
   }
 
-  componentWillReceiveProps (nextprops) {
-    this.setState(prev => ({ form: Object.assign(prev, nextprops.form) }));
-  }
-
   inputChange ({ target }) {
+    const { dispatch } = this.props;
     const { name, value } = target;
     this.setState(
       prev => ({ form: Object.assign({}, prev, { [name]: value }) }),
-      () => {},
+      () => {
+        if (this.timer) clearTimeout(this.timer);
+        this.timer = setTimeout(() => dispatch(formUpdate(this.state.form)), 800);
+      },
     );
   }
 
@@ -64,10 +67,11 @@ CreateForm.defaultProps = {
 
 CreateForm.propTypes = {
   form: PropTypes.object,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  form: state.createform,
+  form: state.form,
 });
 
 export default connect(mapStateToProps)(CreateForm);

@@ -6,7 +6,7 @@ import { replace } from 'react-router-redux';
 // application
 import './searchinput.css';
 import { isPodcast, isRadio } from './../../fp/isurl';
-import { searchPodcasters, createStation } from './../../actions';
+import { searchPodcasters, formCreate } from './../../actions';
 
 const INPUT_DELAY = 800;
 const ENTER_CHAR_CODE = 13;
@@ -28,7 +28,9 @@ class SearchInput extends React.PureComponent {
     if (!isenter && isequal) return;
     this.timer = setTimeout(() => this.setState(
       prev => ({ term: value || prev.term }),
-      () => this.props.sendSearch(this.state.term, isequal),
+      () => {
+        this.props.sendSearch(this.state.term, isequal);
+      },
     ), (isenter || INPUT_DELAY));
   }
 
@@ -75,7 +77,7 @@ const mapDispatchToProps = dispatch => ({
     const ispodcast = isPodcast(term);
     if (ispodcast || isradio) {
       const type = ispodcast ? 'podcast' : 'radio';
-      dispatch(createStation(term, type));
+      dispatch(formCreate({ url: term, type }));
       dispatch(replace('/player/create'));
     } else {
       dispatch(searchPodcasters(term));

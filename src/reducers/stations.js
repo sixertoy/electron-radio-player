@@ -19,9 +19,9 @@ const newRadio = props => ({
   url: props.url,
   name: props.name,
   mtime: Date.now(),
-  website: props.website,
+  website: props.website || '',
   key: props.twiter || slugify(props.name),
-  cover: { logo: props.artworkUrl600, background: '#000', color: '#FFF' },
+  cover: { logo: 'http://placehold.it/300x300', background: '#000', color: '#FFF' },
 });
 
 // stocke les cles des radios et podcasts
@@ -29,6 +29,9 @@ const newRadio = props => ({
 export const stationskeys = (state = [], action) => {
   let key = '';
   switch (action.type) {
+  case 'onFormCommit':
+    key = slugify(action.item.name);
+    return state.concat([key]);
   case 'onSubscribeToPodcast':
     key = slugify(action.podcast.artistName);
     return state.concat([key]);
@@ -40,6 +43,8 @@ export const stationskeys = (state = [], action) => {
 // liste des radios et podcasts
 export const stations = (state = [], action) => {
   switch (action.type) {
+  case 'onFormCommit':
+    return state.concat([newRadio(action.item)]);
   case 'onSubscribeToPodcast':
     return state.concat([newPodcast(action.podcast)]);
   case 'onRemoveStation':

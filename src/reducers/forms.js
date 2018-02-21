@@ -1,12 +1,14 @@
-export const createform = (state = null, action) => {
+export const form = (state = {}, action) => {
   switch (action.type) {
-  case 'onCommitForm':
+  case 'onFormCommit':
     return {};
-  case 'onCreateForm':
-    return action.item;
+  case 'onFormUpdate':
+    return Object.assign({}, state, action.item);
+  case 'onFormCreate':
+    return Object.assign({}, action.item);
   default:
     return state;
   }
 };
 
-export default createform;
+export default form;
