@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // application
-import { subscribe } from './../../actions';
+import { subscribeToPodcast } from './../../actions';
 import { slugify } from './../../fp/slugify';
 import ListLayout from './../../hoc/ListLayout';
 
@@ -31,14 +31,14 @@ const SearchResults = ({ items, ...props }) => (
         const count = podcasts.length;
         return renderItem(key, count, () => (count > 1
           ? () => {}
-          : props.subscribe(podcasts[0])));
+          : props.subscribeToPodcast(podcasts[0])));
       })) || [])}
   </ListLayout>
 );
 
 SearchResults.propTypes = {
   items: PropTypes.object.isRequired,
-  subscribe: PropTypes.func.isRequired,
+  subscribeToPodcast: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -46,7 +46,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ subscribe }, dispatch);
+  bindActionCreators({ subscribeToPodcast }, dispatch);
 
 export default connect(
   mapStateToProps,
