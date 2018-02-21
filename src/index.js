@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import { connect, Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createHashHistory';
+import { PersistGate } from 'redux-persist/integration/react';
 
 // application
 import './index.css';
@@ -61,12 +62,14 @@ const App = connect(mapStateToProps)(AppComponent);
 
 -------------------------------------------- */
 const history = createHistory();
-const store = configure(history);
+const { store, persistor } = configure(history);
 const Root = () => (
   <Provider store={store}>
-    <ConnectedRouter history={history} >
-      <App />
-    </ConnectedRouter>
+    <PersistGate loading={null} persistor={persistor}>
+      <ConnectedRouter history={history} >
+        <App />
+      </ConnectedRouter>
+    </PersistGate>
   </Provider>
 );
 

@@ -1,6 +1,23 @@
+const Conf = require('conf');
 const electron = require('electron');
 
-const { ipcRenderer } = electron;
+const { ipcRenderer, remote } = electron;
+
+/**
+ * From https://github.com/sindresorhus/electron-store
+ */
+class ElectronStore extends Conf {
+  constructor (opts = {}) {
+    // /Users/<user_name>/Library/Application Support/<application_name>
+    const configName = 'database';
+    const cwd = remote.app.getPath('userData');
+    const options = Object.assign({}, { cwd, configName }, opts);
+    super(options);
+  }
+  openInEditor () {
+    electron.shell.openItem(this.path);
+  }
+}
 
 /**
  * Get current Webpage parameters
@@ -21,12 +38,14 @@ function getUrlParameter (key) {
 
 // Do Not Expose All The Things
 window.NodeContext = {
+  createStore: opts =>
+    new ElectronStore(opts),
   openExternalURL: url =>
     electron.shell.openExternal(url),
   onApplicationError: message =>
     ipcRenderer.send('errorInWindow', message),
   getLocale: (inuppercase) => {
-    const locale = electron.app.getLocale();
+    const locale = remote.app.getLocale();
     return (inuppercase ? locale.toLocaleUpperCase() : locale);
   },
 };

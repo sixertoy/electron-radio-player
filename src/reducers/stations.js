@@ -1,5 +1,3 @@
-import presets from './_db';
-
 import { slugify } from './../fp/slugify';
 
 const newPodcast = props => ({
@@ -40,7 +38,7 @@ export const stationskeys = (state = [], action) => {
 };
 
 // liste des radios et podcasts
-export const stations = (state = presets, action) => {
+export const stations = (state = [], action) => {
   switch (action.type) {
   case 'onSubscribeToPodcast':
     return state.concat([newPodcast(action.podcast)]);
