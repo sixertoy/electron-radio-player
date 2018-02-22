@@ -26,6 +26,7 @@
         ".scripts/**/*"
       ]
     }],
+    "react/jsx-closing-tag-location": 0,
     "react/jsx-closing-bracket-location": [2, {
       "nonEmpty": "after-props",
       "selfClosing": "after-props"

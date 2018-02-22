@@ -183,9 +183,13 @@ input[type="text"] {
 
 #menubar,
 .page-screen {
+  /*
+  Transition relative to `animated-page-screen`
+    -> see css/_tweenings.css
+  */
   transition-duration: 0.2s;
   transition-property: top, bottom;
-  transition-timing-function: var(--easeInQuart);
+  transition-timing-function: ease-in;
 }
 
 /* --------------------------------------------------

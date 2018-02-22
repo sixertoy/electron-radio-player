@@ -60,31 +60,3 @@
   width: 0;
   min-width: 0;
 }
-
-/* -------------------------------------------------
-
- REMOVE TRANSITION
-
-------------------------------------------------- */
-
-.animated-list-item-enter {
-  opacity: 0.01;
-}
-
-.animated-list-item-enter.animated-list-item-enter-active {
-  opacity: 1;
-  transition-duration: 500ms;
-  transition-property: opacity;
-  transition-timing-function: ease-in;
-}
-
-.animated-list-item-leave {
-  opacity: 1;
-}
-
-.animated-list-item-leave.animated-list-item-leave-active {
-  opacity: 0.01;
-  transition-duration: 300ms;
-  transition-property: opacity;
-  transition-timing-function: ease-in;
-}
