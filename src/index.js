@@ -23,7 +23,7 @@ class AppComponent extends React.PureComponent {
 
   componentDidMount () {
     const { dispatch, pageslug, screenslug } = this.props;
-    if (pageslug !== 'player' || screenslug !== '') {
+    if (pageslug !== 'page-player' || screenslug !== '') {
       // fix back to main page on load/reload
       dispatch(replace('/player'));
     }
@@ -42,8 +42,8 @@ class AppComponent extends React.PureComponent {
           <div className="overlay" />
         </div>
         <div id="application-container">
-          <Preferences />
-          <Player />
+          {pageslug === 'page-player' ? <Player /> : null}
+          {pageslug === 'page-preferences' ? <Preferences /> : null}
         </div>
       </div>
     );

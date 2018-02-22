@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // application
-import { subscribeToPodcast } from './../../actions';
-import { slugify } from './../../lib/slugify';
-import ListLayout from './../hoc/ListLayout';
+import ListLayout from './hoc/ListLayout';
+import { slugify } from './../lib/slugify';
+import { subscribeToPodcast } from './../actions';
 
 const renderItem = (artistname, count, clickHandler) => (
   <button key={slugify(artistname)}

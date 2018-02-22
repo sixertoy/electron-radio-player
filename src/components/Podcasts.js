@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import ListLayout from './../hoc/ListLayout';
+import ListLayout from './hoc/ListLayout';
 
 const renderItem = item => (
   <button key={`podcast_key::${item.key}`}

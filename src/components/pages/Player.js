@@ -2,11 +2,11 @@ import React from 'react';
 
 // application
 import MenuBar from './../MenuBar';
+import Podcasts from './../Podcasts';
+import Playlist from './../Playlist';
 import StationForm from './../StationForm';
-import Podcasts from './../lists/Podcasts';
-import Playlist from './../lists/Playlist';
 import AudioPlayer from './../AudioPlayer';
-import SearchResults from './../lists/SearchResults';
+import SearchResults from './../SearchResults';
 
 const MainWindow = () => (
   <div id="page-player"
