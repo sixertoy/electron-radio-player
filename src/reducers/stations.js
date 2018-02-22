@@ -1,4 +1,4 @@
-import { slugify } from './../fp/slugify';
+import { slugify } from './../lib/slugify';
 
 const defaults = {
   color: '#FFFFFF',

@@ -5,7 +5,7 @@ import { replace } from 'react-router-redux';
 
 // application
 import './searchinput.css';
-import { isPodcast, isRadio } from './../../fp/isurl';
+import { isPodcast, isRadio } from './../../lib/isurl';
 import { searchPodcasters, formCreate } from './../../actions';
 
 const INPUT_DELAY = 800;

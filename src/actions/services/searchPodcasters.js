@@ -1,5 +1,5 @@
-import { groupby } from './../../fp/groupby';
-import { searchQuery } from './../../fp/searchquery';
+import { groupby } from './../../lib/groupby';
+import { searchQuery } from './../../lib/searchquery';
 import { searching, searchComplete, searchError } from './../search';
 
 const ITUNES_BASE_URI = 'https://itunes.apple.com/search';

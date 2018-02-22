@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect, Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createHashHistory';
+import { ConnectedRouter, replace } from 'react-router-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 // application
 import './index.css';
 import { configure } from './store';
-import { slugify } from './fp/slugify';
+import { slugify } from './lib/slugify';
 import Player from './components/pages/Player';
 import Preferences from './components/pages/Preferences';
 
@@ -19,27 +19,39 @@ import Preferences from './components/pages/Preferences';
  MAIN APPLICATION COMPONENT
 
 -------------------------------------------- */
-const AppComponent = ({
-  pageslug,
-  screenslug,
-}) => (
-  <div id="application"
-    className="flex-rows"
-    style={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}>
-    <Helmet>
-      <body className={`${pageslug} ${screenslug}`} />
-    </Helmet>
-    <div id="application-header">
-      <div className="overlay" />
-    </div>
-    <div id="application-container">
-      <Preferences />
-      <Player />
-    </div>
-  </div>
-);
+class AppComponent extends React.PureComponent {
+
+  componentDidMount () {
+    const { dispatch, pageslug, screenslug } = this.props;
+    if (pageslug !== 'player' || screenslug !== '') {
+      // fix back to main page on load/reload
+      dispatch(replace('/player'));
+    }
+  }
+
+  render () {
+    const { pageslug, screenslug } = this.props;
+    return (
+      <div id="application"
+        className="flex-rows"
+        style={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}>
+        <Helmet>
+          <body className={`${pageslug} ${screenslug}`} />
+        </Helmet>
+        <div id="application-header">
+          <div className="overlay" />
+        </div>
+        <div id="application-container">
+          <Preferences />
+          <Player />
+        </div>
+      </div>
+    );
+  }
+}
 
 AppComponent.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   pageslug: PropTypes.string.isRequired,
   screenslug: PropTypes.string.isRequired,
 };

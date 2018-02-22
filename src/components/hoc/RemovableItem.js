@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 // application
 import './removableitem.css';
-import { noop } from './../fp/noop';
+import { noop } from './../../lib/noop';
 
 const RemovableItem = ({
   removable,

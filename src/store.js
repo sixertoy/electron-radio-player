@@ -8,8 +8,8 @@ import { persistStore, persistReducer } from 'redux-persist';
 
 // application
 import { reducers } from './reducers';
-import { logger } from './middlewares/logger';
-import { createStorage } from './persists-storage';
+import { createStorage } from './reducers/_storage';
+import { logger } from './reducers/middlewares/logger';
 
 const persistConfig = {
   storage: createStorage(),

@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { replace } from 'react-router-redux';
 
 // application
-import ListLayout from './../../hoc/ListLayout';
-import RemovableItem from './../../hoc/RemovableItem';
+import ListLayout from './../hoc/ListLayout';
+import RemovableItem from './../hoc/RemovableItem';
 import {
   play,
   pause,

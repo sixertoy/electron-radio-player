@@ -1,5 +1,5 @@
 import { replace } from 'react-router-redux';
-import { searchQuery } from './../../fp/searchquery';
+import { searchQuery } from './../../lib/searchquery';
 import { searching, searchComplete, searchError } from './../search';
 
 const ITUNES_BASE_URI = 'https://itunes.apple.com/search';
