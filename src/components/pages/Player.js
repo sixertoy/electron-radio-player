@@ -2,7 +2,7 @@ import React from 'react';
 
 // application
 import MenuBar from './../MenuBar';
-import CreateForm from './../CreateForm';
+import StationForm from './../StationForm';
 import Podcasts from './../lists/Podcasts';
 import Playlist from './../lists/Playlist';
 import AudioPlayer from './../AudioPlayer';
@@ -24,7 +24,7 @@ const MainWindow = () => (
         <SearchResults />
       </div>
       <div id="create-screen" className="page-screen">
-        <CreateForm />
+        <StationForm />
       </div>
     </div>
   </div>

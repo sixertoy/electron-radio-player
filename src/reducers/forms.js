@@ -1,3 +1,14 @@
+export const term = (state = '', action) => {
+  switch (action.type) {
+  case 'onSearchUpdate':
+    return action.term;
+  case 'onFormCommit':
+    return '';
+  default:
+    return state;
+  }
+};
+
 export const form = (state = {}, action) => {
   switch (action.type) {
   case 'onFormCommit':
@@ -11,4 +22,14 @@ export const form = (state = {}, action) => {
   }
 };
 
-export default form;
+export const searches = (state = {}, action) => {
+  switch (action.type) {
+  case 'onSearching':
+  case 'onSearchError':
+    return {};
+  case 'onSearchComplete':
+    return Object.assign({}, action.results);
+  default:
+    return state;
+  }
+};

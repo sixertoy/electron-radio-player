@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { replace } from 'react-router-redux';
 
 // application
 import { formCommit } from './../../actions';
 
 const CommitButton = ({ dispatch, form, disabled }) => (
   <button disabled={disabled}
-    onClick={() => dispatch(formCommit(form))}>
+    onClick={() => {
+      dispatch(formCommit(form));
+      dispatch(replace('/player'));
+    }}>
     <i className="icon icon-floppy" />
   </button>
 );

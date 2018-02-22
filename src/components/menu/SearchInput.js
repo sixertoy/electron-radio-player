@@ -9,40 +9,39 @@ import { isPodcast, isRadio } from './../../fp/isurl';
 import { searchPodcasters, formCreate } from './../../actions';
 
 const INPUT_DELAY = 800;
-const ENTER_CHAR_CODE = 13;
+// const ENTER_CHAR_CODE = 13;
 
 class SearchInput extends React.PureComponent {
 
   constructor (props) {
     super(props);
     this.timer = null;
-    this.state = { term: '' };
-    this.keyPressed = this.keyPressed.bind(this);
+    this.state = { term: props.term };
+    // this.keyPressed = this.keyPressed.bind(this);
     this.inputChange = this.inputChange.bind(this);
   }
 
   inputChange (evt, isenter) {
     if (this.timer) clearTimeout(this.timer);
-    const value = ((evt && evt.target.value) || '');
-    const isequal = (value.trim() === this.state.term);
+    const term = ((evt && evt.target.value) || '');
+    const isequal = (term.trim() === this.state.term);
     if (!isenter && isequal) return;
-    this.timer = setTimeout(() => this.setState(
-      prev => ({ term: value || prev.term }),
-      () => {
-        this.props.sendSearch(this.state.term, isequal);
-      },
-    ), (isenter || INPUT_DELAY));
+    const delay = (isenter || INPUT_DELAY);
+    this.timer = setTimeout(() =>
+      this.setState(prev => ({ term: term || prev.term }), () =>
+        this.props.sendSearch(this.state.term, isequal)), delay);
   }
 
+  /*
   keyPressed (evt) {
     const isenter = (evt.charCode === ENTER_CHAR_CODE);
     if (!isenter) return;
     this.inputChange(null, true);
   }
+  */
 
   render () {
-    const { term } = this.state;
-    const { routepath } = this.props;
+    const { routepath, term } = this.props;
     return (
       <div id="search-form"
         className="form">
@@ -52,7 +51,7 @@ class SearchInput extends React.PureComponent {
             name="searchfield"
             defaultValue={term}
             onChange={this.inputChange}
-            onKeyPress={this.keyPressed}
+            // onKeyPress={this.keyPressed}
             disabled={routepath === '/player/create'}
             placeholder="Search for podcasters, radios..." />
         </label>
@@ -62,11 +61,13 @@ class SearchInput extends React.PureComponent {
 }
 
 SearchInput.propTypes = {
+  term: PropTypes.string.isRequired,
   sendSearch: PropTypes.func.isRequired,
   routepath: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
+  term: state.term,
   routepath: state.router.location.pathname,
 });
 

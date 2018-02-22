@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // application
 import { formUpdate } from './../actions';
 
-class CreateForm extends React.PureComponent {
+class StationForm extends React.PureComponent {
 
   constructor (props) {
     super(props);
@@ -61,11 +61,11 @@ class CreateForm extends React.PureComponent {
 
 }
 
-CreateForm.defaultProps = {
+StationForm.defaultProps = {
   form: null,
 };
 
-CreateForm.propTypes = {
+StationForm.propTypes = {
   form: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
 };
@@ -74,4 +74,4 @@ const mapStateToProps = state => ({
   form: state.form,
 });
 
-export default connect(mapStateToProps)(CreateForm);
+export default connect(mapStateToProps)(StationForm);
