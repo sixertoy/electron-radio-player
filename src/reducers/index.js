@@ -10,10 +10,9 @@ import {
   loaderror,
 } from './player';
 import {
-  stations,
-  podcaster,
-  stationskeys,
-} from './stations';
+  subkeys,
+  subscriptions,
+} from './subscriptions';
 import {
   form,
   searches,
@@ -21,7 +20,7 @@ import {
 
 const removable = (state = false, action) => {
   switch (action.type) {
-  case 'onRemoveStation':
+  case 'onUnsubscribeStation':
     return (state && (action.count > 0));
   case 'onToggleRemovable':
     return !state;
@@ -46,9 +45,8 @@ export const reducers = combineReducers({
   form,
   searches,
   // radios & podcasts
-  stations,
-  podcaster,
-  stationskeys,
+  subkeys,
+  subscriptions,
   // player
   muted,
   paused,

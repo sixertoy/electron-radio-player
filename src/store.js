@@ -15,8 +15,8 @@ const persistConfig = {
   storage: createStorage(),
   key: 'electron-radio-player',
   whitelist: [
-    'stations',
-    'stationskeys',
+    'subkeys',
+    'subscriptions',
   ],
 };
 

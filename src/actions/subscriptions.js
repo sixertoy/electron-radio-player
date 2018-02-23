@@ -1,7 +1,7 @@
-export const removeStation = (item, count) => ({
+export const unsubscribeStation = (item, count) => ({
   item,
   count,
-  type: 'onRemoveStation',
+  type: 'onUnsubscribeStation',
 });
 
 export const subscribePodcast = podcast => ({

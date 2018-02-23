@@ -10,10 +10,10 @@ import {
   play,
   pause,
   resume,
-  removeStation,
+  unsubscribeStation,
 } from './../actions';
 
-class Stations extends React.PureComponent {
+class Playlist extends React.PureComponent {
 
   constructor (props) {
     super(props);
@@ -23,15 +23,15 @@ class Stations extends React.PureComponent {
     this.podcastClick = this.podcastClick.bind(this);
     this.state = {
       selected: false,
-      stations: [].concat(props.stations),
+      items: [].concat(props.subscriptions),
     };
   }
 
-  componentWillReceiveProps ({ stations }) {
-    if (stations.length !== this.state.stations.length) {
+  componentWillReceiveProps ({ subscriptions }) {
+    if (subscriptions.length !== this.state.items.length) {
       // update state from props
       // only if add/remove radios from another component
-      this.setState({ stations: [].concat(stations) });
+      this.setState({ items: [].concat(subscriptions) });
     }
   }
 
@@ -54,11 +54,11 @@ class Stations extends React.PureComponent {
   }
 
   removeItem (index) {
-    const item = this.state.stations[index];
+    const item = this.state.items[index];
     const { remove } = this.props;
-    this.setState(({ stations }) => ({
-      stations: stations.filter((itm, idx) => (index !== idx)),
-    }), () => remove(item, this.state.stations.length));
+    this.setState(({ items }) => ({
+      items: items.filter((itm, idx) => (index !== idx)),
+    }), () => remove(item, this.state.items.length));
   }
 
   renderItem (item, index) {
@@ -84,10 +84,10 @@ class Stations extends React.PureComponent {
   }
 
   render () {
-    const { stations } = this.state;
+    const { items } = this.state;
     return (
       <ListLayout id="playlist">
-        {stations && stations.map((item, index) => (
+        {items && items.map((item, index) => (
           <RemovableItem key={item.key}
             removeHandler={() => this.removeItem(index)}
             itemRenderer={() => this.renderItem(item, index)} />
@@ -97,11 +97,11 @@ class Stations extends React.PureComponent {
   }
 }
 
-Stations.propTypes = {
+Playlist.propTypes = {
   paused: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
-  stations: PropTypes.array.isRequired,
   loaderror: PropTypes.bool.isRequired,
+  subscriptions: PropTypes.array.isRequired,
   // actions
   play: PropTypes.func.isRequired,
   pause: PropTypes.func.isRequired,
@@ -113,8 +113,8 @@ Stations.propTypes = {
 const mapStateToProps = state => ({
   paused: state.paused,
   loading: state.loading,
-  stations: state.stations,
   removable: state.removable,
+  subscriptions: state.subscriptions,
   loaderror: (state.loaderror && (typeof state.loaderror === 'string')),
 });
 
@@ -126,7 +126,7 @@ const mapDispatchToProps = dispatch => ({
   play: item =>
     dispatch(play(item)),
   remove: (index, count) =>
-    dispatch(removeStation(index, count)),
+    dispatch(unsubscribeStation(index, count)),
   openPodcasts: () => {
     dispatch(replace('/player/podcasts'));
   },
@@ -135,4 +135,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Stations);
+)(Playlist);

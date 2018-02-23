@@ -41,7 +41,7 @@ export const source = (state = null, action) => {
   case 'onLoaded':
     return (state.ready)
       ? state : Object.assign({}, { ...state }, { ready: true });
-  case 'onRemoveStation':
+  case 'onUnsubscribeStation':
     return ((state && state.key) === action.item.key)
       ? null : state;
   default:

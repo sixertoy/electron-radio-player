@@ -16,9 +16,9 @@ class Podcasts extends React.PureComponent {
   }
 
   renderItem (podcast) {
-    const { stationskeys, subscribe, unsubscribe } = this.props;
+    const { subkeys, subscribe, unsubscribe } = this.props;
     const key = podcast.key || slugify(podcast.collectionName);
-    const issubscribed = stationskeys.includes(key);
+    const issubscribed = subkeys.includes(key);
     return (
       <button key={`podcast_key::${key}`}
         className="list-item button"
@@ -48,12 +48,12 @@ Podcasts.propTypes = {
   subscribe: PropTypes.func.isRequired,
   collection: PropTypes.array.isRequired,
   unsubscribe: PropTypes.func.isRequired,
-  stationskeys: PropTypes.array.isRequired,
+  subkeys: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
   collection: state.podcaster,
-  stationskeys: state.stationskeys,
+  subkeys: state.subkeys,
 });
 
 const mapDispatchToProps = dispatch => ({

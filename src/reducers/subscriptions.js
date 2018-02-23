@@ -47,7 +47,7 @@ const newRadio = props => ({
 
 // stocke les cles des radios et podcasts
 // pour faciliter la recherche dans les differents composants
-export const stationskeys = (state = [], action) => {
+export const subkeys = (state = [], action) => {
   let key = '';
   switch (action.type) {
   case 'onFormCommit':
@@ -66,7 +66,7 @@ export const stationskeys = (state = [], action) => {
 };
 
 // liste des radios et podcasts
-export const stations = (state = [], action) => {
+export const subscriptions = (state = [], action) => {
   switch (action.type) {
   case 'onFormCommit':
     return state.concat([newRadio(action.item)]);
@@ -74,12 +74,10 @@ export const stations = (state = [], action) => {
     return state.concat([newPodcast(action.podcast)]);
   // case 'onUnsubscribePodcast':
   //   return state.concat([newPodcast(action.podcast)]);
-  case 'onRemoveStation':
+  case 'onUnsubscribeStation':
     return state.filter(obj =>
       (obj.key !== action.item.key));
   default:
     return state;
   }
 };
-
-export default stations;
