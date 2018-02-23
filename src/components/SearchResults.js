@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { replace } from 'react-router-redux';
 
 // application
 import ListLayout from './hoc/ListLayout';
 import { slugify } from './../lib/slugify';
-import { subscribeToPodcast } from './../actions';
+import { openPodcaster } from './../actions';
 
 const renderItem = (artistname, count, clickHandler) => (
   <button key={slugify(artistname)}
@@ -29,24 +29,27 @@ const SearchResults = ({ items, ...props }) => (
       .map((key) => {
         const podcasts = items.podcasters[key];
         const count = podcasts.length;
-        return renderItem(key, count, () => (count > 1
-          ? () => {}
-          : props.subscribeToPodcast(podcasts[0])));
+        return renderItem(key, count, () =>
+          (props.openPodcaster(podcasts)));
       })) || [])}
   </ListLayout>
 );
 
 SearchResults.propTypes = {
   items: PropTypes.object.isRequired,
-  subscribeToPodcast: PropTypes.func.isRequired,
+  openPodcaster: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   items: state.searches,
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ subscribeToPodcast }, dispatch);
+const mapDispatchToProps = dispatch => ({
+  openPodcaster: (podcaster) => {
+    dispatch(openPodcaster(podcaster));
+    dispatch(replace('/player/podcasts'));
+  },
+});
 
 export default connect(
   mapStateToProps,

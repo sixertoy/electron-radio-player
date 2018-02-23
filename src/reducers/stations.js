@@ -18,7 +18,7 @@ const newPodcast = props => ({
   mtime: Date.now(),
   name: props.artistName,
   key: slugify(props.artistName),
-  channels: [{
+  collection: [{
     url: props.feedUrl,
     name: props.collectionName,
     key: slugify(props.collectionName),
@@ -56,6 +56,16 @@ export const stationskeys = (state = [], action) => {
   case 'onSubscribeToPodcast':
     key = slugify(action.podcast.artistName);
     return state.concat([key]);
+  default:
+    return state;
+  }
+};
+
+// liste des radios et podcasts
+export const podcaster = (state = {}, action) => {
+  switch (action.type) {
+  case 'onOpenPodcaster':
+    return action.collection;
   default:
     return state;
   }

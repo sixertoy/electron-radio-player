@@ -237,12 +237,12 @@ body.page-player.screen-searchresults #playlist-screen {
   bottom: 100%;
 }
 
-body.page-player.screen-create #create-screen,
-body.page-player.screen-podcasts #podcasts-screen {
+body.page-player.screen-create #create-screen {
   top: 0;
   bottom: var(--menubarHeight);
 }
 
+body.page-player.screen-podcasts #podcasts-screen,
 body.page-player.screen-searchresults #searchresults-screen {
   bottom: 0;
   top: var(--menubarHeight);
@@ -254,10 +254,12 @@ body.page-player.screen-searchresults #searchresults-screen {
 
 -------------------------------------------------- */
 
+body.page-player.screen-podcasts #menubar,
 body.page-player.screen-searchresults #menubar {
   top: 0;
 }
 
-body.page-player:not(.screen-searchresults) #menubar {
+body.page-player #menubar,
+body.page-player.screen-create #menubar {
   top: calc(100% - var(--menubarHeight));
 }

@@ -23,7 +23,7 @@ class AppComponent extends React.PureComponent {
 
   componentDidMount () {
     const { dispatch, pageslug, screenslug } = this.props;
-    if (pageslug !== 'page-player' && screenslug !== '') {
+    if (pageslug !== 'page-player' || screenslug !== '') {
       // fix back to main page on load/reload
       dispatch(replace('/player'));
     }

@@ -11,6 +11,7 @@ import {
 } from './player';
 import {
   stations,
+  podcaster,
   stationskeys,
 } from './stations';
 import {
@@ -46,6 +47,7 @@ export const reducers = combineReducers({
   searches,
   // radios & podcasts
   stations,
+  podcaster,
   stationskeys,
   // player
   muted,
