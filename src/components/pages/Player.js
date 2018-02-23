@@ -20,6 +20,8 @@ class PlayerWindow extends React.PureComponent {
   }
 
   componentWillReceiveProps ({ screenslug }) {
+    console.log('screenslug', screenslug);
+    console.log('this.state.screenslug', this.state.screenslug);
     if (screenslug !== this.state.screenslug) {
       this.setState(() => ({
         screens: [].concat([
@@ -36,6 +38,7 @@ class PlayerWindow extends React.PureComponent {
 
   render () {
     const { screens } = this.state;
+    console.log('screens', screens);
     return (
       <div id="page-player"
         className="app-page flex-rows">

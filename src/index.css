@@ -75,6 +75,12 @@ input[type="text"] {
   border-radius: 3px;
 }
 
+input[type="url"]::placeholder,
+input[type="text"]::placeholder {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* --------------------------------------------------
 
  CLASSES

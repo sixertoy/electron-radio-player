@@ -96,6 +96,10 @@ input[type="text"]:focus::placeholder {
 #menubar .removable.active { color: #FA603F; }
 #menubar .removable:hover.active { color: #FFF; }
 
+#search-form {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 /* --------------------------------------------------
 
  AUDIO COVER

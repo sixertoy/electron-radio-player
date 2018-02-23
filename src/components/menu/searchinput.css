@@ -1,9 +1,24 @@
-/*
 #search-form {
   flex: 1;
+  padding: 0;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: space-between;
 }
 
-#search-form label {
-  display: block;
+#search-form input {
+  background-color: transparent;
 }
-*/
+
+#search-form button {
+  padding: 0;
+  opacity: 1;
+  width: 32px;
+  padding-right: 10px;
+  transition: opacity 0.2s;
+}
+
+#search-form button:disabled {
+  opacity: 0.01;
+  cursor: default;
+}
