@@ -1,5 +1,6 @@
-export const removeStation = item => ({
+export const removeStation = (item, count) => ({
   item,
+  count,
   type: 'onRemoveStation',
 });
 

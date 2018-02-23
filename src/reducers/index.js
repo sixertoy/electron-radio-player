@@ -14,13 +14,14 @@ import {
   stationskeys,
 } from './stations';
 import {
-  term,
   form,
   searches,
 } from './forms';
 
 const removable = (state = false, action) => {
   switch (action.type) {
+  case 'onRemoveStation':
+    return (state && (action.count > 0));
   case 'onToggleRemovable':
     return !state;
   default:
@@ -41,10 +42,9 @@ export const reducers = combineReducers({
   isonline,
   removable,
   // search
-  term,
+  form,
   searches,
   // radios & podcasts
-  form,
   stations,
   stationskeys,
   // player

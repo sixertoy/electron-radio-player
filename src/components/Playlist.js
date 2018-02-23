@@ -58,7 +58,7 @@ class Stations extends React.PureComponent {
     const { remove } = this.props;
     this.setState(({ stations }) => ({
       stations: stations.filter((itm, idx) => (index !== idx)),
-    }), () => remove(item));
+    }), () => remove(item, this.state.stations.length));
   }
 
   renderItem (item, index) {
@@ -114,14 +114,19 @@ const mapStateToProps = state => ({
   paused: state.paused,
   loading: state.loading,
   stations: state.stations,
+  removable: state.removable,
   loaderror: (state.loaderror && (typeof state.loaderror === 'string')),
 });
 
 const mapDispatchToProps = dispatch => ({
-  pause: () => dispatch(pause()),
-  resume: () => dispatch(resume()),
-  play: item => dispatch(play(item)),
-  remove: index => dispatch(removeStation(index)),
+  pause: () =>
+    dispatch(pause()),
+  resume: () =>
+    dispatch(resume()),
+  play: item =>
+    dispatch(play(item)),
+  remove: (index, count) =>
+    dispatch(removeStation(index, count)),
   openCollection: () => {
     dispatch(replace('/player/podcasts'));
   },
