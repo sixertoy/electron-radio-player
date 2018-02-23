@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
 
 // application
 import { slugify } from './../../lib/slugify';
@@ -15,28 +16,17 @@ class PlayerWindow extends React.PureComponent {
 
   constructor (props) {
     super(props);
-    const { screenslug } = props;
-    this.state = { screens: [], screenslug };
+    this.state = { screenslug: props.screenslug };
   }
 
   componentWillReceiveProps ({ screenslug }) {
-    console.log('screenslug', screenslug);
     if (screenslug !== this.state.screenslug) {
-      this.setState(() => ({
-        screens: [].concat([
-          screenslug === 'screen-podcasts'
-            && { id: 'podcasts-screen', component: <Podcasts /> },
-          screenslug === 'screen-searchresults'
-            && { id: 'searchresults-screen', component: <SearchResults /> },
-          screenslug === 'screen-create'
-            && { id: 'create-screen', component: <StationForm /> },
-        ]).filter(val => val),
-      }));
+      this.setState({ screenslug });
     }
   }
 
   render () {
-    const { screens } = this.state;
+    const { screenslug } = this.state;
     return (
       <div id="page-player"
         className="app-page flex-rows">
@@ -45,10 +35,13 @@ class PlayerWindow extends React.PureComponent {
           <div id="playlist-screen" className="page-screen">
             <Playlist />
           </div>
-          {screens && screens.map(obj =>
-            (<div id={obj.id}
-              key={obj.id}
-              className="page-screen">{obj.component}</div>))}
+          <div id={screenslug} className="page-screen">
+            <Switch>
+              <Route exact path="/player/podcasts" component={Podcasts} />
+              <Route exact path="/player/searchresults" component={SearchResults} />
+              <Route exact path="/player/create" component={StationForm} />
+            </Switch>
+          </div>
           <MenuBar />
         </div>
       </div>

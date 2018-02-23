@@ -223,27 +223,27 @@ body.page-preferences #page-player {
 
 -------------------------------------------------- */
 
-body.page-player #create-screen,
-body.page-player #podcasts-screen,
-body.page-player #searchresults-screen {
+body.page-player #screen-create,
+body.page-player #screen-podcasts,
+body.page-player #screen-searchresults {
   top: 100%;
   bottom: var(--menubarHeight);
 }
 
-body.page-player.screen-create #playlist-screen,
-body.page-player.screen-podcasts #playlist-screen,
-body.page-player.screen-searchresults #playlist-screen {
+body.page-player.screen-create #screen-playlist,
+body.page-player.screen-podcasts #screen-playlist,
+body.page-player.screen-searchresults #screen-playlist {
   top: calc(-100% + var(--menubarHeight));
   bottom: 100%;
 }
 
-body.page-player.screen-create #create-screen {
+body.page-player.screen-create #screen-create {
   top: 0;
   bottom: var(--menubarHeight);
 }
 
-body.page-player.screen-podcasts #podcasts-screen,
-body.page-player.screen-searchresults #searchresults-screen {
+body.page-player.screen-podcasts #screen-podcasts,
+body.page-player.screen-searchresults #screen-searchresults {
   bottom: 0;
   top: var(--menubarHeight);
 }

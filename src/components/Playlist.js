@@ -48,9 +48,9 @@ class Stations extends React.PureComponent {
   }
 
   podcastClick (index, item) {
-    const { openPodcaster, loading } = this.props;
+    const { openPodcasts, loading } = this.props;
     if (loading) return;
-    openPodcaster(item);
+    openPodcasts(item);
   }
 
   removeItem (index) {
@@ -107,7 +107,7 @@ Stations.propTypes = {
   pause: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
   resume: PropTypes.func.isRequired,
-  openPodcaster: PropTypes.func.isRequired,
+  openPodcasts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -127,7 +127,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(play(item)),
   remove: (index, count) =>
     dispatch(removeStation(index, count)),
-  openPodcaster: () => {
+  openPodcasts: () => {
     dispatch(replace('/player/podcasts'));
   },
 });

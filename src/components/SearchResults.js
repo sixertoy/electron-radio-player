@@ -6,7 +6,6 @@ import { replace } from 'react-router-redux';
 // application
 import ListLayout from './hoc/ListLayout';
 import { slugify } from './../lib/slugify';
-import { openPodcaster } from './../actions';
 
 const renderItem = (artistname, count, clickHandler) => (
   <button key={slugify(artistname)}
@@ -30,14 +29,14 @@ const SearchResults = ({ items, ...props }) => (
         const podcasts = items.podcasters[key];
         const count = podcasts.length;
         return renderItem(key, count, () =>
-          (props.openPodcaster(podcasts)));
+          (props.openPodcasts(podcasts)));
       })) || [])}
   </ListLayout>
 );
 
 SearchResults.propTypes = {
   items: PropTypes.object.isRequired,
-  openPodcaster: PropTypes.func.isRequired,
+  openPodcasts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -45,8 +44,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  openPodcaster: (podcaster) => {
-    dispatch(openPodcaster(podcaster));
+  openPodcasts: (podcaster) => {
+    // dispatch(openPodcasts(podcaster));
     dispatch(replace('/player/podcasts'));
   },
 });

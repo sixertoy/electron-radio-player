@@ -21,11 +21,12 @@ class SearchInput extends React.PureComponent {
   }
 
   clearTerm () {
-    this.setState({ term: '' });
+    const { closeSearch } = this.props;
+    this.setState({ term: '' }, () => closeSearch());
   }
 
   inputChange (evt) {
-    const term = ((evt && evt.target.value) || '').trim();
+    const term = ((evt && evt.target.value) || '');
     if ((term !== '') && (term === this.state.term)) return;
     this.setState(() => ({ term }));
   }
@@ -85,11 +86,11 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   createStation: (term, type) => {
     // http://feeds.soundcloud.com/users/soundcloud:users:287468270/sounds.rss
-    dispatch(formCreate({ url: term, type }));
+    dispatch(formCreate({ url: term.trim(), type }));
     dispatch(replace('/player/create'));
   },
   sendSearch: (term) => {
-    dispatch(searchPodcasters(term));
+    dispatch(searchPodcasters(term.trim()));
     dispatch(replace('/player/searchresults'));
   },
   closeSearch: () => {

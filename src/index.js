@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect, Provider } from 'react-redux';
 import createHistory from 'history/createHashHistory';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter, replace } from 'react-router-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
@@ -42,8 +43,11 @@ class AppComponent extends React.PureComponent {
           <div className="overlay" />
         </div>
         <div id="application-container">
-          {pageslug === 'page-player' ? <Player /> : null}
-          {pageslug === 'page-preferences' ? <Preferences /> : null}
+          <Switch>
+            <Route path="/player" component={Player} />
+            <Route exact path="/preferences" component={Preferences} />
+            <Redirect from="/" to="/player" />
+          </Switch>
         </div>
       </div>
     );

@@ -4,12 +4,12 @@ export const removeStation = (item, count) => ({
   type: 'onRemoveStation',
 });
 
-export const openPodcaster = collection => ({
-  collection,
-  type: 'onOpenPodcaster',
+export const subscribePodcast = podcast => ({
+  podcast,
+  type: 'onSubscribePodcast',
 });
 
-export const subscribeToPodcast = podcast => ({
+export const unsubscribePodcast = podcast => ({
   podcast,
-  type: 'onSubscribeToPodcast',
+  type: 'onUnubscribePodcast',
 });

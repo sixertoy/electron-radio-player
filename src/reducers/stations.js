@@ -53,19 +53,13 @@ export const stationskeys = (state = [], action) => {
   case 'onFormCommit':
     key = slugify(action.item.name);
     return state.concat([key]);
-  case 'onSubscribeToPodcast':
-    key = slugify(action.podcast.artistName);
-    return state.concat([key]);
-  default:
-    return state;
-  }
-};
-
-// liste des radios et podcasts
-export const podcaster = (state = {}, action) => {
-  switch (action.type) {
-  case 'onOpenPodcaster':
-    return action.collection;
+  case 'onSubscribePodcast':
+    key = slugify(action.podcast.collectionName);
+    return !state.includes(key) ? state
+      : state.concat([key]);
+  // case 'onUnsubscribePodcast':
+  //   key = slugify(action.podcast.artistName);
+  //   return state.concat([key]);
   default:
     return state;
   }
@@ -76,8 +70,10 @@ export const stations = (state = [], action) => {
   switch (action.type) {
   case 'onFormCommit':
     return state.concat([newRadio(action.item)]);
-  case 'onSubscribeToPodcast':
+  case 'onSubscribePodcast':
     return state.concat([newPodcast(action.podcast)]);
+  // case 'onUnsubscribePodcast':
+  //   return state.concat([newPodcast(action.podcast)]);
   case 'onRemoveStation':
     return state.filter(obj =>
       (obj.key !== action.item.key));
