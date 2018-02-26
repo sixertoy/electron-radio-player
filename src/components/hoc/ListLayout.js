@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Scrollbars } from 'react-custom-scrollbars';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 // application
 import './listlayout.css';
@@ -14,17 +14,17 @@ const ListLayout = ({
     autoHide
     autoHideTimeout={0}
     className="scrollbox-list">
-    <CSSTransitionGroup component="div"
-      transitionEnterTimeout={500}
-      transitionLeaveTimeout={300}
-      transitionName="animated-list-item">
+    <TransitionGroup component="div">
       {children && children.map(child => (
-        <div key={`scrollbox-list-item-${child.key}`}
-          className="scrollbox-list-item">
-          {child}
-        </div>
+        <CSSTransition timeout={{ enter: 0, exit: 0 }}
+          classNames="animated-list-item"
+          key={`scrollbox-list-item-${child.key}`}>
+          <div className="scrollbox-list-item">
+            {child}
+          </div>
+        </CSSTransition>
       ))}
-    </CSSTransitionGroup>
+    </TransitionGroup>
   </Scrollbars>
 );
 

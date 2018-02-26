@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { replace } from 'react-router-redux';
+import { push, replace } from 'react-router-redux';
 
 // application
 import './searchinput.css';
+import { slugify } from './../../lib/slugify';
 import { isRadio, isPodcast } from './../../lib/isurl';
-import { searchPodcasters, formCreate } from './../../actions';
+import { formCreate, searchFor } from './../../actions';
 
 const ENTER_CHAR_CODE = 13;
 
@@ -28,27 +29,26 @@ class SearchInput extends React.PureComponent {
   inputChange (evt) {
     const term = ((evt && evt.target.value) || '');
     if ((term !== '') && (term === this.state.term)) return;
-    this.setState(() => ({ term }));
+    this.setState(() => ({ term }), () =>
+      this.props.sendTerm(term));
   }
 
   keyPressed (evt) {
     const { term } = this.state;
-    const { routepath } = this.props;
-    if (evt.charCode !== ENTER_CHAR_CODE) return;
+    const { autorefresh } = this.props;
+    if (evt.charCode !== ENTER_CHAR_CODE || autorefresh) return;
     const ispodcast = isPodcast(term);
     if (ispodcast || isRadio(term)) {
       const type = ispodcast ? 'podcast' : 'radio';
       this.props.createStation(term, type);
-    } else if (term !== '') {
-      this.props.sendSearch(term);
-    } else if (routepath !== '/player') {
-      this.props.closeSearch();
+    } else {
+      this.props.sendSearch();
     }
   }
 
   render () {
     const { term } = this.state;
-    const { routepath } = this.props;
+    const { disabled } = this.props;
     return (
       <div id="search-form"
         className="form flex-columns">
@@ -57,9 +57,9 @@ class SearchInput extends React.PureComponent {
             id="searchfield"
             name="searchfield"
             value={term}
+            disabled={disabled}
             onChange={this.inputChange}
             onKeyPress={this.keyPressed}
-            disabled={routepath === '/player/create'}
             placeholder="Search for podcasters, radios" />
         </label>
         <button className="button"
@@ -73,25 +73,38 @@ class SearchInput extends React.PureComponent {
 }
 
 SearchInput.propTypes = {
+  sendTerm: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
   sendSearch: PropTypes.func.isRequired,
-  routepath: PropTypes.string.isRequired,
+  autorefresh: PropTypes.bool.isRequired,
   closeSearch: PropTypes.func.isRequired,
   createStation: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  routepath: state.router.location.pathname,
-});
+const mapStateToProps = (state) => {
+  const { pathname } = state.router.location;
+  const autorefresh = (pathname === '/player/searchresults');
+  const disabled = (
+    pathname === '/player/create'
+    || pathname === '/player/podcasts'
+  );
+  return ({
+    disabled,
+    autorefresh,
+  });
+};
 
 const mapDispatchToProps = dispatch => ({
   createStation: (term, type) => {
     // http://feeds.soundcloud.com/users/soundcloud:users:287468270/sounds.rss
     dispatch(formCreate({ url: term.trim(), type }));
-    dispatch(replace('/player/create'));
+    dispatch(push('/player/create'));
   },
-  sendSearch: (term) => {
-    dispatch(searchPodcasters(term.trim()));
-    dispatch(replace('/player/searchresults'));
+  sendTerm: (term) => {
+    dispatch(searchFor(term));
+  },
+  sendSearch: () => {
+    dispatch(push('/player/searchresults'));
   },
   closeSearch: () => {
     dispatch(replace('/player'));

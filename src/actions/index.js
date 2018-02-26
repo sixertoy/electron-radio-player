@@ -2,9 +2,10 @@ export * from './form';
 export * from './search';
 export * from './player';
 export * from './volume';
-export * from './subscriptions';
+export * from './stations';
+export * from './podcasts';
 
-export * from './services/searchPodcasters';
+export * from './services/searchPodcasts';
 export * from './services/searchAuthorPodcasts';
 
 export const networkStatus = isonline => ({

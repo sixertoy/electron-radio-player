@@ -1,3 +1,8 @@
+export const searchFor = term => ({
+  term,
+  type: 'onSearchFor',
+});
+
 export const clearSearch = () => ({
   type: 'onClearSearch',
 });

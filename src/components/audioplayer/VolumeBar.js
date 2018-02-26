@@ -23,6 +23,9 @@ class VolumeBar extends React.PureComponent {
   }
 
   componentWillUnmount () {
+    if (this.timer) clearTimeout(this.timer);
+    this.timer = null;
+    this.volumebar = null;
     window.removeEventListener('resize', this.windowResize);
   }
 

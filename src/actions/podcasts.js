@@ -1,7 +1,6 @@
-export const unsubscribeStation = (item, count) => ({
-  item,
-  count,
-  type: 'onUnsubscribeStation',
+export const openPodcasts = podcasts => ({
+  podcasts,
+  type: 'onOpenPodcasts',
 });
 
 export const subscribePodcast = podcast => ({

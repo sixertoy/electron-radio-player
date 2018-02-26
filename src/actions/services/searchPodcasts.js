@@ -1,10 +1,9 @@
-import { groupby } from './../../lib/groupby';
 import { searchQuery } from './../../lib/searchquery';
 import { searching, searchComplete, searchError } from './../search';
 
 const ITUNES_BASE_URI = 'https://itunes.apple.com/search';
 
-export const searchPodcasters = (term, country = 'FR') => (dispatch) => {
+export const searchPodcasts = (term, country = 'FR') => (dispatch) => {
   dispatch(searching());
   // Podcasts URI
   const params = searchQuery({
@@ -21,10 +20,9 @@ export const searchPodcasters = (term, country = 'FR') => (dispatch) => {
   ])
     .then(resps => Promise.all(resps.map(resp => resp.json())))
     .then(([{ results }]) => {
-      const podcasters = groupby(results, 'artistName');
-      dispatch(searchComplete({ podcasters }));
+      dispatch(searchComplete(results));
     })
     .catch(err => dispatch(searchError(err)));
 };
 
-export default searchPodcasters;
+export default searchPodcasts;

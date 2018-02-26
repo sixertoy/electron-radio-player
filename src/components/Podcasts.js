@@ -16,9 +16,9 @@ class Podcasts extends React.PureComponent {
   }
 
   renderItem (podcast) {
-    const { subkeys, subscribe, unsubscribe } = this.props;
+    const { keys, subscribe, unsubscribe } = this.props;
     const key = podcast.key || slugify(podcast.collectionName);
-    const issubscribed = subkeys.includes(key);
+    const issubscribed = keys.includes(key);
     return (
       <button key={`podcast_key::${key}`}
         className="list-item button"
@@ -37,23 +37,25 @@ class Podcasts extends React.PureComponent {
   render () {
     const { collection } = this.props;
     return (
-      <ListLayout id="podcasts">
-        {(collection && collection.map(this.renderItem)) || []}
-      </ListLayout>
+      <div id="screen-podcasts" className="page-screen">
+        <ListLayout id="podcasts">
+          {(collection && collection.map(this.renderItem)) || []}
+        </ListLayout>
+      </div>
     );
   }
 }
 
 Podcasts.propTypes = {
+  keys: PropTypes.array.isRequired,
   subscribe: PropTypes.func.isRequired,
   collection: PropTypes.array.isRequired,
   unsubscribe: PropTypes.func.isRequired,
-  subkeys: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
-  collection: state.podcaster,
-  subkeys: state.subkeys,
+  keys: state.playlistkeys,
+  collection: state.podcasts,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import { Route } from 'react-router-dom';
 import { connect, Provider } from 'react-redux';
+import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createHashHistory';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import { ConnectedRouter, replace } from 'react-router-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 // application
@@ -20,42 +20,27 @@ import Preferences from './components/pages/Preferences';
  MAIN APPLICATION COMPONENT
 
 -------------------------------------------- */
-class AppComponent extends React.PureComponent {
-
-  componentDidMount () {
-    const { dispatch, pageslug, screenslug } = this.props;
-    if (pageslug !== 'page-player' || screenslug !== '') {
-      // fix back to main page on load/reload
-      dispatch(replace('/player'));
-    }
-  }
-
-  render () {
-    const { pageslug, screenslug } = this.props;
-    return (
-      <div id="application"
-        className="flex-rows"
-        style={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}>
-        <Helmet>
-          <body className={`${pageslug} ${screenslug}`} />
-        </Helmet>
-        <div id="application-header">
-          <div className="overlay" />
-        </div>
-        <div id="application-container">
-          <Switch>
-            <Route path="/player" component={Player} />
-            <Route exact path="/preferences" component={Preferences} />
-            <Redirect from="/" to="/player" />
-          </Switch>
-        </div>
-      </div>
-    );
-  }
-}
+const AppComponent = ({
+  pageslug,
+  screenslug,
+}) => (
+  <div id="application"
+    className="flex-rows"
+    style={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}>
+    <Helmet>
+      <body className={`${pageslug} ${screenslug}`} />
+    </Helmet>
+    <div id="application-header">
+      <div className="overlay" />
+    </div>
+    <div id="application-container">
+      <Route exct path="/player" component={Player} />
+      <Route exact path="/preferences" component={Preferences} />
+    </div>
+  </div>
+);
 
 AppComponent.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   pageslug: PropTypes.string.isRequired,
   screenslug: PropTypes.string.isRequired,
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { replace } from 'react-router-redux';
+import { push } from 'react-router-redux';
 
 // application
 import ListLayout from './hoc/ListLayout';
@@ -23,15 +23,15 @@ class Playlist extends React.PureComponent {
     this.podcastClick = this.podcastClick.bind(this);
     this.state = {
       selected: false,
-      items: [].concat(props.subscriptions),
+      items: [].concat(props.playlist),
     };
   }
 
-  componentWillReceiveProps ({ subscriptions }) {
-    if (subscriptions.length !== this.state.items.length) {
+  componentWillReceiveProps ({ playlist }) {
+    if (playlist.length !== this.state.items.length) {
       // update state from props
       // only if add/remove radios from another component
-      this.setState({ items: [].concat(subscriptions) });
+      this.setState({ items: [].concat(playlist) });
     }
   }
 
@@ -86,13 +86,15 @@ class Playlist extends React.PureComponent {
   render () {
     const { items } = this.state;
     return (
-      <ListLayout id="playlist">
-        {items && items.map((item, index) => (
-          <RemovableItem key={item.key}
-            removeHandler={() => this.removeItem(index)}
-            itemRenderer={() => this.renderItem(item, index)} />
-        ))}
-      </ListLayout>
+      <div id="screen-playlist" className="page-screen">
+        <ListLayout id="playlist">
+          {items && items.map((item, index) => (
+            <RemovableItem key={item.key}
+              removeHandler={() => this.removeItem(index)}
+              itemRenderer={() => this.renderItem(item, index)} />
+          ))}
+        </ListLayout>
+      </div>
     );
   }
 }
@@ -101,7 +103,7 @@ Playlist.propTypes = {
   paused: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
   loaderror: PropTypes.bool.isRequired,
-  subscriptions: PropTypes.array.isRequired,
+  playlist: PropTypes.array.isRequired,
   // actions
   play: PropTypes.func.isRequired,
   pause: PropTypes.func.isRequired,
@@ -113,8 +115,8 @@ Playlist.propTypes = {
 const mapStateToProps = state => ({
   paused: state.paused,
   loading: state.loading,
+  playlist: state.playlist,
   removable: state.removable,
-  subscriptions: state.subscriptions,
   loaderror: (state.loaderror && (typeof state.loaderror === 'string')),
 });
 
@@ -128,7 +130,7 @@ const mapDispatchToProps = dispatch => ({
   remove: (index, count) =>
     dispatch(unsubscribeStation(index, count)),
   openPodcasts: () => {
-    dispatch(replace('/player/podcasts'));
+    dispatch(push('/player/podcasts'));
   },
 });
 

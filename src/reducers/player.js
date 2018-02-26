@@ -42,6 +42,7 @@ export const source = (state = null, action) => {
     return (state.ready)
       ? state : Object.assign({}, { ...state }, { ready: true });
   case 'onUnsubscribeStation':
+  case 'onUnsubscribePodcast':
     return ((state && state.key) === action.item.key)
       ? null : state;
   default:

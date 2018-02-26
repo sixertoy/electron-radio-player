@@ -1,4 +1,4 @@
-import { replace } from 'react-router-redux';
+import { push } from 'react-router-redux';
 import { searchQuery } from './../../lib/searchquery';
 import { searching, searchComplete, searchError } from './../search';
 
@@ -26,7 +26,7 @@ export const searchAuthorPodcasts = (term, country = 'FR') => (dispatch) => {
       };
       // console.log('results', results);
       dispatch(searchComplete(results));
-      dispatch(replace('/player/searchresults'));
+      dispatch(push('/player/searchresults'));
     })
     .catch(err => dispatch(searchError(err)));
 };

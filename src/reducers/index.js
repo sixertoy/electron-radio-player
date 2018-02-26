@@ -10,13 +10,18 @@ import {
   loaderror,
 } from './player';
 import {
-  subkeys,
-  subscriptions,
-} from './subscriptions';
+  playlist,
+  playlistkeys,
+} from './playlist';
 import {
-  form,
-  searches,
-} from './forms';
+  episodes,
+  podcasts,
+} from './podcasts';
+import { form } from './form';
+import {
+  term,
+  results,
+} from './search';
 
 const removable = (state = false, action) => {
   switch (action.type) {
@@ -39,14 +44,17 @@ const isonline = (state = false, action) => {
 };
 
 export const reducers = combineReducers({
+  form,
   isonline,
   removable,
   // search
-  form,
-  searches,
+  term,
+  results,
   // radios & podcasts
-  subkeys,
-  subscriptions,
+  podcasts,
+  episodes,
+  playlist,
+  playlistkeys,
   // player
   muted,
   paused,

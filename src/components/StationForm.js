@@ -14,6 +14,11 @@ class StationForm extends React.PureComponent {
     this.state = { form: Object.assign({}, props.form) };
   }
 
+  componentWillMount () {
+    if (this.timer) clearTimeout(this.timer);
+    this.timer = null;
+  }
+
   inputChange ({ target }) {
     const { dispatch } = this.props;
     const { name, value } = target;
