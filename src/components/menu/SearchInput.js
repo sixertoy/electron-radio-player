@@ -5,7 +5,6 @@ import { push, replace } from 'react-router-redux';
 
 // application
 import './searchinput.css';
-import { slugify } from './../../lib/slugify';
 import { isRadio, isPodcast } from './../../lib/isurl';
 import { formCreate, searchFor } from './../../actions';
 

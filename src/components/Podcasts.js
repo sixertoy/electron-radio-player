@@ -59,8 +59,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  subscribe: podcast => dispatch(subscribePodcast(podcast)),
-  unsubscribe: podcast => dispatch(unsubscribePodcast(podcast)),
+  subscribe: podcast =>
+    dispatch(subscribePodcast(podcast)),
+  unsubscribe: podcast =>
+    dispatch(unsubscribePodcast(podcast)),
 });
 
 export default connect(
