@@ -13,7 +13,7 @@ const AudioPlayer = ({
   volume,
   paused,
   source,
-  loading,
+  buffering,
 }) => (
   <div id="audio-player">
     {source && (
@@ -23,13 +23,13 @@ const AudioPlayer = ({
         volume={volume} />)}
     <TrackCover paused={paused}
       muted={muted}
-      loading={loading}
+      buffering={buffering}
       cover={(source && source.cover)} />
     <AudioControls muted={muted}
       source={source}
       volume={volume}
       paused={paused}
-      loading={loading} />
+      buffering={buffering} />
   </div>
 );
 
@@ -41,15 +41,15 @@ AudioPlayer.propTypes = {
   source: PropTypes.object,
   muted: PropTypes.bool.isRequired,
   paused: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
   volume: PropTypes.number.isRequired,
+  buffering: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
   muted: state.muted,
   paused: state.paused,
   source: state.source,
-  loading: state.loading,
+  buffering: state.buffering,
   volume: (state.volume / 100),
 });
 

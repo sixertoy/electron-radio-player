@@ -6,8 +6,8 @@ import {
   paused,
   volume,
   source,
-  loading,
-  loaderror,
+  buffering,
+  buffererror,
 } from './player';
 import {
   playlist,
@@ -25,8 +25,6 @@ import {
 
 const removable = (state = false, action) => {
   switch (action.type) {
-  case 'onUnsubscribeStation':
-    return (state && (action.count > 0));
   case 'onToggleRemovable':
     return !state;
   default:
@@ -60,8 +58,8 @@ export const reducers = combineReducers({
   paused,
   volume,
   source,
-  loading,
-  loaderror,
+  buffering,
+  buffererror,
   router: routerReducer,
 });
 

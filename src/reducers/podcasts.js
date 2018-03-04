@@ -2,10 +2,6 @@
 // from one author (search or playlist)
 export const podcasts = (state = [], action) => {
   switch (action.type) {
-  case 'onClosePodcasts':
-    return [];
-  case 'onOpenPodcasts':
-    return [].concat(action.podcasts);
   default:
     return state;
   }

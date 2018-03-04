@@ -1,10 +1,13 @@
-export const searchFor = term => ({
+import { replace } from 'react-router-redux';
+import { formCreate } from './form';
+
+export const inputChange = term => ({
   term,
-  type: 'onSearchFor',
+  type: 'onInputChange',
 });
 
-export const clearSearch = () => ({
-  type: 'onClearSearch',
+export const searchClear = () => ({
+  type: 'onSearchClear',
 });
 
 export const searching = () => ({
@@ -19,6 +22,20 @@ export const searchComplete = results => ({
   results,
   type: 'onSearchComplete',
 });
+
+export const submitInput = () => (dispatch, getState) => {
+  const { term, router } = getState();
+  dispatch(formCreate(term));
+  if (router.location === '/player/create') return;
+  dispatch(replace('/player/create'));
+};
+
+export const clearSearch = () => (dispatch, getState) => {
+  const { router } = getState();
+  dispatch(searchClear());
+  if (router.location === '/player') return;
+  dispatch(replace('/player'));
+};
 
 /*
 // Radios URI

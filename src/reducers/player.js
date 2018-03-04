@@ -1,7 +1,7 @@
 export const paused = (state = true, action) => {
   switch (action.type) {
   case 'onPause':
-  case 'onLoadError':
+  case 'onBufferError':
     return true;
   case 'onPlay':
   case 'onResume':
@@ -11,23 +11,23 @@ export const paused = (state = true, action) => {
   }
 };
 
-export const loaderror = (state = false, action) => {
+export const buffererror = (state = false, action) => {
   switch (action.type) {
-  case 'onLoading':
+  case 'onBuffering':
     return false;
-  case 'onLoadError':
+  case 'onBufferError':
     return action.message;
   default:
     return state;
   }
 };
 
-export const loading = (state = false, action) => {
+export const buffering = (state = false, action) => {
   switch (action.type) {
-  case 'onLoading':
+  case 'onBuffering':
     return true;
-  case 'onLoaded':
-  case 'onLoadError':
+  case 'onBuffered':
+  case 'onBufferError':
     return false;
   default:
     return state;
@@ -38,13 +38,9 @@ export const source = (state = null, action) => {
   switch (action.type) {
   case 'onPlay':
     return Object.assign({}, { ...action.source }, { ready: false });
-  case 'onLoaded':
+  case 'onBuffered':
     return (state.ready)
       ? state : Object.assign({}, { ...state }, { ready: true });
-  case 'onUnsubscribeStation':
-  case 'onUnsubscribePodcast':
-    return ((state && state.key) === action.item.key)
-      ? null : state;
   default:
     return state;
   }

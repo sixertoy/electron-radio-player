@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 // application
-import { loading, loaded, loadError } from './../../actions';
+import { buffering, buffered, bufferError } from './../../actions';
 
 /* eslint-disable */
 const debugAudioEventListener = (evt) => {
@@ -22,6 +23,10 @@ class AudioWrapper extends React.Component {
     this.onAudioLoaded = this.onAudioLoaded.bind(this);
     this.onAudioLoadError = this.onAudioLoadError.bind(this);
     this.onAudioStartLoading = this.onAudioStartLoading.bind(this);
+    this.actions = bindActionCreators(
+      { buffering, buffered, bufferError },
+      props.dispatch,
+    );
   }
 
   componentDidMount () {
@@ -32,12 +37,12 @@ class AudioWrapper extends React.Component {
     // this.audioref.addEventListener('seeking', debugAudioEventListener);
     // this.audioref.addEventListener('suspend', debugAudioEventListener);
     // this.audioref.addEventListener('progress', debugAudioEventListener);
-    // this.audioref.addEventListener('loadeddata', debugAudioEventListener);
+    // this.audioref.addEventListener('buffereddata', debugAudioEventListener);
     // this.audioref.addEventListener('ratechange', debugAudioEventListener);
     // this.audioref.addEventListener('timeupdate', debugAudioEventListener);
     // this.audioref.addEventListener('interruptend', debugAudioEventListener);
     // this.audioref.addEventListener('interruptbegin', debugAudioEventListener);
-    // this.audioref.addEventListener('loadedmetadata', debugAudioEventListener);
+    // this.audioref.addEventListener('bufferedmetadata', debugAudioEventListener);
     // this.audioref.addEventListener('durationchange', debugAudioEventListener);
   }
 
@@ -64,7 +69,6 @@ class AudioWrapper extends React.Component {
   }
 
   onAudioLoadError () {
-    const { dispatch } = this.props;
     let error = false;
     const code = this.audioref.networkState;
     switch (code) {
@@ -81,19 +85,18 @@ class AudioWrapper extends React.Component {
     default:
       error = 'error occurred when downloading';
     }
-    dispatch(loadError(error));
+    this.actions.bufferError(error);
   }
 
   onAudioLoaded () {
-    const { dispatch } = this.props;
-    dispatch(loaded());
-    this.audioref.play(); // autoplay when loaded
+    this.actions.buffered();
+    this.audioref.play(); // autoplay when buffered
   }
 
   onAudioStartLoading () {
-    const { url, dispatch } = this.props;
+    const { url } = this.props;
     if (!url) return;
-    dispatch(loading());
+    this.actions.buffering();
   }
 
   render () {

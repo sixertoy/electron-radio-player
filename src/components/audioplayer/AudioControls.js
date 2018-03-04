@@ -13,18 +13,18 @@ const AudioControls = ({
   source,
   volume,
   paused,
-  loading,
   openURL,
+  buffering,
   toggleMute,
 }) => (
   <div id="audio-controls"
     className="flex-columns">
     <Equalizer muted={muted}
       clickHandler={() => toggleMute(!muted)}
-      active={((source && source.ready) && !loading && !paused) || false} />
+      active={((source && source.ready) && !buffering && !paused) || false} />
     <VolumeBar volume={volume}
       muted={muted}
-      loading={loading}
+      buffering={buffering}
       active={(source && !paused)} />
     <button className="button twitter"
       disabled={(!source || source.key.indexOf('@') < 0)}
@@ -47,9 +47,9 @@ AudioControls.propTypes = {
   source: PropTypes.object,
   muted: PropTypes.bool.isRequired,
   paused: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
-  volume: PropTypes.number.isRequired,
   openURL: PropTypes.func.isRequired,
+  volume: PropTypes.number.isRequired,
+  buffering: PropTypes.bool.isRequired,
   toggleMute: PropTypes.func.isRequired,
 };
 

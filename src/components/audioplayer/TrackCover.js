@@ -17,11 +17,11 @@ const Cover = ({
   muted,
   cover,
   paused,
-  loading,
   dispatch,
+  buffering,
 }) => {
   let status = (paused ? 'pause' : 'play');
-  if (loading) status = 'spin6 animate-spin';
+  if (buffering) status = 'spin6 animate-spin';
   const custom = Object.assign({}, coverColors, (!cover ? {} : { ...cover }));
   return (
     <div id="track-cover"
@@ -35,7 +35,7 @@ const Cover = ({
       </div>
       {!muted && cover && (
         <button className="button cover-button"
-          disabled={loading}
+          disabled={buffering}
           onClick={() => dispatch(paused ? resume() : pause())}>
           <i className={`icon icon-${status}`} />
         </button>
@@ -58,8 +58,8 @@ Cover.propTypes = {
   cover: PropTypes.object,
   muted: PropTypes.bool.isRequired,
   paused: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
+  buffering: PropTypes.bool.isRequired,
 };
 
 export default connect()(Cover);

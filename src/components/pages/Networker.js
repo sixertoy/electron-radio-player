@@ -78,15 +78,11 @@ Networker.propTypes = {
   statusChanged: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  loading: state.loading,
-});
-
 const mapStateToDispatch = dispatch => ({
   statusChanged: isonline => dispatch(networkStatus(isonline)),
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapStateToDispatch,
 )(Networker);

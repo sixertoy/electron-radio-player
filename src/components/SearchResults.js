@@ -32,7 +32,7 @@ class SearchResults extends React.PureComponent {
   }
 
   componentWillReceiveProps (nextprops) {
-    // FIXME cancel request on loading
+    // FIXME cancel request on searching
     if (this.timer) clearTimeout(this.timer);
     const term = (nextprops.term.trim() !== ''
       && (nextprops.term !== this.state.term)
@@ -93,7 +93,6 @@ SearchResults.propTypes = {
 
 const mapStateToProps = state => ({
   term: state.term,
-  loading: state.loading,
   results: getSearchResults(state),
 });
 

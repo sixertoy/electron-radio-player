@@ -1,6 +1,8 @@
 export const term = (state = '', action) => {
   switch (action.type) {
-  case 'onSearchFor':
+  case 'onSearchClear':
+    return '';
+  case 'onInputChange':
     return action.term;
   default:
     return state;

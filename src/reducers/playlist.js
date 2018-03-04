@@ -1,3 +1,4 @@
+/*
 import { slugify } from './../lib/slugify';
 
 const defaults = {
@@ -30,36 +31,12 @@ const newPodcast = props => ({
     },
   }],
 });
-
-const newRadio = props => ({
-  type: 'radio',
-  url: props.url,
-  name: props.name,
-  mtime: Date.now(),
-  website: props.website || '',
-  key: props.twiter || slugify(props.name),
-  cover: {
-    logo: createArtwork(props),
-    color: props.colors || defaults.color,
-    background: props.background || defaults.background,
-  },
-});
+*/
 
 // stocke les cles des radios et podcasts
 // pour faciliter la recherche dans les differents composants
 export const playlistkeys = (state = [], action) => {
-  let key = '';
   switch (action.type) {
-  // case 'onFormCommit':
-  //   key = slugify(action.item.name);
-  //   return state.concat([key]);
-  case 'onSubscribePodcast':
-    key = slugify(action.podcast.collectionName);
-    return !state.includes(key) ? state
-      : state.concat([key]);
-  // case 'onUnsubscribePodcast':
-  //   key = slugify(action.podcast.artistName);
-  //   return state.concat([key]);
   default:
     return state;
   }
@@ -68,15 +45,6 @@ export const playlistkeys = (state = [], action) => {
 // liste des radios et podcasts
 export const playlist = (state = [], action) => {
   switch (action.type) {
-  // case 'onFormCommit':
-  //   return state.concat([newRadio(action.item)]);
-  case 'onSubscribePodcast':
-    return state.concat([newPodcast(action.podcast)]);
-  // case 'onUnsubscribePodcast':
-  //   return state.concat([newPodcast(action.podcast)]);
-  case 'onUnsubscribeStation':
-    return state.filter(obj =>
-      (obj.key !== action.item.key));
   default:
     return state;
   }

@@ -11,15 +11,15 @@ export const resume = () => ({
   type: 'onResume',
 });
 
-export const loaded = () => ({
-  type: 'onLoaded',
+export const buffered = () => ({
+  type: 'onBuffered',
 });
 
-export const loading = () => ({
-  type: 'onLoading',
+export const buffering = () => ({
+  type: 'onBuffering',
 });
 
-export const loadError = message => ({
+export const bufferError = message => ({
   message,
-  type: 'onLoadError',
+  type: 'onBufferError',
 });

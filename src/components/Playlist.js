@@ -37,8 +37,8 @@ class Playlist extends React.PureComponent {
 
   radioClick (index, item) {
     const { selected } = this.state;
-    const { paused, loading } = this.props;
-    if (loading) return;
+    const { paused, buffering } = this.props;
+    if (buffering) return;
     this.setState({ selected: index }, () => {
       const isplayed = (selected === index);
       if (!isplayed) this.props.play(item);
@@ -48,8 +48,8 @@ class Playlist extends React.PureComponent {
   }
 
   podcastClick (index, item) {
-    const { openPodcasts, loading } = this.props;
-    if (loading) return;
+    const { openPodcasts, buffering } = this.props;
+    if (buffering) return;
     openPodcasts(item);
   }
 
@@ -62,9 +62,9 @@ class Playlist extends React.PureComponent {
   }
 
   renderItem (item, index) {
-    const { loading, loaderror } = this.props;
-    const isactive = (index === this.state.selected) && !loaderror;
-    const isloading = (isactive && loading);
+    const { buffering, buffererror } = this.props;
+    const isactive = (index === this.state.selected) && !buffererror;
+    const isbuffering = (isactive && buffering);
     const clickHandler = (item.type === 'radio')
       ? () => this.radioClick(index, item)
       : () => this.podcastClick(index, item);
@@ -72,9 +72,9 @@ class Playlist extends React.PureComponent {
       <button key={item.key}
         className={`list-item button ${isactive ? 'active' : ''}`}
         onClick={clickHandler}>
-        {!isactive && !isloading && <i className="icon icon-play" />}
-        {isactive && !isloading && <i className="icon icon-pause" />}
-        {isloading && <i className="icon icon-spin6 animate-spin" />}
+        {!isactive && !isbuffering && <i className="icon icon-play" />}
+        {isactive && !isbuffering && <i className="icon icon-pause" />}
+        {isbuffering && <i className="icon icon-spin6 animate-spin" />}
         <span className="name">
           <span>{item.name}</span>
         </span>
@@ -101,8 +101,8 @@ class Playlist extends React.PureComponent {
 
 Playlist.propTypes = {
   paused: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
-  loaderror: PropTypes.bool.isRequired,
+  buffering: PropTypes.bool.isRequired,
+  buffererror: PropTypes.bool.isRequired,
   playlist: PropTypes.array.isRequired,
   // actions
   play: PropTypes.func.isRequired,
@@ -114,10 +114,10 @@ Playlist.propTypes = {
 
 const mapStateToProps = state => ({
   paused: state.paused,
-  loading: state.loading,
+  buffering: state.buffering,
   playlist: state.playlist,
   removable: state.removable,
-  loaderror: (state.loaderror && (typeof state.loaderror === 'string')),
+  buffererror: (state.buffererror && (typeof state.buffererror === 'string')),
 });
 
 const mapDispatchToProps = dispatch => ({
