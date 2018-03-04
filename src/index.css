@@ -47,6 +47,10 @@ button {
   cursor: pointer;
 }
 
+:disabled {
+  cursor: default;
+}
+
 label {
   width: 100%;
   display: block;
@@ -228,7 +232,6 @@ body.page-preferences #page-player {
   top: var(--menubarHeight);
 }
 
-/*
 body.page-player #screen-create,
 body.page-player #screen-podcasts,
 body.page-player #screen-searchresults {
@@ -253,7 +256,6 @@ body.page-player.screen-searchresults #screen-searchresults {
   bottom: 0;
   top: var(--menubarHeight);
 }
-*/
 
 /* --------------------------------------------------
 

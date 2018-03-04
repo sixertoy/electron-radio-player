@@ -12,7 +12,6 @@ button:hover {
 }
 
 button:disabled {
-  cursor: default;
   color: rgba(157, 165, 181, 0.15);
 }
 
@@ -31,6 +30,11 @@ input[type="text"]::placeholder {
 input[type="url"]:focus::placeholder,
 input[type="text"]:focus::placeholder {
   color: rgba(255, 255, 255, 0.1);
+}
+
+input[type="url"]:disabled,
+input[type="text"]:disabled {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 /* --------------------------------------------------

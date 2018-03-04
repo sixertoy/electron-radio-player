@@ -18,9 +18,7 @@ const PlayerWindow = ({ location }) => (
     className="app-page flex-rows">
     <AudioPlayer />
     <div className="page-screens-container">
-      <div id="playlist-screen" className="page-screen">
-        <Playlist />
-      </div>
+      <Playlist />
       <section>
         <Switch location={location}>
           <Route path="/player/create"

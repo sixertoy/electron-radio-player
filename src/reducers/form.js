@@ -1,6 +1,7 @@
 export const form = (state = {}, action) => {
   switch (action.type) {
   case 'onFormCommit':
+  case 'onSearchClear':
     return {};
   case 'onFormUpdate':
     return Object.assign({}, state, action.item);

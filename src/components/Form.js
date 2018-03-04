@@ -43,6 +43,7 @@ class Form extends React.PureComponent {
 
   render () {
     const { form } = this.state;
+    console.log('form', form);
     return (
       <div id="createform"
         className="form">

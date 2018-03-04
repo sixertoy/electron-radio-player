@@ -34,7 +34,6 @@ class SearchInput extends React.PureComponent {
   }
 
   keyPressed (evt) {
-    // const { autorefresh } = this.props;
     if (evt.charCode !== ENTER_CHAR_CODE) return;
     this.actions.submitInput();
   }
@@ -69,18 +68,6 @@ class SearchInput extends React.PureComponent {
 SearchInput.propTypes = {
   disabled: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
-  // autorefresh: PropTypes.bool.isRequired,
-  // createStation: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => {
-  const { pathname } = state.router.location;
-  // const autorefresh = (pathname === '/player/searchresults');
-  const disabled = (pathname === '/player/create' || pathname === '/player/podcasts');
-  return ({
-    disabled,
-    // autorefresh,
-  });
 };
 
 /*
@@ -104,4 +91,4 @@ const mapDispatchToProps = dispatch => ({
 });
 */
 
-export default connect(mapStateToProps)(SearchInput);
+export default connect()(SearchInput);
