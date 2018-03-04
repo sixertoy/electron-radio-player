@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 
 // application
+import Form from './../Form';
 import MenuBar from './../MenuBar';
 // import Podcasts from './../Podcasts';
 import Playlist from './../Playlist';
-import StationForm from './../StationForm';
 import AudioPlayer from './../AudioPlayer';
 // import SearchResults from './../SearchResults';
 
@@ -24,7 +24,7 @@ const PlayerWindow = ({ location }) => (
       <section>
         <Switch location={location}>
           <Route path="/player/create"
-            component={StationForm} />
+            component={Form} />
           {/*
           <Route path="/player/podcasts"
             component={Podcasts} />

@@ -1,17 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 // application
-import { formUpdate } from './../actions';
+import { formUpdate, gohome } from './../actions';
 
-class StationForm extends React.PureComponent {
+class Form extends React.PureComponent {
 
   constructor (props) {
     super(props);
     this.timer = null;
     this.inputChange = this.inputChange.bind(this);
     this.state = { form: Object.assign({}, props.form) };
+    this.actions = bindActionCreators(
+      { formUpdate, gohome },
+      this.props.dispatch,
+    );
   }
 
   componentWillMount () {
@@ -19,14 +24,19 @@ class StationForm extends React.PureComponent {
     this.timer = null;
   }
 
+  componentDidMount () {
+    const { form } = this.state;
+    if (form && form.url) return;
+    this.actions.gohome();
+  }
+
   inputChange ({ target }) {
-    const { dispatch } = this.props;
     const { name, value } = target;
     this.setState(
       prev => ({ form: Object.assign({}, prev, { [name]: value }) }),
       () => {
         if (this.timer) clearTimeout(this.timer);
-        this.timer = setTimeout(() => dispatch(formUpdate(this.state.form)), 800);
+        this.timer = setTimeout(() => this.actions.formUpdate(this.state.form), 800);
       },
     );
   }
@@ -66,17 +76,18 @@ class StationForm extends React.PureComponent {
 
 }
 
-StationForm.defaultProps = {
+Form.defaultProps = {
   form: null,
 };
 
-StationForm.propTypes = {
+Form.propTypes = {
   form: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   form: state.form,
+  router: state.router,
 });
 
-export default connect(mapStateToProps)(StationForm);
+export default connect(mapStateToProps)(Form);

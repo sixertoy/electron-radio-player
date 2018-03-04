@@ -1,4 +1,5 @@
 export * from './form';
+export * from './routes';
 export * from './search';
 export * from './player';
 export * from './volume';

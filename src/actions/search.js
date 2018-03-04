@@ -1,5 +1,5 @@
-import { replace } from 'react-router-redux';
 import { formCreate } from './form';
+import { gohome, gocreate } from './routes';
 
 export const inputChange = term => ({
   term,
@@ -27,14 +27,14 @@ export const submitInput = () => (dispatch, getState) => {
   const { term, router } = getState();
   dispatch(formCreate(term));
   if (router.location === '/player/create') return;
-  dispatch(replace('/player/create'));
+  dispatch(gocreate());
 };
 
 export const clearSearch = () => (dispatch, getState) => {
   const { router } = getState();
   dispatch(searchClear());
   if (router.location === '/player') return;
-  dispatch(replace('/player'));
+  dispatch(gohome());
 };
 
 /*

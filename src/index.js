@@ -34,7 +34,7 @@ const AppComponent = ({
       <div className="overlay" />
     </div>
     <div id="application-container">
-      <Route exact path="/player" component={Player} />
+      <Route path="/player" component={Player} />
       <Route exact path="/preferences" component={Preferences} />
     </div>
   </div>
