@@ -44,7 +44,7 @@ class SearchInput extends React.PureComponent {
           <input type="text"
             id="searchfield"
             name="searchfield"
-            value={term || 'https://chai5she.cdn.dvmr.fr/fip-midfi.mp3?ID=radiofrance'}
+            value={term}
             disabled={disabled}
             onChange={this.inputChange}
             onKeyPress={this.keyPressed}

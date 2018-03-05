@@ -8,16 +8,12 @@ import SearchInput from './menu/SearchInput';
 import CommitButton from './menu/CommitButton';
 import RemovableButton from './menu/RemovableButton';
 
-const MenuBar = ({
-  ishome,
-  cancommit,
-}) => (
-  <div id="menubar"
-    className="flex-columns">
-    {(!ishome && !cancommit) && <BackButton />}
-    <SearchInput disabled={cancommit} />
+const MenuBar = ({ ishome, cancommit }) => (
+  <div id="menubar" className="flex-columns">
+    {!ishome && <BackButton />}
+    <SearchInput disabled={!ishome && cancommit} />
     {ishome && <RemovableButton />}
-    {(!ishome && cancommit) && <CommitButton />}
+    {!ishome && cancommit && <CommitButton />}
   </div>
 );
 
@@ -28,9 +24,9 @@ MenuBar.propTypes = {
 
 const mapStateToProps = ({ router, form }) => {
   const { pathname } = router.location;
-  const ishome = (pathname === '/player');
+  const ishome = pathname === '/player';
   const cancommit = Boolean(form && form.url);
-  return ({ ishome, cancommit });
+  return { ishome, cancommit };
 };
 
 export default connect(mapStateToProps)(MenuBar);
