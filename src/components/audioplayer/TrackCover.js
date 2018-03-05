@@ -14,26 +14,19 @@ const coverColors = {
 };
 
 const Cover = ({
-  muted,
-  cover,
-  paused,
-  dispatch,
-  buffering,
+  muted, color, background, logo, paused, dispatch, buffering,
 }) => {
-  let status = (paused ? 'pause' : 'play');
+  let status = paused ? 'pause' : 'play';
   if (buffering) status = 'spin6 animate-spin';
-  const custom = Object.assign({}, coverColors, (!cover ? {} : { ...cover }));
+  const custom = Object.assign({}, coverColors, { color, background, logo });
   return (
-    <div id="track-cover"
-      style={{ backgroundColor: custom.background }}>
+    <div id="track-cover" style={{ backgroundColor: custom.background }}>
       <div className="cover-container">
-        <Vinyl className="cover-background"
-          color={custom.color}
-          background={custom.background} />
+        <Vinyl className="cover-background" color={custom.color} background={custom.background} />
         <div className="cover-image"
           style={!custom.logo ? {} : { backgroundImage: `url(${custom.logo})` }} />
       </div>
-      {!muted && cover && (
+      {!muted && (
         <button className="button cover-button"
           disabled={buffering}
           onClick={() => dispatch(paused ? resume() : pause())}>
@@ -41,8 +34,7 @@ const Cover = ({
         </button>
       )}
       {muted && (
-        <button className="button cover-button"
-          onClick={() => dispatch(unmute())}>
+        <button className="button cover-button" onClick={() => dispatch(unmute())}>
           <i className="icon icon-mute" />
         </button>
       )}
@@ -51,11 +43,15 @@ const Cover = ({
 };
 
 Cover.defaultProps = {
-  cover: null,
+  logo: '',
+  color: '#FFFFFF',
+  background: '#000000',
 };
 
 Cover.propTypes = {
-  cover: PropTypes.object,
+  logo: PropTypes.string,
+  color: PropTypes.string,
+  background: PropTypes.string,
   muted: PropTypes.bool.isRequired,
   paused: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,

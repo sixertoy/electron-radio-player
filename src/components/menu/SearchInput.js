@@ -19,6 +19,13 @@ class SearchInput extends React.PureComponent {
     this.clearHandler = this.clearHandler.bind(this);
   }
 
+  componentWillReceiveProps ({ term }) {
+    console.log('componentWillReceiveProps');
+    if (term === this.state.term) return;
+    console.log('componentWillReceiveProps componentWillReceiveProps');
+    this.setState({ term });
+  }
+
   clearHandler () {
     this.setState({ term: '' }, () => this.actions.clearSearch());
   }
@@ -59,9 +66,12 @@ class SearchInput extends React.PureComponent {
 }
 
 SearchInput.propTypes = {
+  term: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = ({ term }) => ({ term });
 
 /*
 const mapDispatchToProps = dispatch => ({
@@ -84,4 +94,4 @@ const mapDispatchToProps = dispatch => ({
 });
 */
 
-export default connect()(SearchInput);
+export default connect(mapStateToProps)(SearchInput);

@@ -9,22 +9,16 @@ import AudioWrapper from './audioplayer/AudioWrapper';
 import AudioControls from './audioplayer/AudioControls';
 
 const AudioPlayer = ({
-  muted,
-  volume,
-  paused,
-  source,
-  buffering,
+  muted, volume, paused, source, buffering,
 }) => (
   <div id="audio-player">
-    {source && (
-      <AudioWrapper url={source.url}
-        muted={muted}
-        paused={paused}
-        volume={volume} />)}
+    {source && <AudioWrapper url={source.url} muted={muted} paused={paused} volume={volume} />}
     <TrackCover paused={paused}
       muted={muted}
       buffering={buffering}
-      cover={(source && source.cover)} />
+      logo={source && source.logo}
+      color={source && source.color}
+      background={source && source.background} />
     <AudioControls muted={muted}
       source={source}
       volume={volume}
@@ -50,7 +44,7 @@ const mapStateToProps = state => ({
   paused: state.paused,
   source: state.source,
   buffering: state.buffering,
-  volume: (state.volume / 100),
+  volume: state.volume / 100,
 });
 
 export default connect(mapStateToProps)(AudioPlayer);

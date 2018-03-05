@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // application
-import { slugify } from './../lib/slugify';
 import { formUpdate, gohome } from './../actions';
 import ColorPickerInput from './colorpicker/ColorPickerInput';
 
@@ -44,7 +43,6 @@ class Form extends React.PureComponent {
 
   render () {
     const { form } = this.state;
-    const formkey = form.name && slugify(form.name);
     return (
       <div id="createform" className="form">
         <label htmlFor="name">
@@ -87,7 +85,6 @@ class Form extends React.PureComponent {
               onChange={this.inputChange} />
           </label>
         </div>
-        <input type="hidden" name="key" defaultValue={formkey || ''} />
         <input type="hidden" name="url" defaultValue={form.url || ''} />
         <input type="hidden" name="type" defaultValue={form.type || 'radio'} />
       </div>

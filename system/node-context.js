@@ -45,9 +45,9 @@ ipcRenderer.on('openPlaylist', () => {
 
 // Do Not Expose All The Things
 window.NodeContext = {
-  createStore: (opts) => {
+  createStore: () => {
     if (electronstore) return electronstore;
-    electronstore = new ElectronStore(opts);
+    electronstore = new ElectronStore();
     return electronstore;
   },
   openExternalURL: url => electron.shell.openExternal(url),

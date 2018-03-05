@@ -9,31 +9,21 @@ import Equalizer from './Equalizer';
 import { mute, unmute } from './../../actions';
 
 const AudioControls = ({
-  muted,
-  source,
-  volume,
-  paused,
-  openURL,
-  buffering,
-  toggleMute,
+  muted, source, volume, paused, openURL, buffering, toggleMute,
 }) => (
-  <div id="audio-controls"
-    className="flex-columns">
+  <div id="audio-controls" className="flex-columns">
     <Equalizer muted={muted}
       clickHandler={() => toggleMute(!muted)}
-      active={((source && source.ready) && !buffering && !paused) || false} />
-    <VolumeBar volume={volume}
-      muted={muted}
-      buffering={buffering}
-      active={(source && !paused)} />
+      active={(source && source.ready && !buffering && !paused) || false} />
+    <VolumeBar volume={volume} muted={muted} buffering={buffering} active={source && !paused} />
     <button className="button twitter"
-      disabled={(!source || source.key.indexOf('@') < 0)}
-      onClick={() => openURL(`https://twitter.com/${source && source.key}`)}>
+      disabled={!source || source.twitter.indexOf('@') < 0}
+      onClick={() => openURL(`https://twitter.com/${source && source.twitter}`)}>
       <i className="icon icon-twitter" />
     </button>
     <button className="button website"
-      disabled={(!source || !source.website)}
-      onClick={() => openURL((source && source.website))}>
+      disabled={!source || !source.website}
+      onClick={() => openURL(source && source.website)}>
       <i className="icon icon-info-circled" />
     </button>
   </div>
@@ -61,7 +51,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(AudioControls);
+export default connect(null, mapDispatchToProps)(AudioControls);

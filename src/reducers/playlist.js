@@ -45,6 +45,8 @@ export const playlistkeys = (state = [], action) => {
 // liste des radios et podcasts
 export const playlist = (state = [], action) => {
   switch (action.type) {
+  case 'onRemoveStation':
+    return state.filter(obj => action.key !== obj.key);
   case 'onFormCommit':
     return state.concat([action.item]);
   default:

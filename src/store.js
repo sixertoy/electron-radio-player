@@ -11,10 +11,12 @@ import { reducers } from './reducers';
 import { createStorage } from './reducers/_storage';
 import { logger } from './reducers/middlewares/logger';
 
+const STORE_KEY = 'electron-radio-player';
+
 const persistConfig = {
+  key: STORE_KEY,
   whitelist: ['playlist'],
-  storage: createStorage(),
-  key: 'electron-radio-player',
+  storage: createStorage(STORE_KEY),
 };
 
 // Il est important d'encapsuler la creation des stores

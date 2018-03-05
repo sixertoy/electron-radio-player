@@ -1,5 +1,4 @@
-export const unsubscribeStation = (item, count) => ({
-  item,
-  count,
-  type: 'onUnsubscribeStation',
+export const removeStation = key => ({
+  key,
+  type: 'onRemoveStation',
 });
