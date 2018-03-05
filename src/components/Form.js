@@ -4,19 +4,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // application
+import ColorPicker from './ColorPicker';
+import { slugify } from './../lib/slugify';
 import { formUpdate, gohome } from './../actions';
 
 class Form extends React.PureComponent {
-
   constructor (props) {
     super(props);
     this.timer = null;
     this.inputChange = this.inputChange.bind(this);
     this.state = { form: Object.assign({}, props.form) };
-    this.actions = bindActionCreators(
-      { formUpdate, gohome },
-      this.props.dispatch,
-    );
+    this.actions = bindActionCreators({ formUpdate, gohome }, this.props.dispatch);
   }
 
   componentWillMount () {
@@ -30,23 +28,25 @@ class Form extends React.PureComponent {
     this.actions.gohome();
   }
 
-  inputChange ({ target }) {
-    const { name, value } = target;
+  inputChange (obj) {
+    const { name, value, required } = obj.target || obj;
+    const valid = required && value;
+    const delay = !obj.target ? 1 : 400;
     this.setState(
-      prev => ({ form: Object.assign({}, prev, { [name]: value }) }),
+      prev => ({ form: Object.assign({}, prev, { [name]: value, valid }) }),
       () => {
         if (this.timer) clearTimeout(this.timer);
-        this.timer = setTimeout(() => this.actions.formUpdate(this.state.form), 800);
+        const { form } = this.state;
+        this.timer = setTimeout(() => this.actions.formUpdate(form), delay);
       },
     );
   }
 
   render () {
     const { form } = this.state;
-    console.log('form', form);
+    const formkey = form.name && slugify(form.name);
     return (
-      <div id="createform"
-        className="form">
+      <div id="createform" className="form">
         <label htmlFor="name">
           <span>Name</span>
           <input required
@@ -54,27 +54,35 @@ class Form extends React.PureComponent {
             name="name"
             value={form.name || ''}
             onChange={this.inputChange}
-            placeholder="Please enter a value" />
+            placeholder="Name you favorite radio station" />
         </label>
         <label htmlFor="website">
           <span>Website</span>
-          <input required
-            type="url"
+          <input type="url"
             name="website"
             value={form.website || ''}
             onChange={this.inputChange}
-            placeholder="Please enter a value" />
+            placeholder="Live playlist URL or Official website" />
         </label>
-        <input type="hidden"
-          name="uri"
-          defaultValue={form.uri || ''} />
-        <input type="hidden"
-          name="type"
-          defaultValue={form.type || 'radio'} />
+        <label htmlFor="twitter">
+          <span>Twitter</span>
+          <input type="text"
+            name="twitter"
+            pattern="^(@[a-zA-Z0-9]+)$"
+            value={form.twitter || ''}
+            onChange={this.inputChange}
+            placeholder="Twitter username @ prefixed" />
+        </label>
+        <div className="input-color-picker">
+          <ColorPicker color={form.color}
+            onChange={value => this.inputChange({ name: 'color', value })} />
+        </div>
+        <input type="hidden" name="key" defaultValue={formkey || ''} />
+        <input type="hidden" name="url" defaultValue={form.url || ''} />
+        <input type="hidden" name="type" defaultValue={form.type || 'radio'} />
       </div>
     );
   }
-
 }
 
 Form.defaultProps = {

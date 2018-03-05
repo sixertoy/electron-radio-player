@@ -10,14 +10,10 @@ import { submitInput, inputChange, clearSearch } from './../../actions';
 const ENTER_CHAR_CODE = 13;
 
 class SearchInput extends React.PureComponent {
-
   constructor (props) {
     super(props);
     this.state = { term: '' };
-    this.actions = bindActionCreators(
-      { submitInput, inputChange, clearSearch },
-      props.dispatch,
-    );
+    this.actions = bindActionCreators({ submitInput, inputChange, clearSearch }, props.dispatch);
     this.keyPressed = this.keyPressed.bind(this);
     this.inputChange = this.inputChange.bind(this);
     this.clearHandler = this.clearHandler.bind(this);
@@ -28,8 +24,8 @@ class SearchInput extends React.PureComponent {
   }
 
   inputChange (evt) {
-    const term = ((evt && evt.target.value) || '');
-    if ((term !== '') && (term === this.state.term)) return;
+    const term = (evt && evt.target.value) || '';
+    if (term !== '' && term === this.state.term) return;
     this.setState(() => ({ term }), () => this.actions.inputChange(term));
   }
 
@@ -43,8 +39,7 @@ class SearchInput extends React.PureComponent {
     const { term } = this.state;
     const { disabled } = this.props;
     return (
-      <div id="search-form"
-        className="form flex-columns">
+      <div id="search-form" className="form flex-columns">
         <label htmlFor="searchfield">
           <input type="text"
             id="searchfield"
@@ -55,9 +50,7 @@ class SearchInput extends React.PureComponent {
             onKeyPress={this.keyPressed}
             placeholder="Add a new Radio" />
         </label>
-        <button className="button"
-          disabled={!term}
-          onClick={this.clearHandler}>
+        <button className="button" disabled={!term} onClick={this.clearHandler}>
           <i className="icon icon-cancel-circled" />
         </button>
       </div>

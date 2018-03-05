@@ -28,9 +28,7 @@ CommitButton.propTypes = {
 
 const mapStateToProps = ({ form }) => {
   // required fields
-  const disabled = !(form
-    && (form.url && (form.url.trim() !== ''))
-    && (form.name && (form.name.trim() !== '')));
+  const disabled = !(form && form.valid);
   return ({ form, disabled });
 };
 

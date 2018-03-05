@@ -1,16 +1,18 @@
 export const formCreate = term => ({
   item: {
+    valid: false, // commitable flag
     key: '',
+    logo: '',
     name: '',
     url: term,
+    twitter: '',
     website: '',
     type: 'radio',
+    color: '#FFFFFF', // default colors
     mtime: Date.now(),
-    cover: {
-      logo: '',
-      color: '#FFFFFF', // default colors
-      background: 'rgba(0, 0, 0, 0)', // defaults background
-    },
+    // default color used for cover background
+    // should be picked from logo with an image color analysis
+    background: 'rgba(0, 0, 0, 0)',
   },
   type: 'onFormCreate',
 });

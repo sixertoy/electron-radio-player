@@ -20,7 +20,8 @@ body {
   overflow: hidden;
   line-height: 1.6;
   background: transparent;
-  font-family: system, -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, "Segoe UI", sans-serif;
+  font-family: system, -apple-system, '.SFNSDisplay-Regular', 'Helvetica Neue',
+    Helvetica, 'Segoe UI', sans-serif;
 }
 
 * {
@@ -42,7 +43,7 @@ button {
   text-overflow: ellipsis;
 }
 
-*[role="button"] {
+*[role='button'] {
   outline: none;
   cursor: pointer;
 }
@@ -55,7 +56,10 @@ label {
   width: 100%;
   display: block;
 }
-label + label { margin-top: 12px; }
+
+label + label {
+  margin-top: 12px;
+}
 
 label span {
   opacity: 0.5;
@@ -66,8 +70,8 @@ label span {
   text-transform: uppercase;
 }
 
-input[type="url"],
-input[type="text"] {
+input[type='url'],
+input[type='text'] {
   border: 0;
   width: 100%;
   display: block;
@@ -79,8 +83,8 @@ input[type="text"] {
   border-radius: 3px;
 }
 
-input[type="url"]::placeholder,
-input[type="text"]::placeholder {
+input[type='url']::placeholder,
+input[type='text']::placeholder {
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -209,7 +213,7 @@ input[type="text"]::placeholder {
 
 body:not(.page-preferences) #page-preferences {
   /* stylelint-disable-next-line length-zero-no-unit */
-  left: calc(0px - var(--appWidth));
+  left: calc(0 - var(--appWidth));
 }
 
 body.page-preferences #page-preferences {
