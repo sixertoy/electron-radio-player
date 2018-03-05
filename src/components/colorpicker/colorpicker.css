@@ -1,0 +1,46 @@
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.color-picker {
+  flex: 1;
+  padding: 7px;
+  background-color: #212124;
+  border-radius: 4px 4px 0 0;
+  animation: 0.5s ease-out 0s 1 fadein;
+}
+
+.color-picker-editable {
+  outline: none;
+  font-weight: bold;
+  border-radius: 4px;
+  color: #FFF !important;
+  text-align: center !important;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin-bottom: 7px;
+}
+
+.color-picker-editable input {
+  color: #FFF;
+}
+
+.color-picker-hue {
+  flex: 1;
+  width: 100%;
+  height: 10px;
+  position: relative;
+  margin-bottom: 7px;
+}
+
+.color-picker-saturation {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding-top: 100%;
+}

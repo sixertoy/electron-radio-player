@@ -12,7 +12,7 @@ export const formCreate = term => ({
     mtime: Date.now(),
     // default color used for cover background
     // should be picked from logo with an image color analysis
-    background: 'rgba(0, 0, 0, 0)',
+    background: '#000000',
   },
   type: 'onFormCreate',
 });

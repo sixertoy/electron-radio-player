@@ -5,14 +5,6 @@ import { Hue, EditableInput, Saturation } from 'react-color/lib/components/commo
 
 import './colorpicker.css';
 
-const pickerStyles = {
-  input: {
-    width: '100%',
-    border: 'none',
-    backgroundColor: 'transparent',
-  },
-};
-
 const ChromePointer = () => (
   <div style={{
     width: '12px',
@@ -24,21 +16,31 @@ const ChromePointer = () => (
   }} />
 );
 
-const CustomColorPicker = CustomPicker(({
-  hsv, hsl, hex, onChange,
+const pickerStyles = {
+  input: {
+    width: '100%',
+    border: 'none',
+    outline: 'none',
+    textAlign: 'center',
+    backgroundColor: 'transparent',
+  },
+};
+
+const CustomColorPicker = ({
+  hsl, hsv, hex, onChange,
 }) => (
-  <div className="custom-color-picker invert">
-    <div className="picker-input" style={{ backgroundColor: hex }}>
+  <div className="color-picker">
+    <div className="color-picker-editable">
       <EditableInput style={pickerStyles} value={hex} onChange={onChange} />
     </div>
-    <div className="picker-slider-hue">
+    <div className="color-picker-hue">
       <Hue hsl={hsl} onChange={onChange} direction="horizontal" pointer={ChromePointer} />
     </div>
-    <div className="picker-slider-saturation">
+    <div className="color-picker-saturation">
       <Saturation hsl={hsl} hsv={hsv} onChange={onChange} />
     </div>
   </div>
-));
+);
 
 CustomColorPicker.defaultProps = {
   hsl: null,

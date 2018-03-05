@@ -1,0 +1,54 @@
+.color-picker-input {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+
+.color-picker-input button {
+  padding: 0;
+  font-size: 1.2em;
+  border-radius: 4px;
+  background-color: #212124;
+  border: 1px solid #212124;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.color-picker-input button span {
+  margin: 0;
+  padding: 0;
+  display: block;
+  letter-spacing: initial !important;
+}
+
+.color-picker-input button span:first-child {
+  opacity: 1;
+  margin: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.color-picker-input .popup {
+  top: -169px;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+
+/* ------------------------------------------------------------
+
+ STATES
+
+*/
+
+.color-picker-input.opened .popup {
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.45);
+}
+
+.color-picker-input.opened button {
+  border-radius: 0 0 4px 4px;
+}

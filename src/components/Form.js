@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // application
-import ColorPicker from './ColorPicker';
 import { slugify } from './../lib/slugify';
 import { formUpdate, gohome } from './../actions';
+import ColorPickerInput from './colorpicker/ColorPickerInput';
 
 class Form extends React.PureComponent {
   constructor (props) {
@@ -62,7 +62,7 @@ class Form extends React.PureComponent {
             name="website"
             value={form.website || ''}
             onChange={this.inputChange}
-            placeholder="Live playlist URL or Official website" />
+            placeholder="Website URL" />
         </label>
         <label htmlFor="twitter">
           <span>Twitter</span>
@@ -73,9 +73,19 @@ class Form extends React.PureComponent {
             onChange={this.inputChange}
             placeholder="Twitter username @ prefixed" />
         </label>
-        <div className="input-color-picker">
-          <ColorPicker color={form.color}
-            onChange={value => this.inputChange({ name: 'color', value })} />
+        <div className="fieldset">
+          <label htmlFor="color">
+            <span>Font</span>
+            <ColorPickerInput color={form.color || '#FFFFFF'}
+              name="color"
+              onChange={this.inputChange} />
+          </label>
+          <label htmlFor="background">
+            <span>Background</span>
+            <ColorPickerInput color={form.background || '#000000'}
+              name="background"
+              onChange={this.inputChange} />
+          </label>
         </div>
         <input type="hidden" name="key" defaultValue={formkey || ''} />
         <input type="hidden" name="url" defaultValue={form.url || ''} />
