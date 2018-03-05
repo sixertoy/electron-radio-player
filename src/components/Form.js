@@ -33,7 +33,7 @@ class Form extends React.PureComponent {
     const valid = required && value;
     const delay = !obj.target ? 1 : 400;
     this.setState(
-      prev => ({ form: Object.assign({}, prev, { [name]: value, valid }) }),
+      prev => ({ form: Object.assign({}, prev.form, { [name]: value, valid }) }),
       () => {
         if (this.timer) clearTimeout(this.timer);
         const { form } = this.state;

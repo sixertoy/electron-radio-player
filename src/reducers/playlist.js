@@ -45,6 +45,8 @@ export const playlistkeys = (state = [], action) => {
 // liste des radios et podcasts
 export const playlist = (state = [], action) => {
   switch (action.type) {
+  case 'onFormCommit':
+    return state.concat([action.item]);
   default:
     return state;
   }

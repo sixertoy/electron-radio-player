@@ -12,12 +12,9 @@ import { createStorage } from './reducers/_storage';
 import { logger } from './reducers/middlewares/logger';
 
 const persistConfig = {
+  whitelist: ['playlist'],
   storage: createStorage(),
   key: 'electron-radio-player',
-  whitelist: [
-    'subkeys',
-    'subscriptions',
-  ],
 };
 
 // Il est important d'encapsuler la creation des stores
@@ -26,10 +23,7 @@ export const configure = (history) => {
   const router = routerMiddleware(history);
   // charge les states existants dans le localStorage
   const persistedReducer = persistReducer(persistConfig, reducers);
-  const store = createStore(
-    persistedReducer,
-    applyMiddleware(logger, thunk, router),
-  );
+  const store = createStore(persistedReducer, applyMiddleware(logger, thunk, router));
   const persistor = persistStore(store);
   return { store, persistor };
 };

@@ -3,6 +3,8 @@ const electron = require('electron');
 
 const { ipcRenderer, remote } = electron;
 
+let electronstore = null;
+
 /**
  * From https://github.com/sindresorhus/electron-store
  */
@@ -28,7 +30,7 @@ class ElectronStore extends Conf {
  *
  */
 // eslint-disable-next-line
-function getUrlParameter (key) {
+function getUrlParameter(key) {
   // eslint-disable-next-line
   const name = key.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
   const regex = new RegExp(`[\\?&]${name}=([^&#]*)`);
@@ -36,16 +38,22 @@ function getUrlParameter (key) {
   return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
+ipcRenderer.on('openPlaylist', () => {
+  if (!electronstore) return electronstore;
+  return electronstore.openInEditor();
+});
+
 // Do Not Expose All The Things
 window.NodeContext = {
-  createStore: opts =>
-    new ElectronStore(opts),
-  openExternalURL: url =>
-    electron.shell.openExternal(url),
-  onApplicationError: message =>
-    ipcRenderer.send('errorInWindow', message),
+  createStore: (opts) => {
+    if (electronstore) return electronstore;
+    electronstore = new ElectronStore(opts);
+    return electronstore;
+  },
+  openExternalURL: url => electron.shell.openExternal(url),
+  onApplicationError: message => ipcRenderer.send('errorInWindow', message),
   getLocale: (inuppercase) => {
     const locale = remote.app.getLocale();
-    return (inuppercase ? locale.toLocaleUpperCase() : locale);
+    return inuppercase ? locale.toLocaleUpperCase() : locale;
   },
 };

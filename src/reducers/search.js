@@ -1,5 +1,6 @@
 export const term = (state = '', action) => {
   switch (action.type) {
+  case 'onFormCommit':
   case 'onSearchClear':
     return '';
   case 'onInputChange':
