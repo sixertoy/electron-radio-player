@@ -88,6 +88,25 @@ input[type='text']:disabled {
 
 /* --------------------------------------------------
 
+ AUDIO COVER
+
+-------------------------------------------------- */
+
+#track-cover {
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px inset rgba(0, 0, 0, 0.5);
+}
+
+#track-cover button {
+  color: #FFF;
+}
+
+#track-cover button:hover {
+  color: #59ADF5;
+}
+
+/* --------------------------------------------------
+
  TOASTER
 
 -------------------------------------------------- */
@@ -131,36 +150,17 @@ input[type='text']:disabled {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-#menubar .removable:hover,
-#menubar .removable.active {
+#menubar .removable:not(:disabled):hover,
+#menubar .removable:not(:disabled).active {
   color: #FA603F;
 }
 
-#menubar .removable:hover.active {
+#menubar .removable:not(:disabled):hover.active {
   color: #FFF;
 }
 
 #search-form {
   background-color: rgba(0, 0, 0, 0.2);
-}
-
-/* --------------------------------------------------
-
- AUDIO COVER
-
--------------------------------------------------- */
-
-#track-cover {
-  background-color: rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 10px inset rgba(0, 0, 0, 0.5);
-}
-
-#track-cover button {
-  color: #FFF;
-}
-
-#track-cover button:hover {
-  color: #59ADF5;
 }
 
 /* --------------------------------------------------
