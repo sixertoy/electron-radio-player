@@ -28,9 +28,16 @@
   height: auto;
   padding: 12px;
   overflow: hidden;
+  line-height: 1.1em;
   border-radius: 4px;
+  padding-right: 24px;
   margin-bottom: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.45);
+}
+
+#toasts-container .toast,
+#toasts-container .toast * {
+  user-select: none !important;
 }
 
 #toasts-container .toast-static {
@@ -47,9 +54,4 @@
   top: 3px;
   right: 3px;
   position: absolute;
-  color: rgba(255, 255, 255, 0.45);
-}
-
-#toasts-container button:hover {
-  color: rgba(255, 255, 255, 1);
 }

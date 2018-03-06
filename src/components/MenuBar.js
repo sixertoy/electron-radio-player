@@ -8,25 +8,36 @@ import SearchInput from './menu/SearchInput';
 import CommitButton from './menu/CommitButton';
 import RemovableButton from './menu/RemovableButton';
 
-const MenuBar = ({ ishome, cancommit }) => (
+const MenuBar = ({
+  ishome, cancommit, playlist, toasts,
+}) => (
   <div id="menubar" className="flex-columns">
     {!ishome && <BackButton />}
-    <SearchInput disabled={!ishome && cancommit} />
+    <SearchInput disabled={!ishome && cancommit} playlist={playlist} />
     {ishome && <RemovableButton />}
-    {!ishome && cancommit && <CommitButton />}
+    {!toasts.length && !ishome && cancommit && <CommitButton />}
   </div>
 );
 
 MenuBar.propTypes = {
   ishome: PropTypes.bool.isRequired,
+  toasts: PropTypes.array.isRequired,
+  playlist: PropTypes.array.isRequired,
   cancommit: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({ router, form }) => {
+const mapStateToProps = ({
+  router, form, playlist, toasts,
+}) => {
   const { pathname } = router.location;
   const ishome = pathname === '/player';
   const cancommit = Boolean(form && form.url);
-  return { ishome, cancommit };
+  return {
+    ishome,
+    toasts,
+    playlist,
+    cancommit,
+  };
 };
 
 export default connect(mapStateToProps)(MenuBar);

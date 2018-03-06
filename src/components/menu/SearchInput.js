@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 
 // application
 import './searchinput.css';
+import { isRadio } from './../../lib/isurl';
 import { submitInput, inputChange, clearSearch, addToast } from './../../actions';
 
 const ENTER_CHAR_CODE = 13;
@@ -44,8 +45,17 @@ class SearchInput extends React.PureComponent {
 
   keyPressed (evt) {
     if (evt.charCode !== ENTER_CHAR_CODE) return;
-    this.actions.addToast(`une erreur ${Date.now()}`, 'error');
-    // this.actions.submitInput();
+    const { term } = this.state;
+    const { playlist } = this.props;
+    const isvalid = isRadio(term);
+    const alreadyexists = (isvalid && playlist.filter(obj => obj.url === term)) || [];
+    if (!isvalid) {
+      this.actions.addToast(`“${term}” is not a valid URL`);
+    } else if (alreadyexists.length) {
+      this.actions.addToast(`Radio is already registered as “${alreadyexists[0].name}”`);
+    } else {
+      this.actions.submitInput();
+    }
   }
 
   render () {
@@ -76,6 +86,7 @@ SearchInput.propTypes = {
   term: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
+  playlist: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = ({ term }) => ({ term });

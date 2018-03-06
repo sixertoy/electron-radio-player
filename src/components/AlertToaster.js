@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 // application
 import './alerttoaster.css';
 import { noop } from './../lib/noop';
-// import { sortby } from './../lib/sortby';
 import { removeToast } from './../actions';
 
 const Toast = ({
@@ -69,7 +68,7 @@ class AlertToaster extends React.PureComponent {
 
   render () {
     const { stacked } = this.state;
-    const maxlen = 3;
+    const maxlen = 5; // use container height instead
     const len = stacked.length;
     return (
       <div id="toasts-container">
