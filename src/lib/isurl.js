@@ -8,14 +8,12 @@ export const isURI = (str) => {
   return (matches && matches[0]) || false;
 };
 
-export const isRadio = str => compose(
-  url => (url && (url.substr(-4) === '.mp3') && url) || false,
-  removesearch,
-  isURI,
-)(str);
+export const isRadio = str =>
+  compose(url => (url && url.substr(-4) === '.mp3' && url) || false, removesearch, isURI)(str);
 
-export const isPodcast = str => compose(
-  url => (url && ((str.substr(-4) === '.xml') || (str.substr(-3) === 'rss')) && url) || false,
-  removesearch,
-  isURI,
-)(str);
+export const isPodcast = str =>
+  compose(
+    url => (url && (str.substr(-4) === '.xml' || str.substr(-3) === 'rss') && url) || false,
+    removesearch,
+    isURI,
+  )(str);

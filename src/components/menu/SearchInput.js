@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 // application
 import './searchinput.css';
-import { submitInput, inputChange, clearSearch } from './../../actions';
+import { submitInput, inputChange, clearSearch, addToast } from './../../actions';
 
 const ENTER_CHAR_CODE = 13;
 
@@ -13,16 +13,22 @@ class SearchInput extends React.PureComponent {
   constructor (props) {
     super(props);
     this.state = { term: '' };
-    this.actions = bindActionCreators({ submitInput, inputChange, clearSearch }, props.dispatch);
+    this.actions = bindActionCreators(
+      {
+        addToast,
+        submitInput,
+        inputChange,
+        clearSearch,
+      },
+      props.dispatch,
+    );
     this.keyPressed = this.keyPressed.bind(this);
     this.inputChange = this.inputChange.bind(this);
     this.clearHandler = this.clearHandler.bind(this);
   }
 
   componentWillReceiveProps ({ term }) {
-    console.log('componentWillReceiveProps');
     if (term === this.state.term) return;
-    console.log('componentWillReceiveProps componentWillReceiveProps');
     this.setState({ term });
   }
 
@@ -38,7 +44,8 @@ class SearchInput extends React.PureComponent {
 
   keyPressed (evt) {
     if (evt.charCode !== ENTER_CHAR_CODE) return;
-    this.actions.submitInput();
+    this.actions.addToast(`une erreur ${Date.now()}`, 'error');
+    // this.actions.submitInput();
   }
 
   render () {

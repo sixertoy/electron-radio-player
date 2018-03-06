@@ -1,27 +1,11 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import {
-  muted,
-  paused,
-  volume,
-  source,
-  buffering,
-  buffererror,
-} from './player';
-import {
-  playlist,
-  playlistkeys,
-} from './playlist';
-import {
-  episodes,
-  podcasts,
-} from './podcasts';
+import { muted, paused, volume, source, buffering, buffererror } from './player';
+import { playlist, playlistkeys } from './playlist';
+import { episodes, podcasts } from './podcasts';
 import { form } from './form';
-import {
-  term,
-  results,
-} from './search';
+import { term, results } from './search';
 
 const removable = (state = false, action) => {
   switch (action.type) {
@@ -41,11 +25,23 @@ const isonline = (state = false, action) => {
   }
 };
 
+const toasts = (state = [], action) => {
+  switch (action.type) {
+  case 'onAddToast':
+    return state.concat([action.item]);
+  case 'onRemoveToast':
+    return state.filter(obj => obj.id !== action.id);
+  default:
+    return state;
+  }
+};
+
 export const reducers = combineReducers({
-  form,
+  toasts,
   isonline,
   removable,
   // search
+  form,
   term,
   results,
   // radios & podcasts

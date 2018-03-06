@@ -3,7 +3,18 @@
  Z-INDEX
 
 -------------------------------------------------- */
-#menubar { z-index: 2000; }
-#screen-searchresults { z-index: 1500; }
-#screen-podcasts { z-index: 1000; }
-#-screen-playlist { z-index: 500; }
+#toasts-container {
+  z-index: 3000;
+}
+
+#menubar {
+  z-index: 2000;
+}
+
+#screen-searchresults {
+  z-index: 1500;
+}
+
+#screen-podcasts {
+  z-index: 1000;
+}

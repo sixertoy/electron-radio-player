@@ -3,6 +3,7 @@ export * from './routes';
 export * from './search';
 export * from './player';
 export * from './volume';
+export * from './toaster';
 export * from './stations';
 export * from './podcasts';
 

@@ -1,0 +1,55 @@
+@keyframes fadein {
+  0% {
+    opacity: 0;
+    margin-top: -10px;
+  }
+
+  100% {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+
+#toasts-container {
+  right: 0;
+  position: absolute;
+}
+
+#toasts-container .holder {
+  position: relative;
+}
+
+#toasts-container .toast {
+  opacity: 1;
+  margin-top: 0;
+  position: relative;
+  animation: 0.5s ease-out 0s 1 fadein;
+  width: 200px;
+  height: auto;
+  padding: 12px;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.45);
+}
+
+#toasts-container .toast-static {
+  padding: 7px;
+  font-size: 0.85em;
+}
+
+#toasts-container .toast-static span {
+  display: block;
+  text-align: center;
+}
+
+#toasts-container button {
+  top: 3px;
+  right: 3px;
+  position: absolute;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+#toasts-container button:hover {
+  color: rgba(255, 255, 255, 1);
+}
