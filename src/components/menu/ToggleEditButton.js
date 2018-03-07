@@ -4,25 +4,25 @@ import { connect } from 'react-redux';
 
 // application
 import { noop } from './../../lib/noop';
-import { toggleRemovable } from './../../actions';
+import { toggleEditable } from './../../actions';
 
-const RemovebleButton = ({ editable, dispatch, disabled }) => (
+const ToggleEditButton = ({ editable, dispatch, disabled }) => (
   <button disabled={disabled}
-    onClick={disabled ? noop : () => dispatch(toggleRemovable())}
-    className={`button removable ${editable ? 'active' : ''}`}>
+    onClick={disabled ? noop : () => dispatch(toggleEditable())}
+    className={`button toggleedit-button ${editable ? 'active' : ''}`}>
     <i className="icon icon-list" />
   </button>
 );
 
-RemovebleButton.propTypes = {
+ToggleEditButton.propTypes = {
   dispatch: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
   editable: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  editable: state.removable,
+  editable: state.editable,
   disabled: state.playlist.length <= 0,
 });
 
-export default connect(mapStateToProps)(RemovebleButton);
+export default connect(mapStateToProps)(ToggleEditButton);

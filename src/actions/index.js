@@ -15,6 +15,6 @@ export const networkStatus = isonline => ({
   type: 'onNetworkStatus',
 });
 
-export const toggleRemovable = () => ({
-  type: 'onToggleRemovable',
+export const toggleEditable = () => ({
+  type: 'onToggleEditable',
 });

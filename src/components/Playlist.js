@@ -5,12 +5,13 @@ import { push } from 'react-router-redux';
 
 // application
 import ListLayout from './hoc/ListLayout';
-import RemovableItem from './hoc/RemovableItem';
+import EditableItem from './hoc/EditableItem';
 import { play, pause, resume, removeStation } from './../actions';
 
 class Playlist extends React.PureComponent {
   constructor (props) {
     super(props);
+    this.editItem = this.editItem.bind(this);
     this.renderItem = this.renderItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.radioClick = this.radioClick.bind(this);
@@ -48,6 +49,11 @@ class Playlist extends React.PureComponent {
     const { items } = this.state;
     const item = items[index];
     openPodcasts(item);
+  }
+
+  editItem (index) {
+    const { selected, items } = this.state;
+    const { key } = items[index];
   }
 
   removeItem (index) {
@@ -91,7 +97,8 @@ class Playlist extends React.PureComponent {
         <ListLayout id="playlist">
           {items &&
             items.map((item, index) => (
-              <RemovableItem key={item.mtime}
+              <EditableItem key={item.mtime}
+                editHandler={() => this.editItem(index)}
                 removeHandler={() => this.removeItem(index)}
                 itemRenderer={() => this.renderItem(index)} />
             ))}

@@ -60,11 +60,11 @@ input[type='text']:disabled {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.removable-container.isremovable:hover button {
+.editable-container.iseditable:hover button {
   color: #FFF;
 }
 
-.removable-button {
+.editable-button {
   color: #FFF;
   background-color: #FA603F;
 }
@@ -150,12 +150,12 @@ input[type='text']:disabled {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-#menubar .removable:not(:disabled):hover,
-#menubar .removable:not(:disabled).active {
+#menubar .toggleedit-button:not(:disabled):hover,
+#menubar .toggleedit-button:not(:disabled).active {
   color: #FA603F;
 }
 
-#menubar .removable:not(:disabled):hover.active {
+#menubar .toggleedit-button:not(:disabled):hover.active {
   color: #FFF;
 }
 

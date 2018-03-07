@@ -1,4 +1,4 @@
-@keyframes fadein {
+@keyframes toasterin {
   0% {
     opacity: 0;
     margin-top: -10px;
@@ -11,7 +11,6 @@
 }
 
 #toasts-container {
-  right: 0;
   position: absolute;
 }
 
@@ -23,7 +22,7 @@
   opacity: 1;
   margin-top: 0;
   position: relative;
-  animation: 0.5s ease-out 0s 1 fadein;
+  animation: 0.5s ease-out 0s 1 toasterin;
   width: 200px;
   height: auto;
   padding: 12px;

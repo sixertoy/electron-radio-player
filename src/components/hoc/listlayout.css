@@ -56,7 +56,7 @@
   background-color: #ACE539;
 }
 
-.isremovable .list-item .icon {
+.iseditable .list-item .icon {
   width: 0;
   min-width: 0;
 }

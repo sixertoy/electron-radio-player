@@ -7,9 +7,9 @@ import { episodes, podcasts } from './podcasts';
 import { form } from './form';
 import { term, results } from './search';
 
-const removable = (state = false, action) => {
+const editable = (state = false, action) => {
   switch (action.type) {
-  case 'onToggleRemovable':
+  case 'onToggleEditable':
     return !state;
   default:
     return state;
@@ -39,7 +39,7 @@ const toasts = (state = [], action) => {
 export const reducers = combineReducers({
   toasts,
   isonline,
-  removable,
+  editable,
   // search
   form,
   term,

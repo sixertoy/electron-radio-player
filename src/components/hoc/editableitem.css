@@ -1,4 +1,4 @@
-.removable-container {
+.editable-container {
   flex: 1;
   display: flex;
   cursor: default;
@@ -8,30 +8,25 @@
   justify-content: space-between;
 }
 
-.removable-item,
-.removable-button {
+.editable-item,
+.editable-button {
   overflow: hidden;
   transition-duration: 0.4s;
   transition-property: right, margin-right;
 }
 
-.removable-item {
+.editable-item {
   flex: 1;
   margin-right: 0;
 }
 
-.removable-button {
-  width: var(--removableButtonWidth);
+.editable-button {
+  width: var(--editableButtonWidth);
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   top: 0;
   bottom: 0;
   position: absolute;
-
-  /* stylelint-disable-next-line length-zero-no-unit */
-  right: calc(0px - var(--removableButtonWidth));
+  right: calc(0.001px - var(--editableButtonWidth));
 }
 
 /* ------------------------------------------------------
@@ -40,20 +35,20 @@
 
 ------------------------------------------------------ */
 
-.removable-container.isremovable {
+.editable-container.iseditable {
   cursor: pointer;
 }
 
-.removable-container.isremovable .removable-button {
+.editable-container.iseditable .editable-button {
   /* add a (n)px border on right on 'can be deleted' state  */
   /* stylelint-disable-next-line length-zero-no-unit */
-  right: calc(1px - var(--removableButtonWidth));
+  right: calc(1px - var(--editableButtonWidth));
 }
 
-.removable-container.isremovable:hover .removable-item {
-  margin-right: var(--removableButtonWidth);
+.editable-container.iseditable:hover .editable-item {
+  margin-right: var(--editableButtonWidth);
 }
 
-.removable-container.isremovable:hover .removable-button {
+.editable-container.iseditable:hover .editable-button {
   right: 0;
 }

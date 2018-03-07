@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import BackButton from './menu/BackButton';
 import SearchInput from './menu/SearchInput';
 import CommitButton from './menu/CommitButton';
-import RemovableButton from './menu/RemovableButton';
+import ToggleEditButton from './menu/ToggleEditButton';
 
 const MenuBar = ({
   ishome, cancommit, playlist, toasts,
@@ -14,7 +14,7 @@ const MenuBar = ({
   <div id="menubar" className="flex-columns">
     {!ishome && <BackButton />}
     <SearchInput disabled={!ishome && cancommit} playlist={playlist} />
-    {ishome && <RemovableButton />}
+    {ishome && <ToggleEditButton />}
     {!toasts.length && !ishome && cancommit && <CommitButton />}
   </div>
 );
