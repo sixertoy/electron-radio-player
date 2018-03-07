@@ -9,7 +9,6 @@ import { slugify } from './../lib/slugify';
 import { subscribePodcast, unsubscribePodcast } from './../actions';
 
 class Podcasts extends React.PureComponent {
-
   constructor (props) {
     super(props);
     this.renderItem = this.renderItem.bind(this);
@@ -17,10 +16,10 @@ class Podcasts extends React.PureComponent {
 
   renderItem (podcast) {
     const { keys, subscribe, unsubscribe } = this.props;
-    const key = podcast.key || slugify(podcast.collectionName);
-    const issubscribed = keys.includes(key);
+    const id = podcast.id || slugify(podcast.collectionName);
+    const issubscribed = keys.includes(id);
     return (
-      <button key={`podcast_key::${key}`}
+      <button key={`podcast_key::${id}`}
         className="list-item button"
         onClick={() => {
           if (issubscribed) subscribe(podcast);
@@ -59,13 +58,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  subscribe: podcast =>
-    dispatch(subscribePodcast(podcast)),
-  unsubscribe: podcast =>
-    dispatch(unsubscribePodcast(podcast)),
+  subscribe: podcast => dispatch(subscribePodcast(podcast)),
+  unsubscribe: podcast => dispatch(unsubscribePodcast(podcast)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Podcasts);
+export default connect(mapStateToProps, mapDispatchToProps)(Podcasts);

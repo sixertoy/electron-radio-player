@@ -46,8 +46,8 @@ class Playlist extends React.PureComponent {
     if (buffering || editable) return;
     const item = items[index];
     this.setState({ selected: index }, () => {
-      const isplayed = selected === index;
-      if (!isplayed) this.actions.play(item);
+      const isactive = selected === index;
+      if (!isactive) this.actions.play(item);
       else if (paused) this.actions.resume(item);
       else this.actions.pause();
     });
@@ -61,28 +61,36 @@ class Playlist extends React.PureComponent {
 
   removeItem (index) {
     const { selected, items } = this.state;
-    const { key } = items[index];
-    if (selected === index) this.actions.pause();
+    const item = items[index];
+    const isactive = selected === index;
+    if (isactive) this.actions.pause();
     this.setState(
-      prev => ({ items: prev.items.filter(obj => obj.key !== key) }),
-      () => this.actions.removeStation(key),
+      prev => ({
+        items: prev.items.filter(obj => obj.id !== item.id),
+        selected: isactive ? false : prev.selected,
+      }),
+      () => this.actions.removeStation(item.id),
     );
   }
 
   renderItem (index) {
-    const { items, selected } = this.state;
-    const { buffering, buffererror } = this.props;
+    const { items } = this.state;
+    const {
+      buffering, buffererror, paused, source,
+    } = this.props;
     const item = items[index];
-    const isactive = index === selected && !buffererror;
-    const isbuffering = isactive && buffering;
+    const isactive = source && source.id === item.id;
+    const useplay = !isactive || paused;
+    const usebuffer = buffering && isactive && !buffererror;
+    const usepause = isactive && !paused && !usebuffer;
     const clickHandler = item.type === 'radio' ? () => this.radioClick(index) : () => {};
     return (
-      <button key={item.mtime}
+      <button key={item.id}
         className={`list-item button ${isactive ? 'active' : ''}`}
         onClick={clickHandler}>
-        {!isactive && !isbuffering && <i className="icon icon-play" />}
-        {isactive && !isbuffering && <i className="icon icon-pause" />}
-        {isbuffering && <i className="icon icon-spin6 animate-spin" />}
+        {useplay && <i className="icon icon-play" />}
+        {usepause && <i className="icon icon-pause" />}
+        {usebuffer && <i className="icon icon-spin6 animate-spin" />}
         <span className="name">
           <span>{item.name}</span>
         </span>
@@ -98,10 +106,10 @@ class Playlist extends React.PureComponent {
         <ListLayout id="playlist">
           {items &&
             items.map((item, index) => (
-              <EditableItem key={item.mtime}
+              <EditableItem key={item.id}
                 editHandler={() => this.editItem(index)}
-                removeHandler={() => this.removeItem(index)}
-                itemRenderer={() => this.renderItem(index)} />
+                itemRenderer={() => this.renderItem(index)}
+                removeHandler={() => this.removeItem(index)} />
             ))}
         </ListLayout>
       </div>
@@ -109,7 +117,12 @@ class Playlist extends React.PureComponent {
   }
 }
 
+Playlist.defaultProps = {
+  source: null,
+};
+
 Playlist.propTypes = {
+  source: PropTypes.object,
   paused: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
   editable: PropTypes.bool.isRequired,
@@ -120,6 +133,7 @@ Playlist.propTypes = {
 
 const mapStateToProps = state => ({
   paused: state.paused,
+  source: state.source,
   editable: state.editable,
   playlist: state.playlist,
   buffering: state.buffering,

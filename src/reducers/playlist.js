@@ -11,7 +11,7 @@ export const playlistkeys = (state = [], action) => {
 export const playlist = (state = [], action) => {
   switch (action.type) {
   case 'onRemoveStation':
-    return state.filter(obj => action.key !== obj.key);
+    return state.filter(obj => action.id !== obj.id);
   case 'onFormCommit':
     return state.concat([action.item]);
   default:

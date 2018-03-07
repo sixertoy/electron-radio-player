@@ -14,7 +14,7 @@ const coverColors = {
 };
 
 const Cover = ({
-  muted, color, background, logo, paused, dispatch, buffering,
+  muted, color, background, logo, paused, dispatch, buffering, disabled,
 }) => {
   let status = paused ? 'pause' : 'play';
   if (buffering) status = 'spin6 animate-spin';
@@ -26,18 +26,20 @@ const Cover = ({
         <div className="cover-image"
           style={!custom.logo ? {} : { backgroundImage: `url(${custom.logo})` }} />
       </div>
-      {!muted && (
-        <button className="button cover-button"
-          disabled={buffering}
-          onClick={() => dispatch(paused ? resume() : pause())}>
-          <i className={`icon icon-${status}`} />
-        </button>
-      )}
-      {muted && (
-        <button className="button cover-button" onClick={() => dispatch(unmute())}>
-          <i className="icon icon-mute" />
-        </button>
-      )}
+      {!muted &&
+        !disabled && (
+          <button className="button cover-button"
+            disabled={buffering}
+            onClick={() => dispatch(paused ? resume() : pause())}>
+            <i className={`icon icon-${status}`} />
+          </button>
+        )}
+      {muted &&
+        !disabled && (
+          <button className="button cover-button" onClick={() => dispatch(unmute())}>
+            <i className="icon icon-mute" />
+          </button>
+        )}
     </div>
   );
 };
@@ -54,6 +56,7 @@ Cover.propTypes = {
   background: PropTypes.string,
   muted: PropTypes.bool.isRequired,
   paused: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
   buffering: PropTypes.bool.isRequired,
 };

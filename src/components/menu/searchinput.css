@@ -6,6 +6,11 @@
   justify-content: space-between;
 }
 
+#search-form.hidden {
+  display: none;
+  visibility: hidden;
+}
+
 #search-form input {
   background-color: transparent;
 }

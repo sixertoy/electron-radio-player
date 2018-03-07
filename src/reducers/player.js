@@ -40,6 +40,8 @@ export const source = (state = null, action) => {
     return Object.assign({}, { ...action.source });
   case 'onFormUpdate':
     return !state || state.id !== action.item.id ? state : Object.assign({}, { ...action.item });
+  case 'onRemoveStation':
+    return state && state.id === action.id ? null : source;
   default:
     return state;
   }

@@ -1,3 +1,8 @@
+export const removeStation = id => ({
+  id,
+  type: 'onRemoveStation',
+});
+
 export const openPodcasts = podcasts => ({
   podcasts,
   type: 'onOpenPodcasts',

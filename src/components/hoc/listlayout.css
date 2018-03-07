@@ -3,6 +3,10 @@
  SCROLLBOX
 
 ------------------------------------------------ */
+.react-scrollbar div:first-child {
+  overflow-x: hidden;
+}
+
 .scrollbox-list > .item {
   width: 100%;
   height: var(--listItemHeight);

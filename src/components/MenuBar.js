@@ -13,7 +13,7 @@ const MenuBar = ({
 }) => (
   <div id="menubar" className="flex-columns">
     {!ishome && <BackButton />}
-    {!isform && <SearchInput disabled={!ishome && cancommit} playlist={playlist} />}
+    <SearchInput disabled={!ishome && cancommit} playlist={playlist} hide={isform} />
     {ishome && <ToggleEditButton />}
     {!toasts.length && !ishome && cancommit && <CommitButton />}
   </div>

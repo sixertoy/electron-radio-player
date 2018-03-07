@@ -7,7 +7,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './listlayout.css';
 
 const ListLayout = ({ id, children }) => (
-  <Scrollbars id={id} autoHide autoHideTimeout={0}>
+  <Scrollbars id={id} autoHide autoHideTimeout={0} className="react-scrollbar">
     <TransitionGroup component="div" className="scrollbox-list">
       {children &&
         children.map(child => (

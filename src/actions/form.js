@@ -1,7 +1,6 @@
 import { replace } from 'react-router-redux';
 
 export const formCreate = (term) => {
-  const time = Date.now();
   const item = {
     valid: false, // commitable flag
     logo: '',
@@ -11,8 +10,6 @@ export const formCreate = (term) => {
     website: '',
     type: 'radio',
     color: '#FFFFFF', // default colors
-    key: time,
-    mtime: time,
     // default color used for cover background
     // should be picked from logo with an image color analysis
     background: '#000000',

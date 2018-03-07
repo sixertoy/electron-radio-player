@@ -17,7 +17,7 @@ const AudioControls = ({
       active={(source && !buffering && !paused) || false} />
     <VolumeBar volume={volume} muted={muted} buffering={buffering} active={source && !paused} />
     <button className="button twitter"
-      disabled={!source || source.twitter.indexOf('@') < 0}
+      disabled={!source || !(source.twitter && source.twitter.indexOf('@') >= 0)}
       onClick={() => openURL(`https://twitter.com/${source && source.twitter}`)}>
       <i className="icon icon-twitter" />
     </button>

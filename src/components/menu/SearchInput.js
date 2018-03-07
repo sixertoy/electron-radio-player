@@ -61,9 +61,9 @@ class SearchInput extends React.PureComponent {
   render () {
     // https://chai5she.cdn.dvmr.fr/fip-midfi.mp3?ID=radiofrance
     const { term } = this.state;
-    const { disabled } = this.props;
+    const { disabled, hide } = this.props;
     return (
-      <div id="search-form" className="form flex-columns">
+      <div id="search-form" className={`form flex-columns ${hide ? 'hidden' : ''}`}>
         <label htmlFor="searchfield">
           <input type="text"
             id="searchfield"
@@ -83,6 +83,7 @@ class SearchInput extends React.PureComponent {
 }
 
 SearchInput.propTypes = {
+  hide: PropTypes.bool.isRequired,
   term: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,

@@ -18,6 +18,7 @@ const AudioPlayer = ({
       buffering={buffering}
       logo={source && source.logo}
       color={source && source.color}
+      disabled={!(source && source.id)}
       background={source && source.background} />
     <AudioControls muted={muted}
       source={source}

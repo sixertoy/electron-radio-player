@@ -94,6 +94,7 @@ class Form extends React.PureComponent {
               onChange={this.inputChange} />
           </label>
         </div>
+        <input type="hidden" name="id" defaultValue={form.id} />
         <input type="hidden" name="type" defaultValue={form.type || 'radio'} />
       </div>
     );
