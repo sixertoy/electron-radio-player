@@ -6,24 +6,17 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 // application
 import './listlayout.css';
 
-const ListLayout = ({
-  id,
-  children,
-}) => (
-  <Scrollbars id={id}
-    autoHide
-    autoHideTimeout={0}
-    className="scrollbox-list">
-    <TransitionGroup component="div">
-      {children && children.map(child => (
-        <CSSTransition timeout={{ enter: 0, exit: 0 }}
-          classNames="animated-list-item"
-          key={`scrollbox-list-item-${child.key}`}>
-          <div className="scrollbox-list-item">
-            {child}
-          </div>
-        </CSSTransition>
-      ))}
+const ListLayout = ({ id, children }) => (
+  <Scrollbars id={id} autoHide autoHideTimeout={0}>
+    <TransitionGroup component="div" className="scrollbox-list">
+      {children &&
+        children.map(child => (
+          <CSSTransition timeout={{ enter: 0, exit: 0 }}
+            classNames="animated-list-item"
+            key={`scrollbox-list-item-${child.key}`}>
+            <div className="item">{child}</div>
+          </CSSTransition>
+        ))}
     </TransitionGroup>
   </Scrollbars>
 );

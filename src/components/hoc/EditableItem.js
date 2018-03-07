@@ -6,10 +6,15 @@ import { connect } from 'react-redux';
 import './editableitem.css';
 import { noop } from './../../lib/noop';
 
-const EditableItem = ({ editable, itemRenderer, removeHandler }) => (
+const EditableItem = ({
+  editable, itemRenderer, editHandler, removeHandler,
+}) => (
   <div className={`editable-container ${editable ? 'iseditable' : ''}`}>
-    <div className="editable-item">{itemRenderer()}</div>
-    <button className="editable-button" onClick={!editable ? noop : removeHandler}>
+    <div className="item">{itemRenderer()}</div>
+    <button className="edit" onClick={!editable ? noop : editHandler}>
+      <i className="icon icon-pencil" />
+    </button>
+    <button className="remove" onClick={!editable ? noop : removeHandler}>
       <i className="icon icon-minus-circled" />
     </button>
   </div>
@@ -17,6 +22,7 @@ const EditableItem = ({ editable, itemRenderer, removeHandler }) => (
 
 EditableItem.propTypes = {
   editable: PropTypes.bool.isRequired,
+  editHandler: PropTypes.func.isRequired,
   itemRenderer: PropTypes.func.isRequired,
   removeHandler: PropTypes.func.isRequired,
 };

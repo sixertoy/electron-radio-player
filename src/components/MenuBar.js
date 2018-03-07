@@ -9,11 +9,11 @@ import CommitButton from './menu/CommitButton';
 import ToggleEditButton from './menu/ToggleEditButton';
 
 const MenuBar = ({
-  ishome, cancommit, playlist, toasts,
+  ishome, cancommit, playlist, toasts, isform,
 }) => (
   <div id="menubar" className="flex-columns">
     {!ishome && <BackButton />}
-    <SearchInput disabled={!ishome && cancommit} playlist={playlist} />
+    {!isform && <SearchInput disabled={!ishome && cancommit} playlist={playlist} />}
     {ishome && <ToggleEditButton />}
     {!toasts.length && !ishome && cancommit && <CommitButton />}
   </div>
@@ -21,6 +21,7 @@ const MenuBar = ({
 
 MenuBar.propTypes = {
   ishome: PropTypes.bool.isRequired,
+  isform: PropTypes.bool.isRequired,
   toasts: PropTypes.array.isRequired,
   playlist: PropTypes.array.isRequired,
   cancommit: PropTypes.bool.isRequired,
@@ -31,8 +32,10 @@ const mapStateToProps = ({
 }) => {
   const { pathname } = router.location;
   const ishome = pathname === '/player';
+  const isform = pathname === '/player/create';
   const cancommit = Boolean(form && form.url);
   return {
+    isform,
     ishome,
     toasts,
     playlist,

@@ -1,24 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import { bindActionCreators } from 'redux';
 
 // application
 import ListLayout from './hoc/ListLayout';
 import EditableItem from './hoc/EditableItem';
-import { play, pause, resume, removeStation } from './../actions';
+import { play, pause, resume, removeStation, formEdit } from './../actions';
 
 class Playlist extends React.PureComponent {
   constructor (props) {
     super(props);
+    const { playlist, dispatch } = this.props;
     this.editItem = this.editItem.bind(this);
     this.renderItem = this.renderItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.radioClick = this.radioClick.bind(this);
-    this.podcastClick = this.podcastClick.bind(this);
+    this.actions = bindActionCreators(
+      {
+        play,
+        pause,
+        resume,
+        formEdit,
+        removeStation,
+      },
+      dispatch,
+    );
     this.state = {
       selected: false,
-      items: [].concat(props.playlist),
+      items: [].concat(playlist),
     };
   }
 
@@ -32,38 +42,30 @@ class Playlist extends React.PureComponent {
 
   radioClick (index) {
     const { selected, items } = this.state;
-    const { paused, buffering } = this.props;
-    if (buffering) return;
+    const { paused, buffering, editable } = this.props;
+    if (buffering || editable) return;
     const item = items[index];
     this.setState({ selected: index }, () => {
       const isplayed = selected === index;
-      if (!isplayed) this.props.play(item);
-      else if (paused) this.props.resume(item);
-      else this.props.pause();
+      if (!isplayed) this.actions.play(item);
+      else if (paused) this.actions.resume(item);
+      else this.actions.pause();
     });
   }
 
-  podcastClick (index) {
-    const { openPodcasts, buffering } = this.props;
-    if (buffering) return;
+  editItem (index) {
     const { items } = this.state;
     const item = items[index];
-    openPodcasts(item);
-  }
-
-  editItem (index) {
-    const { selected, items } = this.state;
-    const { key } = items[index];
+    this.actions.formEdit(item);
   }
 
   removeItem (index) {
     const { selected, items } = this.state;
     const { key } = items[index];
-    const { remove } = this.props;
-    if (selected === index) this.props.pause();
+    if (selected === index) this.actions.pause();
     this.setState(
       prev => ({ items: prev.items.filter(obj => obj.key !== key) }),
-      () => remove(key),
+      () => this.actions.removeStation(key),
     );
   }
 
@@ -73,8 +75,7 @@ class Playlist extends React.PureComponent {
     const item = items[index];
     const isactive = index === selected && !buffererror;
     const isbuffering = isactive && buffering;
-    const clickHandler =
-      item.type === 'radio' ? () => this.radioClick(index) : () => this.podcastClick(index);
+    const clickHandler = item.type === 'radio' ? () => this.radioClick(index) : () => {};
     return (
       <button key={item.mtime}
         className={`list-item button ${isactive ? 'active' : ''}`}
@@ -110,33 +111,19 @@ class Playlist extends React.PureComponent {
 
 Playlist.propTypes = {
   paused: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  editable: PropTypes.bool.isRequired,
   buffering: PropTypes.bool.isRequired,
-  buffererror: PropTypes.bool.isRequired,
   playlist: PropTypes.array.isRequired,
-  // actions
-  play: PropTypes.func.isRequired,
-  pause: PropTypes.func.isRequired,
-  remove: PropTypes.func.isRequired,
-  resume: PropTypes.func.isRequired,
-  openPodcasts: PropTypes.func.isRequired,
+  buffererror: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
   paused: state.paused,
-  buffering: state.buffering,
+  editable: state.editable,
   playlist: state.playlist,
-  removable: state.removable,
+  buffering: state.buffering,
   buffererror: state.buffererror && typeof state.buffererror === 'string',
 });
 
-const mapDispatchToProps = dispatch => ({
-  pause: () => dispatch(pause()),
-  resume: () => dispatch(resume()),
-  play: item => dispatch(play(item)),
-  remove: key => dispatch(removeStation(key)),
-  openPodcasts: () => {
-    dispatch(push('/player/podcasts'));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Playlist);
+export default connect(mapStateToProps)(Playlist);

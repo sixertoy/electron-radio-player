@@ -45,6 +45,15 @@ class Form extends React.PureComponent {
     const { form } = this.state;
     return (
       <div id="createform" className="form">
+        <label htmlFor="url">
+          <span>Radio URL</span>
+          <input required
+            type="url"
+            name="url"
+            value={form.url || ''}
+            onChange={this.inputChange}
+            placeholder="Radio stream URI" />
+        </label>
         <label htmlFor="name">
           <span>Name</span>
           <input required
@@ -85,7 +94,6 @@ class Form extends React.PureComponent {
               onChange={this.inputChange} />
           </label>
         </div>
-        <input type="hidden" name="url" defaultValue={form.url || ''} />
         <input type="hidden" name="type" defaultValue={form.type || 'radio'} />
       </div>
     );

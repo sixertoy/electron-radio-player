@@ -39,26 +39,32 @@ input[type='text']:disabled {
 
 /* --------------------------------------------------
 
- CLASSES
+ SCROLLBOX
 
 -------------------------------------------------- */
 
-.scrollbox-list-item {
+.scrollbox-list > .item {
   transition-duration: 0.5s;
   transition-property: background-color;
 }
 
-.scrollbox-list-item .active {
+.scrollbox-list > .item .active {
   color: #FFF;
 }
 
-.scrollbox-list-item:hover {
+.scrollbox-list > .item:hover {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.scrollbox-list-item:nth-child(even):not(:hover) {
+.scrollbox-list > .item:nth-child(even):not(:hover) {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+/* --------------------------------------------------
+
+ EDITABLE
+
+-------------------------------------------------- */
 
 .editable-container.iseditable:hover button {
   color: #FFF;

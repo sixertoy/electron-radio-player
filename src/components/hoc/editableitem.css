@@ -1,32 +1,40 @@
 .editable-container {
-  flex: 1;
-  display: flex;
-  cursor: default;
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
   position: relative;
-  flex-direction: row;
-  justify-content: space-between;
 }
 
-.editable-item,
-.editable-button {
+.editable-container > * {
+  position: absolute;
   overflow: hidden;
   transition-duration: 0.4s;
-  transition-property: right, margin-right;
+  transition-property: right;
 }
 
-.editable-item {
-  flex: 1;
-  margin-right: 0;
-}
-
-.editable-button {
-  width: var(--editableButtonWidth);
-  text-align: center;
+.editable-container > .item {
+  z-index: 100;
   top: 0;
+  left: 0;
+  right: 0;
   bottom: 0;
-  position: absolute;
+}
+
+.editable-container button.edit,
+.editable-container button.remove {
+  z-index: 90;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  width: var(--editableButtonWidth);
+}
+
+.editable-container button.edit {
   right: calc(0.001px - var(--editableButtonWidth));
+}
+
+.editable-container button.remove {
+  right: calc(0.001px - calc(var(--editableButtonWidth) * 2));
 }
 
 /* ------------------------------------------------------
@@ -35,20 +43,18 @@
 
 ------------------------------------------------------ */
 
-.editable-container.iseditable {
-  cursor: pointer;
+.editable-container.iseditable .item button {
+  cursor: default;
 }
 
-.editable-container.iseditable .editable-button {
-  /* add a (n)px border on right on 'can be deleted' state  */
-  /* stylelint-disable-next-line length-zero-no-unit */
-  right: calc(1px - var(--editableButtonWidth));
+.editable-container.iseditable:hover .item {
+  right: calc(0.001px + calc(var(--editableButtonWidth) * 2));
 }
 
-.editable-container.iseditable:hover .editable-item {
-  margin-right: var(--editableButtonWidth);
-}
-
-.editable-container.iseditable:hover .editable-button {
+.editable-container.iseditable:hover button.remove {
   right: 0;
+}
+
+.editable-container.iseditable:hover button.edit {
+  right: var(--editableButtonWidth);
 }
