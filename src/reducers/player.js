@@ -37,10 +37,9 @@ export const buffering = (state = false, action) => {
 export const source = (state = null, action) => {
   switch (action.type) {
   case 'onPlay':
-    return Object.assign({}, { ...action.source }, { ready: false });
-  case 'onBuffered':
-    return (state.ready)
-      ? state : Object.assign({}, { ...state }, { ready: true });
+    return Object.assign({}, { ...action.source });
+  case 'onFormUpdate':
+    return !state || state.id !== action.item.id ? state : Object.assign({}, { ...action.item });
   default:
     return state;
   }

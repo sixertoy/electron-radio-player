@@ -15,7 +15,7 @@ const EditableItem = ({
       <i className="icon icon-pencil" />
     </button>
     <button className="remove" onClick={!editable ? noop : removeHandler}>
-      <i className="icon icon-minus-circled" />
+      <i className="icon icon-trash" />
     </button>
   </div>
 );

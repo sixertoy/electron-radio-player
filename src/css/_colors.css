@@ -70,8 +70,16 @@ input[type='text']:disabled {
   color: #FFF;
 }
 
-.editable-button {
+.editable-container button.edit,
+.editable-container button.remove {
   color: #FFF;
+}
+
+.editable-container button.edit {
+  background-color: #89C541;
+}
+
+.editable-container button.remove {
   background-color: #FA603F;
 }
 

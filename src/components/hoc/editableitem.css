@@ -19,8 +19,7 @@
   bottom: 0;
 }
 
-.editable-container button.edit,
-.editable-container button.remove {
+.editable-container > button {
   z-index: 90;
   top: 0;
   right: 0;
