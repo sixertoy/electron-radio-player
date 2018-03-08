@@ -1,17 +1,13 @@
 {
   "name": "electron-radio-player",
   "productName": "Radio Player",
-  "os": [
-    "darwin"
-  ],
-  "version": "0.7.1",
+  "os": ["darwin"],
+  "version": "0.8.0",
   "private": true,
   "main": "./main.js",
   "homepage": "./",
   "description": "My Electron App Favorites Radio Player",
-  "workspaces": [
-    "server"
-  ],
+  "workspaces": ["server"],
   "files": [
     "/main.js",
     "/yarn.lock",
