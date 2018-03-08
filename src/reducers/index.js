@@ -4,7 +4,7 @@ import { routerReducer } from 'react-router-redux';
 import { muted, paused, volume, source, buffering, buffererror } from './player';
 import { playlist, playlistkeys } from './playlist';
 import { episodes, podcasts } from './podcasts';
-import { form } from './form';
+import { form, formerrors } from './form';
 import { term, results } from './search';
 
 const editable = (state = false, action) => {
@@ -40,8 +40,10 @@ export const reducers = combineReducers({
   toasts,
   isonline,
   editable,
-  // search
+  // form
   form,
+  formerrors,
+  // search
   term,
   results,
   // radios & podcasts

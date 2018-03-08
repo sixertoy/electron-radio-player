@@ -28,11 +28,10 @@ class Form extends React.PureComponent {
   }
 
   inputChange (obj) {
-    const { name, value, required } = obj.target || obj;
-    const valid = required && value;
+    const { name, value } = obj.target || obj;
     const delay = !obj.target ? 1 : 400;
     this.setState(
-      prev => ({ form: Object.assign({}, prev.form, { [name]: value, valid }) }),
+      prev => ({ form: Object.assign({}, prev.form, { [name]: value }) }),
       () => {
         if (this.timer) clearTimeout(this.timer);
         const { form } = this.state;
@@ -43,21 +42,20 @@ class Form extends React.PureComponent {
 
   render () {
     const { form } = this.state;
+    const { errors } = this.props;
     return (
       <div id="createform" className="form">
-        <label htmlFor="url">
-          <span>Radio URL</span>
-          <input required
-            type="url"
+        <label htmlFor="url" className={errors && errors.url ? 'error' : ''}>
+          <span>{errors && errors.url && '*'} Radio URL</span>
+          <input type="url"
             name="url"
             value={form.url || ''}
             onChange={this.inputChange}
             placeholder="Radio stream URI" />
         </label>
-        <label htmlFor="name">
-          <span>Name</span>
-          <input required
-            type="text"
+        <label htmlFor="name" className={errors && errors.name ? 'error' : ''}>
+          <span>{errors && errors.name && '*'} Name</span>
+          <input type="text"
             name="name"
             value={form.name || ''}
             onChange={this.inputChange}
@@ -107,12 +105,14 @@ Form.defaultProps = {
 
 Form.propTypes = {
   form: PropTypes.object,
+  errors: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   form: state.form,
   router: state.router,
+  errors: state.formerrors,
 });
 
 export default connect(mapStateToProps)(Form);

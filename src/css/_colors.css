@@ -37,6 +37,11 @@ input[type='text']:disabled {
   color: rgba(255, 255, 255, 0.6);
 }
 
+.form label.error {
+  color: #E5007A;
+  font-weight: bold;
+}
+
 /* --------------------------------------------------
 
  SCROLLBOX
@@ -80,7 +85,7 @@ input[type='text']:disabled {
 }
 
 .editable-container button.remove {
-  background-color: #FA603F;
+  background-color: #E5007A;
 }
 
 /* --------------------------------------------------
@@ -139,11 +144,11 @@ input[type='text']:disabled {
 }
 
 #toasts-container .toast-error {
-  background-color: #D23A26;
+  background-color: #E5007A;
 }
 
 #toasts-container .toast-warning {
-  background-color: #FA603F;
+  background-color: #FF623F;
 }
 
 #toasts-container .toast:not(.toast-static) button {
@@ -166,7 +171,7 @@ input[type='text']:disabled {
 
 #menubar .toggleedit-button:not(:disabled):hover,
 #menubar .toggleedit-button:not(:disabled).active {
-  color: #FA603F;
+  color: #E5007A;
 }
 
 #menubar .toggleedit-button:not(:disabled):hover.active {

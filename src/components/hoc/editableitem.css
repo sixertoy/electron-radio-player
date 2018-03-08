@@ -7,7 +7,7 @@
 .editable-container > * {
   position: absolute;
   overflow: hidden;
-  transition-duration: 0.4s;
+  transition-duration: 0.2s;
   transition-property: right;
 }
 

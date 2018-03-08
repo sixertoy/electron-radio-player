@@ -26,10 +26,9 @@ CommitButton.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ form }) => {
-  // required fields
-  const disabled = !(form && form.valid);
-  return { form, disabled };
-};
+const mapStateToProps = ({ form, formerrors }) => ({
+  form,
+  disabled: !(form && !formerrors.length),
+});
 
 export default connect(mapStateToProps)(CommitButton);

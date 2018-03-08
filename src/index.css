@@ -123,6 +123,11 @@ input[type='text']::placeholder {
   padding: 12px;
 }
 
+.form label {
+  transition-duration: 0.5s;
+  transition-property: width, color;
+}
+
 .flex-rows,
 .flex-columns {
   flex: 1;

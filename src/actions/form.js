@@ -20,14 +20,14 @@ export const formCreate = (term) => {
   };
 };
 
-export const formUpdate = item => ({
-  item,
-  type: 'onFormUpdate',
-});
-
 export const formCommit = item => ({
   item,
   type: 'onFormCommit',
+});
+
+export const formUpdate = form => ({
+  type: 'onFormUpdate',
+  item: Object.assign({}, form),
 });
 
 export const formEdit = item => (dispatch) => {
